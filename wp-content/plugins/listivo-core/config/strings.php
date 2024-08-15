@@ -519,5 +519,19 @@ add_filter('tdf/strings', function () {
         'job_type' => esc_html__('Job type', 'listivo-core'),
         'remote' => esc_html__('Remote', 'listivo-core'),
         'onsite' => esc_html__('On Site', 'listivo-core'),
+        'select_location' => esc_html__('Location', 'listivo-core'),
+        'select_location_placeholder' => esc_html__('Location', 'listivo-core'),
+        'select_skill' => esc_html__('Skills', 'listivo-core'),
+        'select_skill_placeholder' => esc_html__('Skills', 'listivo-core'),
+        'add_skill' => esc_html__('Add Skill', 'listivo-core'),
+
+        'skill_rate' => esc_html__('Rate your skill (0% to 100%)', 'listivo-core'),
+        'hourly_rate' => esc_html__('Hourly Rate', 'listivo-core'),
+        'experience_education' => esc_html__('Experience & Education', 'listivo-core'),
+        'job_title' => esc_html__('Job Title', 'listivo-core'),
+        'company_title' => esc_html__('Company Title', 'listivo-core'),
+        'start_date' => esc_html__('Start Date', 'listivo-core'),
+        'end_date' => esc_html__('End Date', 'listivo-core'),
+        'job_description' =>  esc_html__('Job Description', 'listivo-core'),
     ];
 });

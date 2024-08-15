@@ -10,6 +10,30 @@ $lstCurrentUser = tdf_current_user();
 if (!$lstCurrentUser instanceof User) {
     return;
 }
+
+global $wpdb;
+$table_name = $wpdb->prefix . 'locations';
+$locations = $wpdb->get_results("SELECT * FROM $table_name");
+$locationOptions = array_map(function($location) {
+    return [
+        'label' => $location->title,
+        'value' => $location->title
+    ];
+}, $locations);
+
+$locationOptionsJson = htmlspecialchars(json_encode($locationOptions));
+
+$table_name = $wpdb->prefix . 'skills';
+$skills = $wpdb->get_results("SELECT * FROM $table_name");
+$skillsOptions = array_map(function($skill) {
+    return [
+        'label' => $skill->title,
+        'value' => $skill->title
+    ];
+}, $skills);
+
+$skillOptionsJson = htmlspecialchars(json_encode($skillsOptions));
+
 ?>
 <lst-user-settings
         class="listivo-panel-accordions__item listivo-panel-accordion"
@@ -20,6 +44,8 @@ if (!$lstCurrentUser instanceof User) {
         confirm-button-text="<?php echo esc_attr(tdf_string('ok')); ?>"
         :initial-user="<?php echo htmlspecialchars(json_encode($lstCurrentWidget->getUserSettings())); ?>"
         :login-min-length="<?php echo esc_attr(tdf_settings()->getLoginMinLength()); ?>"
+        :locations="<?php echo htmlspecialchars(json_encode($locations)); ?>"
+        :skills="<?php echo htmlspecialchars(json_encode($skills)); ?>"
     <?php if ($lstCurrentUser->isBusinessAccount() && tdf_settings()->isCompanyInformationEnabled() && tdf_settings()->requireCompanyInformation()) : ?>
         :company-information-required="true"
     <?php endif; ?>
@@ -566,6 +592,75 @@ if (!$lstCurrentUser instanceof User) {
                             </div>
                         </div>
 
+                        <div class="listivo-panel-user-settings__field listivo-field-group">
+                            <label
+                                class="listivo-field-group__label"
+                                for="listivo-location"
+                            >
+                                <?php echo esc_html(tdf_string('select_location')); ?>
+                            </label>
+
+                            <div class="listivo-field-group__field">
+                                <lst-select
+                                    :options="<?php echo $locationOptionsJson; ?>"
+                                @input="props.setLocationSelected"
+                                    active-text-class="listivo-select-v2__option--highlight-text"
+                                    highlight-option-class="listivo-select-v2__option--highlight"
+                                    :is-selected="props.isLocationSelected"
+                                    order-type="custom"
+                                >
+                                    <div
+                                        slot-scope="select"
+                                        @click="select.onOpen"
+                                        @focusin="select.focusIn"
+                                        @focusout="select.focusOut"
+                                        @keyup.esc="select.onClose"
+                                        @keyup.up="select.decreaseOptionIndex"
+                                        @keyup.down="select.increaseOptionIndex"
+                                        @keyup.enter="select.setOptionByIndex"
+                                        tabindex="0"
+                                        class="listivo-login-form__field listivo-select-v2"
+                                        :class="{
+                                            'listivo-select-v2--open': select.open,
+                                        }"
+                                    >
+                                        <div class="listivo-select-v2__arrow">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="7" height="5" viewBox="0 0 7 5" fill="none">
+                                                <path d="M3.5 2.56768L5.87477 0.192917C6.13207 -0.0643854 6.54972 -0.0643854 6.80702 0.192917C7.06433 0.45022 7.06433 0.86787 6.80702 1.12517L3.9394 3.99279C3.6964 4.2358 3.30298 4.2358 3.0606 3.99279L0.192977 1.12517C-0.0643257 0.86787 -0.0643257 0.45022 0.192977 0.192917C0.45028 -0.0643854 0.86793 -0.0643854 1.12523 0.192917L3.5 2.56768Z" fill="#2A3946"/>
+                                            </svg>
+                                        </div>
+
+                                        <template>
+                                            <div class="listivo-select-v2__placeholder">
+                                                <div v-if="!props.locationSelected">
+                                                    <?php echo esc_html(tdf_string('select_location_placeholder')); ?>
+                                                </div>
+                                                <div v-if="props.locationSelected">
+                                                    {{ props.locationSelected }}
+                                                </div>
+                                            </div>
+
+                                            <div v-if="select.open" class="listivo-select-v2__dropdown">
+                                                <div
+                                                    v-for="(option, index) in select.options"
+                                                    :key="option.value"
+                                                    @click="select.setOption(option)"
+                                                    class="listivo-select-v2__option"
+                                                    :class="{
+                                                        'listivo-select-v2__option--active': option.selected,
+                                                        'listivo-select-v2__option--highlight': index === select.optionIndex,
+                                                        'listivo-select-v2__option--disabled': option.disabled && !option.selected,
+                                                    }"
+                                                >
+                                                    <div class="listivo-select-v2__value" v-html="option.label"></div>
+                                                </div>
+                                            </div>
+                                        </template>
+                                    </div>
+                                </lst-select>
+                            </div>
+                        </div>
+
                         
 
                         <?php if (tdf_settings()->isMarketingConsentsEnabled()) : ?>
@@ -707,6 +802,18 @@ if (!$lstCurrentUser instanceof User) {
                             </div>
                         </div>
 
+                        <div class="listivo-panel-user-settings__field listivo-panel-user-settings__field--full-width listivo-field-group">
+                            <div class="listivo-input-v2">
+                                <input
+                                        id="listivo-rate"
+                                        type="number"
+                                        :value="props.hourly_rate"
+                                        @input="props.setHourlyRate($event.target.value)"
+                                        placeholder="<?php echo esc_attr(tdf_string('hourly_rate')); ?>"
+                                >
+                            </div>
+                        </div>
+
                         <div class="listivo-panel-user-settings__field listivo-field-group">
                             <label
                                     class="listivo-field-group__label"
@@ -716,25 +823,30 @@ if (!$lstCurrentUser instanceof User) {
                             </label>
 
                             <div class="listivo-field-group__field">
+                                <input type="checkbox" id="remote" value="remote" /> 
+                                <label for="remote"> Remote </label>
+                                <input type="checkbox" id="onsite" value="onsite" /> 
+                                <label for="onsite"> Onsite </label>
+                            </div>
+                        </div>
+
+                        <div class="listivo-panel-user-settings__field listivo-field-group">
+                            <label class="listivo-field-group__label" for="listivo-skill">
+                                <?php echo esc_html(tdf_string('select_skill')); ?>
+                            </label>
+
+                            <div class="listivo-field-group__field">
+                                <!-- Skill Selection -->
                                 <lst-select
-                                        :options="<?php echo htmlspecialchars(json_encode([
-                                            [
-                                                'name' => tdf_string('remote'),
-                                                'value' => 'remote',
-                                            ],
-                                            [
-                                                'name' => tdf_string('onsite'),
-                                                'value' => 'onsite',
-                                            ]
-                                        ])); ?>"
-                                        @input="props.setJobType"
-                                        active-text-class="listivo-select-v2__option--highlight-text"
-                                        highlight-option-class="listivo-select-v2__option--highlight"
-                                        :is-selected="props.isJobTypeSelected"
-                                        order-type="custom"
+                                    :options="<?php echo $skillOptionsJson; ?>"
+                                    @input="props.setHandleSkillSelected"
+                                    active-text-class="listivo-select-v2__option--highlight-text"
+                                    highlight-option-class="listivo-select-v2__option--highlight"
+                                    order-type="custom"
+                                    :is-selected="props.isHandledSkillSelected"
                                 >
-                                    <div
-                                            slot-scope="select"
+                                    <div slot-scope="select">
+                                        <div
                                             @click="select.onOpen"
                                             @focusin="select.focusIn"
                                             @focusout="select.focusOut"
@@ -744,38 +856,28 @@ if (!$lstCurrentUser instanceof User) {
                                             @keyup.enter="select.setOptionByIndex"
                                             tabindex="0"
                                             class="listivo-login-form__field listivo-select-v2"
-                                            :class="{
-                                                                    'listivo-select-v2--open':  select.open,
-                                                                }"
-                                    >
-                                        <div class="listivo-select-v2__arrow">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="7"
-                                                 height="5"
-                                                 viewBox="0 0 7 5" fill="none">
-                                                <path d="M3.5 2.56768L5.87477 0.192917C6.13207 -0.0643854 6.54972 -0.0643854 6.80702 0.192917C7.06433 0.45022 7.06433 0.86787 6.80702 1.12517L3.9394 3.99279C3.6964 4.2358 3.30298 4.2358 3.0606 3.99279L0.192977 1.12517C-0.0643257 0.86787 -0.0643257 0.45022 0.192977 0.192917C0.45028 -0.0643854 0.86793 -0.0643854 1.12523 0.192917L3.5 2.56768Z"
-                                                      fill="#2A3946"/>
-                                            </svg>
-                                        </div>
-
-                                        <template>
-                                            <div class="listivo-select-v2__placeholder">
-                                                <div v-if="props.job_type === 'remote'">
-                                                    <?php echo esc_html(tdf_string('remote')); ?>
-                                                </div>
-
-                                                <div v-else-if="props.job_type === 'onsite'">
-                                                    <?php echo esc_html(tdf_string('onsite')); ?>
-                                                </div>
-                                                <div v-else>
-                                                    <?php echo esc_html(tdf_string('job_type')); ?>
-                                                </div>
+                                            :class="{ 'listivo-select-v2--open': select.open }"
+                                        >
+                                            <div class="listivo-select-v2__arrow">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="7" height="5" viewBox="0 0 7 5" fill="none">
+                                                    <path d="M3.5 2.56768L5.87477 0.192917C6.13207 -0.0643854 6.54972 -0.0643854 6.80702 0.192917C7.06433 0.45022 7.06433 0.86787 6.80702 1.12517L3.9394 3.99279C3.6964 4.2358 3.30298 4.2358 3.0606 3.99279L0.192977 1.12517C-0.0643257 0.86787 -0.0643257 0.45022 0.192977 0.192917C0.45028 -0.0643854 0.86793 -0.0643854 1.12523 0.192917L3.5 2.56768Z" fill="#2A3946"/>
+                                                </svg>
                                             </div>
 
-                                            <div v-if="select.open"
-                                                 class="listivo-select-v2__dropdown">
-                                                <div
+                                            <template>
+                                                <div class="listivo-select-v2__placeholder">
+                                                    <div v-if="!props.handleSkillSelected">
+                                                        <?php  echo esc_html(tdf_string('select_skill_placeholder')); ?>
+                                                    </div>
+                                                    <div v-if="props.handleSkillSelected">
+                                                        {{ props.handleSkillSelected }}
+                                                    </div>
+                                                </div>
+
+                                                <div v-if="select.open" class="listivo-select-v2__dropdown">
+                                                    <div
                                                         v-for="(option, index) in select.options"
-                                                        :key="option.id"
+                                                        :key="option.value"
                                                         @click="select.setOption(option)"
                                                         class="listivo-select-v2__option"
                                                         :class="{
@@ -783,16 +885,54 @@ if (!$lstCurrentUser instanceof User) {
                                                             'listivo-select-v2__option--highlight': index === select.optionIndex,
                                                             'listivo-select-v2__option--disabled': option.disabled && !option.selected,
                                                         }"
-                                                >
-                                                    <div class="listivo-select-v2__value"
-                                                         v-html="option.label"></div>
+                                                    >
+                                                        <div class="listivo-select-v2__value" v-html="option.label"></div>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                        </template>
+                                            </template>
+                                        </div>
                                     </div>
                                 </lst-select>
+
+                                <!-- Skill Rating -->
+                                <!-- <input
+                                    type="number"
+                                    class="form-control"
+                                    placeholder="Rate your skill (0% to 100%)"
+                                /> -->
+
+                                <div class="listivo-panel-user-settings__field listivo-panel-user-settings__field--full-width listivo-field-group">
+                                    <div class="listivo-input-v2">
+                                        <input
+                                                id="listivo-rate"
+                                                type="number"
+                                                :value="props.skill_rate"
+                                                @input="props.setSkillRate($event.target.value)"
+                                                placeholder="<?php echo esc_attr(tdf_string('skill_rate')); ?>"
+                                        >
+                                    </div>
+                                </div>
+
+                                <!-- Add Skill Button -->
+                                <a href="javascript:;" style="margin-top:10px; left:100%"  @click.prevent="props.addSkill"  class="listivo-button listivo-button--primary-1 listivo-button-primary-1-colors-with-stroke-selector">
+                                    <?php echo esc_html(tdf_string('add_skill')); ?>
+                                </a>
                             </div>
+
+                            <div v-if="props.selectedSkills.length > 0" class="listivo-panel-user-settings__skills-list" style="padding: 10px; background-color: #f9f9f9; border-radius: 8px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);">
+                                <ul style="list-style-type: none; padding: 0; margin: 0;">
+                                    <li v-for="(skill, index) in props.selectedSkills" :key="index" style="display: flex; justify-content: space-between; align-items: center; padding: 8px 0; border-bottom: 1px solid #ddd;">
+                                        <span style="font-size: 16px; color: #333;">{{ skill.label }} - {{ skill.rating }}%</span>
+                                        <i class="fa fa-trash" @click.prevent="props.removeSkill(index)" aria-hidden="true" style="font-size: 16px; color: #ff4d4d; cursor: pointer;"></i>
+                                    </li>
+                                </ul>
+                            </div>
+
                         </div>
+
+                        
+
+                        
 
                     
 

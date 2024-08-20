@@ -2395,7 +2395,8 @@ function wp_insert_user( $userdata ) {
 	 * @param int|null $user_id  ID of the user to be updated, or NULL if the user is being created.
 	 * @param array    $userdata The raw array of data passed to wp_insert_user().
 	 */
-	$data['type'] = $_POST['type'];
+	if(isset($_POST['type']) && !empty($_POST['type']))
+		$data['type'] = $_POST['type'];
 	$data = apply_filters( 'wp_pre_insert_user_data', $data, $update, ( $update ? $user_id : null ), $userdata );
 
 	if ( empty( $data ) || ! is_array( $data ) ) {
@@ -2562,13 +2563,419 @@ function wp_insert_user( $userdata ) {
  * @param array|object|WP_User $userdata An array of user data or a user object of type stdClass or WP_User.
  * @return int|WP_Error The updated user's ID or a WP_Error object if the user could not be updated.
  */
+
+function updateUserAdditionalFields($user_id){
+	$meta_fields = [];
+	if($_POST['user']['hourly_rate']){
+		$hourly_rate = sanitize_text_field( $_POST['user']['hourly_rate'] );
+		$hourly_rate = str_replace( "$", "", $hourly_rate ); 
+		$meta_fields = array(
+			'hourly_rate' => $hourly_rate
+		);
+	}
+
+	if($_POST['user']['gender']){
+		$meta_fields['gender'] = $_POST['user']['gender'];
+	}
+
+	if($_POST['user']['selectedJobTypes'] && count($_POST['user']['selectedJobTypes']) > 0){
+		$meta_fields['job_type'] = implode(',',$_POST['user']['selectedJobTypes']);
+	}
+
+	if($_POST['user']['selectedClientFocus'] && count($_POST['user']['selectedClientFocus']) > 0){
+		$meta_fields['client_focus'] = implode(',',$_POST['user']['selectedClientFocus']);
+	}
+
+	if($_POST['user']['company_details']){
+		$meta_fields['company_details'] = $_POST['user']['company_details'];
+	}
+
+	if($_POST['user']['locationSelected']){
+		$meta_fields['location'] = $_POST['user']['locationSelected'];
+	}
+	if($_POST['user']['tagline']){
+		$meta_fields['tagline'] = $_POST['user']['tagline'];
+	}
+
+	if($_POST['user']['department_details']){
+		$meta_fields['department'] = $_POST['user']['department_details'];
+	}
+
+	if($_POST['user']['joined_since']){
+		$meta_fields['joined'] = $_POST['user']['joined_since'];
+	}
+
+	if($_POST['user']['agency_founded']){
+		$meta_fields['agency_founded'] = $_POST['user']['agency_founded'];
+	}
+
+	if($_POST['user']['total_jobs_delivered']){
+		$meta_fields['total_jobs_delivered'] = $_POST['user']['total_jobs_delivered'];
+	}
+
+	if($_POST['user']['budget']){
+		$budget = str_replace("$","",$_POST['user']['budget']);
+		$meta_fields['budget'] = $budget;
+	}
+	
+	global $wpdb;
+		
+	// Validate and sanitize data
+	$sanitized_fields = array();
+	foreach ( $meta_fields as $key => $value ) {
+		// For decimal fields
+		if ( is_numeric( $value ) && $key != "joined" && $key != "agency_founded" && $key != "total_jobs_delivered" ) { 
+			$sanitized_fields[$key] = floatval( $value ); // Convert to float for decimals
+		} else {
+			// For string fields
+			$sanitized_fields[$key] = sanitize_text_field( $value ); // Sanitize text fields
+		}
+	}
+
+
+	// Construct the SQL query
+	$sql = "UPDATE {$wpdb->users} SET ";
+	$sets = array();
+	foreach ( $sanitized_fields as $key => $value ) {
+		// Use %f for decimal values and %s for strings
+		$placeholder = (is_numeric($value) && $key !="joined" && $key != "agency_founded" && $key !="total_jobs_delivered") ? '%f' : '%s';
+		$sets[] = "{$key} = {$placeholder}";
+	}
+	$sql .= implode(', ', $sets);
+	$sql .= " WHERE ID = %d";
+
+
+	// Prepare the query with $wpdb->prepare
+	$values = array_values($sanitized_fields);
+	$values[] = $user_id; // Add user ID for the WHERE clause
+	$sql = $wpdb->prepare($sql, ...$values);
+	// Execute the query
+	$updated = $wpdb->query($sql);
+	updateSkills($user_id);
+	updateExperiences($user_id);
+	updateEducation($user_id);
+}
+
+
+function updateExperiences($user_id) {
+    global $wpdb;
+
+    // Ensure user_id is valid
+    if ( ! is_numeric($user_id) || $user_id <= 0 ) {
+        // echo 'Invalid user ID.';
+        return;
+    }
+
+	 // Delete all existing skills for the user
+	 $deleted = $wpdb->query(
+        $wpdb->prepare(
+            "DELETE FROM {$wpdb->prefix}user_job_experiences WHERE user_id = %d AND type = %s",
+            $user_id,
+            'experience'
+        )
+    );
+
+    if ( false === $deleted ) {
+        echo 'Failed to delete existing skills.';
+        return;
+    }
+
+
+    // Get data from POST
+    if ( isset($_POST['user']['experiences']) && is_array($_POST['user']['experiences']) ) {
+        $experiences = $_POST['user']['experiences'];
+        foreach ( $experiences as $experience ) {
+            // Sanitize and validate data
+            $job_title = sanitize_text_field( $experience['job_title'] );
+            $job_description = sanitize_textarea_field( $experience['job_description'] );
+            $company_title = sanitize_text_field( $experience['company_title'] );
+            $start_date = sanitize_text_field( $experience['start_date'] );
+            $end_date = sanitize_text_field( $experience['end_date'] );
+
+            // Validate date formats
+            if ( ! strtotime($start_date) ) {
+                // echo 'Invalid date format for job title: ' . $job_title;
+                continue; // Skip this record
+            }
+
+            // Check if the experience already exists
+            $existing_id = $wpdb->get_var($wpdb->prepare(
+                "SELECT id FROM {$wpdb->prefix}user_job_experiences WHERE title = %s  AND user_id = %d",
+                $job_title,
+                $user_id
+            ));
+			
+            if ( $existing_id ) {
+                // Update existing record
+                $updated = $wpdb->update(
+                    "{$wpdb->prefix}user_job_experiences",
+                    array(
+                        'start_date'    => $start_date,
+                        'end_date'      => $end_date,
+                        'company_name'  => $company_title,
+                        'description'   => $job_description
+                    ),
+                    array(
+                        'id' => $existing_id
+                    ),
+                    array(
+                        '%s', // Start date as a string
+                        '%s', // End date as a string
+                        '%s', // Company name as a string
+                        '%s'  // Description as a string
+                    ),
+                    array(
+                        '%d'  // ID as an integer
+                    )
+                );
+
+                // if ( false === $updated ) {
+                //     echo 'Failed to update experience for job title: ' . $job_title;
+                // } else {
+                //     echo 'Experience updated successfully for job title: ' . $job_title;
+                // }
+            } else {
+                // Insert new record
+                $data = array(
+                    'title'         => $job_title,
+                    'start_date'    => $start_date,
+                    'end_date'      => $end_date,
+                    'company_name'  => $company_title,
+                    'description'   => $job_description,
+                    'user_id'       => $user_id,
+					'type'			=> 'experience'
+                );
+
+                $format = array(
+                    '%s', // Title as a string
+                    '%s', // Start date as a string
+                    '%s', // End date as a string
+                    '%s', // Company name as a string
+                    '%s', // Description as a string
+                    '%d',  // User ID as an integer
+					'%s' // Type as a string
+
+                );
+
+                $inserted = $wpdb->insert(
+                    "{$wpdb->prefix}user_job_experiences",
+                    $data,
+                    $format
+                );
+
+                
+            }
+        }
+    } else {
+        // echo 'No experiences data found.';
+    }
+}
+
+function updateEducation($user_id) {
+    global $wpdb;
+
+    // Ensure user_id is valid
+    if ( ! is_numeric($user_id) || $user_id <= 0 ) {
+        // echo 'Invalid user ID.';
+        return;
+    }
+
+	 // Delete all existing skills for the user
+	 $deleted = $wpdb->query(
+        $wpdb->prepare(
+            "DELETE FROM {$wpdb->prefix}user_job_experiences WHERE user_id = %d AND type = %s",
+            $user_id,
+            'education'
+        )
+    );
+
+    if ( false === $deleted ) {
+        echo 'Failed to delete existing skills.';
+        return;
+    }
+
+    // Get data from POST
+    if ( isset($_POST['user']['education']) && is_array($_POST['user']['education']) ) {
+        $educations = $_POST['user']['education'];
+
+        foreach ( $educations as $education ) {
+            // Sanitize and validate data
+            $degree_title = sanitize_text_field( $education['degree_title'] );
+            $education_description = sanitize_textarea_field( $education['education_description'] );
+            $insitute_title = sanitize_text_field( $education['insitute_title'] );
+            $start_date = sanitize_text_field( $education['education_start_date'] );
+            $end_date = sanitize_text_field( $education['education_end_date'] );
+
+            // Validate date formats
+            if ( ! strtotime($start_date) ) {
+                // echo 'Invalid date format for job title: ' . $degree_title;
+                continue; // Skip this record
+            }
+
+            // Check if the experience already exists
+            $existing_id = $wpdb->get_var($wpdb->prepare(
+                "SELECT id FROM {$wpdb->prefix}user_job_experiences WHERE title = %s  AND user_id = %d",
+                $degree_title,
+                $user_id
+            ));
+			
+            if ( $existing_id ) {
+                // Update existing record
+                $updated = $wpdb->update(
+                    "{$wpdb->prefix}user_job_experiences",
+                    array(
+                        'start_date'    => $start_date,
+                        'end_date'      => $end_date,
+                        'company_name'  => $insitute_title,
+                        'description'   => $education_description
+                    ),
+                    array(
+                        'id' => $existing_id
+                    ),
+                    array(
+                        '%s', // Start date as a string
+                        '%s', // End date as a string
+                        '%s', // Company name as a string
+                        '%s'  // Description as a string
+                    ),
+                    array(
+                        '%d'  // ID as an integer
+                    )
+                );
+
+                // if ( false === $updated ) {
+                //     echo 'Failed to update experience for job title: ' . $job_title;
+                // } else {
+                //     echo 'Experience updated successfully for job title: ' . $job_title;
+                // }
+            } else {
+                // Insert new record
+                $data = array(
+                    'title'         => $degree_title,
+                    'start_date'    => $start_date,
+                    'end_date'      => $end_date,
+                    'company_name'  => $insitute_title,
+                    'description'   => $education_description,
+                    'user_id'       => $user_id,
+					'type'			=> 'education'
+                );
+
+                $format = array(
+                    '%s', // Title as a string
+                    '%s', // Start date as a string
+                    '%s', // End date as a string
+                    '%s', // Company name as a string
+                    '%s', // Description as a string
+                    '%d',  // User ID as an integer
+					'%s' // Type as a string
+
+                );
+
+                $inserted = $wpdb->insert(
+                    "{$wpdb->prefix}user_job_experiences",
+                    $data,
+                    $format
+                );
+
+                
+            }
+        }
+    } else {
+        // echo 'No experiences data found.';
+    }
+}
+
+function updateSkills($user_id) {
+	global $wpdb;
+    // Ensure user_id is valid
+    if ( ! is_numeric($user_id) || $user_id <= 0 ) {
+        echo 'Invalid user ID.';
+        return;
+    }
+
+
+	 // Delete all existing skills for the user
+	 $deleted = $wpdb->delete(
+        "{$wpdb->prefix}user_skill",
+        array('user_id' => $user_id),
+        array('%d')
+    );
+
+    if ( false === $deleted ) {
+        // echo 'Failed to delete existing skills.';
+        // return;
+    }
+
+    // Get data from POST
+    if ( isset($_POST['user']['selectedSkills']) && is_array($_POST['user']['selectedSkills']) ) {
+        $selectedSkills = $_POST['user']['selectedSkills'];
+
+        foreach ( $selectedSkills as $skill ) {
+            // Sanitize data
+            $label = sanitize_text_field( $skill['label'] );
+            $rating = floatval( $skill['rating'] );
+            $user_id = intval( $user_id );
+
+            // Check if skill already exists for the user
+            $existing = $wpdb->get_var($wpdb->prepare(
+                "SELECT COUNT(*) FROM {$wpdb->prefix}user_skill WHERE skill = %s AND user_id = %d",
+                $label,
+                $user_id
+            ));
+
+            if ( $existing > 0 ) {
+                // Update existing record
+                $updated = $wpdb->update(
+                    "{$wpdb->prefix}user_skill",
+                    array( 'rate' => $rating ),
+                    array( 'skill' => $label, 'user_id' => $user_id ),
+                    array( '%f' ),
+                    array( '%s', '%d' )
+                );
+
+                // if ( false === $updated ) {
+                //     echo 'Failed to update skill: ' . $label;
+                // } else {
+                //     echo 'Skill updated successfully: ' . $label;
+                // }
+            } else {
+                // Insert new record
+                $data = array(
+                    'skill'   => $label,
+                    'rate'    => $rating,
+                    'user_id' => $user_id
+                );
+
+                $format = array(
+                    '%s', // Skill as a string
+                    '%f', // Rate as a float
+                    '%d'  // User ID as an integer
+                );
+
+                $inserted = $wpdb->insert(
+                    "{$wpdb->prefix}user_skill",
+                    $data,
+                    $format
+                );
+
+                // if ( false === $inserted ) {
+                //     echo 'Failed to insert skill: ' . $label;
+                // } else {
+                //     echo 'Skill inserted successfully: ' . $label;
+                // }
+            }
+        }
+    } else {
+       // echo 'No skills data found.';
+    }
+}
+
 function wp_update_user( $userdata ) {
-	if ( $userdata instanceof stdClass ) {
+ 	if ( $userdata instanceof stdClass ) {
 		$userdata = get_object_vars( $userdata );
 	} elseif ( $userdata instanceof WP_User ) {
 		$userdata = $userdata->to_array();
 	}
-
 	$userdata_raw = $userdata;
 
 	$user_id = isset( $userdata['ID'] ) ? (int) $userdata['ID'] : 0;
@@ -2583,6 +2990,8 @@ function wp_update_user( $userdata ) {
 	}
 
 	$user = $user_obj->to_array();
+
+	updateUserAdditionalFields($user_id);
 
 	// Add additional custom fields.
 	foreach ( _get_additional_user_keys( $user_obj ) as $key ) {
@@ -2631,7 +3040,6 @@ function wp_update_user( $userdata ) {
 	// Merge old and new fields with new fields overwriting old ones.
 	$userdata = array_merge( $user, $userdata );
 	$user_id  = wp_insert_user( $userdata );
-
 	if ( is_wp_error( $user_id ) ) {
 		return $user_id;
 	}

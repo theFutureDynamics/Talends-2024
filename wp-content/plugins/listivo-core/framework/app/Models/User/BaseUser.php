@@ -420,4 +420,211 @@ abstract class BaseUser extends BaseModel
         return in_array('administrator', $this->user->roles, true);
     }
 
+    public function setHourlyRate($rate): void
+    {
+        wp_update_user([
+            'hourly_rate' => $rate,
+            'ID' => $this->getId(),
+        ]);
+    }
+
+    public function getHourlyRate()
+    {
+        return $this->user->hourly_rate;
+    }
+
+    public function getTagline(): string
+    {
+        return $this->user->tagline;
+    }
+
+    public function getGender(): string
+    {
+        return $this->user->gender;
+    }
+
+    public function getLocation(): string
+    {
+        return $this->user->location;
+    }
+
+    public function getCompanyDetails(): string
+    {
+        return $this->user->company_details;
+    }
+
+    public function getJobType(): array
+    {
+        if($this->user->job_type){
+            $jobTypes = explode(",", $this->user->job_type);
+            return $jobTypes;
+        }else{
+            return [];
+        }
+       
+    }
+
+    public function getClientFocus(): array
+    {
+        if($this->user->client_focus){
+            $clientFocus = explode(",", $this->user->client_focus);
+            return $clientFocus;
+        }else{
+            return [];
+        }
+       
+    }
+
+    // New function to get user skills
+    public function getUserSkills(): array 
+    {
+        global $wpdb;
+        // Check if user_id is available
+        if (empty($this->user->ID)) {
+            return [];
+        }
+        
+        // Prepare the SQL query
+        $user_id = (int) $this->user->ID; // Ensure user_id is an integer
+        $table_name = $wpdb->prefix . 'user_skill'; // Table name with prefix
+        
+        $query = $wpdb->prepare(
+            "SELECT id,skill, rate FROM $table_name WHERE user_id = %d",
+            $user_id
+        );
+        
+        // Execute the query
+        $results = $wpdb->get_results($query, ARRAY_A);
+        
+        // Check if we have results
+        if (empty($results)) {
+            return [];
+        }
+        
+        // Format the results if needed
+        $skills = [];
+        foreach ($results as $row) {
+            $skills[] = [
+                'id' => $row['id'],
+                'label' => $row['skill'],
+                'rating'  => $row['rate']
+            ];
+        }
+        return $skills;
+    }
+
+     // New function to get user skills
+     public function getUserExperiences(): array 
+     {
+         global $wpdb;
+         // Check if user_id is available
+         if (empty($this->user->ID)) {
+             return [];
+         }
+         
+         // Prepare the SQL query
+         $user_id = (int) $this->user->ID; // Ensure user_id is an integer
+         $table_name = $wpdb->prefix . 'user_job_experiences'; // Table name with prefix
+         
+         $query = $wpdb->prepare(
+             "SELECT id,title,start_date, end_date, company_name, description, user_id, type FROM $table_name WHERE user_id = %d AND type='experience'",
+             $user_id
+         );
+         
+         // Execute the query
+         $results = $wpdb->get_results($query, ARRAY_A);
+         
+         // Check if we have results
+         if (empty($results)) {
+             return [];
+         }
+         
+         // Format the results if needed
+         $skills = [];
+         foreach ($results as $row) {
+             $skills[] = [
+                 'id' => $row['id'],
+                 'job_title' => $row['title'],
+                 'start_date'  => $row['start_date'],
+                 'end_date'  => $row['end_date'],
+                 'company_name'  => $row['company_name'],
+                 'description'  => $row['description'],
+                 'type'  => $row['type'],
+                 'user_id'  => $row['user_id'],
+
+             ];
+         }
+         return $skills;
+     }
+
+      // New function to get user skills
+      public function getUserEducation(): array 
+      {
+          global $wpdb;
+          // Check if user_id is available
+          if (empty($this->user->ID)) {
+              return [];
+          }
+          
+          // Prepare the SQL query
+          $user_id = (int) $this->user->ID; // Ensure user_id is an integer
+          $table_name = $wpdb->prefix . 'user_job_experiences'; // Table name with prefix
+          
+          $query = $wpdb->prepare(
+              "SELECT id,title,start_date, end_date, company_name, description, user_id, type FROM $table_name WHERE user_id = %d AND type='education'",
+              $user_id
+          );
+          
+          // Execute the query
+          $results = $wpdb->get_results($query, ARRAY_A);
+          
+          // Check if we have results
+          if (empty($results)) {
+              return [];
+          }
+          
+          // Format the results if needed
+          $skills = [];
+          foreach ($results as $row) {
+              $skills[] = [
+                  'id' => $row['id'],
+                  'degree_title' => $row['title'],
+                  'education_start_date'  => $row['start_date'],
+                  'education_end_date'  => $row['end_date'],
+                  'insitute_title'  => $row['company_name'],
+                  'education_description'  => $row['description'],
+                  'type'  => $row['type'],
+                  'user_id'  => $row['user_id'],
+ 
+              ];
+          }
+          return $skills;
+      }
+
+    public function getJoined(): string
+    {
+        return $this->user->joined;
+    }
+
+    public function getAgencyFounded(): string
+    {
+        return $this->user->agency_founded;
+    }
+
+    public function getTotalJobsDelivered()
+    {
+        return $this->user->total_jobs_delivered;
+    }
+
+    public function getBudget(): string
+    {
+        return $this->user->budget;
+    }
+
+    public function getDepartment(): string
+    {
+        return $this->user->department;
+    }
+
+
 }

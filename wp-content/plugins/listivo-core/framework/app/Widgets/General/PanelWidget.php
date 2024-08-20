@@ -280,7 +280,6 @@ abstract class PanelWidget extends BaseGeneralWidget
         if (!$user instanceof User) {
             return [];
         }
-
         return [
             'name' => $user->getDisplayName(),
             'email' => $user->getMail(),
@@ -296,6 +295,21 @@ abstract class PanelWidget extends BaseGeneralWidget
             'companyInformation' => $user->getCompanyInformation(),
             'phoneCountryCode' => $user->getPhoneCountryCode(),
             'marketingConsent' => $user->hasMarketingConsent(),
+            'tagline' => $user->getTagline(),
+            'gender' => $user->getGender(),
+            'locationSelected' => $user->getLocation(),
+            'hourly_rate' => '$'.$user->getHourlyRate(),
+            'company_details' => $user->getCompanyDetails(),
+            'selectedJobTypes' => $user->getJobType(),
+            'selectedClientFocus' => $user->getClientFocus(),
+            'selectedSkills' => $user->getUserSkills(),
+            'addedJobs' => $user->getUserExperiences(),
+            'addedEducations' => $user->getUserEducation(),
+            'joined_since' => $user->getJoined(),
+            'agency_founded' => $user->getAgencyFounded(),
+            'total_jobs_delivered' => $user->getTotalJobsDelivered(),
+            'budget' => '$'.$user->getBudget(),
+            'department_details'=> $user->getDepartment()
         ];
     }
 

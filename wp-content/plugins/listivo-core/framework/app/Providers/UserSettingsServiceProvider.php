@@ -189,6 +189,13 @@ class UserSettingsServiceProvider extends ServiceProvider
             $user->setMarketingConsent($userData['marketingConsent'] ?? 0);
         }
 
+        if($userData['hourly_rate']){
+            $hourlyRate = str_replace("$","", $userData['hourly_rate']);
+            $user->setHourlyRate((int)$hourlyRate ?? 0);
+            // echo $user->getHourlyRate();die;
+        }
+        
+
         if (tdf_settings()->isPhoneCountryCodeSelectEnabled()) {
             $user->setPhoneCountryCode($userData['phoneCountryCode'] ?? '');
         }
@@ -208,7 +215,7 @@ class UserSettingsServiceProvider extends ServiceProvider
             $user->setFirstName($userData['firstName'] ?? '');
             $user->setLastName($userData['lastName'] ?? '');
         }
-
+        
         $this->successJsonResponse();
     }
 

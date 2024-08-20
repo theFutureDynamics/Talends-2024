@@ -34,14 +34,14 @@ if (!$lstCurrentUser instanceof User) {
     <div
             slot-scope="props"
             class="listivo-panel-accordions__item listivo-panel-accordion"
-            :class="{'listivo-panel-accordion--active': accordions.open === 'education'}"
+            :class="{'listivo-panel-accordion--active': accordions.open === 'experience'}"
     >
         <div
                 class="listivo-panel-accordion__top"
-                @click.prevent="accordions.onOpen('education')"
+                @click.prevent="accordions.onOpen('experience')"
         >
             <h3 class="listivo-panel-accordion__label">
-                <?php echo esc_html(tdf_string('education')); ?>
+                <?php echo esc_html(tdf_string('experience')); ?>
             </h3>
 
             <div class="listivo-panel-accordion__icon">
@@ -55,7 +55,7 @@ if (!$lstCurrentUser instanceof User) {
         </div>
 
         <form @submit.prevent="props.onSave">
-            <div class="listivo-panel-accordion__content-wrapper listivo-panel-accordion__content-wrapper--education">
+            <div class="listivo-panel-accordion__content-wrapper listivo-panel-accordion__content-wrapper--experience">
                 <div class="listivo-panel-accordion__content listivo-panel-user-settings">
                     
                 <div class="listivo-panel-user-settings__field listivo-field-group">
@@ -63,27 +63,27 @@ if (!$lstCurrentUser instanceof User) {
                                 class="listivo-field-group__label"
                                 for="listivo-name"
                         >
-                            <?php echo esc_html(tdf_string('degree_title')); ?>
+                            <?php echo esc_html(tdf_string('job_title')); ?>
                         </label>
 
                         <div class="listivo-field-group__field">
                             <div
                                     class="listivo-input-v2"
                                     :class="{
-                                        'listivo-input-v2--error': props.showErrors && (!props.errors.degree_title.required || !props.errors.degree_title.minLength),
+                                        'listivo-input-v2--error': props.showErrors && (!props.errors.name.required || !props.errors.name.minLength),
                                     }"
                             >
                                 <input
-                                        id="listivo-degree_title"
+                                        id="listivo-job-title"
                                         type="text"
-                                        :value="props.degree_title"
-                                        @input="props.setDegreeTitle($event.target.value)"
-                                        placeholder="<?php echo esc_attr(tdf_string('degree_title')); ?>"
+                                        :value="props.job_title"
+                                        @input="props.setJobTitle($event.target.value)"
+                                        placeholder="<?php echo esc_attr(tdf_string('job_title')); ?>"
                                 >
 
                                 <template>
                                     <div
-                                            v-if="props.showErrors && (!props.errors.degree_title.required || !props.errors.degree_title.minLength)"
+                                            v-if="props.showErrors && (!props.errors.name.required || !props.errors.name.minLength)"
                                             class="listivo-input-v2__error"
                                     >
                                         <div class="listivo-field-error">
@@ -98,7 +98,7 @@ if (!$lstCurrentUser instanceof User) {
                                                 </svg>
                                             </div>
 
-                                            <div v-if="!props.errors.degree_title.required">
+                                            <div v-if="!props.errors.job_title.required">
                                                 <?php echo esc_html(tdf_string('field_is_required')); ?>
                                             </div>
                                         </div>
@@ -113,27 +113,27 @@ if (!$lstCurrentUser instanceof User) {
                                 class="listivo-field-group__label"
                                 for="listivo-name"
                         >
-                            <?php echo esc_html(tdf_string('education_start_date')); ?>
+                            <?php echo esc_html(tdf_string('start_date')); ?>
                         </label>
 
                         <div class="listivo-field-group__field">
                             <div
                                     class="listivo-input-v2"
                                     :class="{
-                                        'listivo-input-v2--error': props.showErrors && (!props.errors.education_start_date.required || !props.errors.education_start_date.minLength),
+                                        'listivo-input-v2--error': props.showErrors && (!props.errors.start_date.required || !props.errors.start_date.minLength),
                                     }"
                             >
                                 <input
-                                        id="listivo-education_start_date"
+                                        id="listivo-start_date"
                                         type="date"
-                                        :value="props.education_start_date"
-                                        @input="props.setEducationStartDate($event.target.value)"
-                                        placeholder="<?php echo esc_attr(tdf_string('education_start_date')); ?>"
+                                        :value="props.start_date"
+                                        @input="props.setStartDate($event.target.value)"
+                                        placeholder="<?php echo esc_attr(tdf_string('start_date')); ?>"
                                 >
 
                                 <template>
                                     <div
-                                            v-if="props.showErrors && (!props.errors.education_start_date.required || !props.errors.education_start_date.minLength)"
+                                            v-if="props.showErrors && (!props.errors.start_date.required || !props.errors.start_date.minLength)"
                                             class="listivo-input-v2__error"
                                     >
                                         <div class="listivo-field-error">
@@ -148,7 +148,7 @@ if (!$lstCurrentUser instanceof User) {
                                                 </svg>
                                             </div>
 
-                                            <div v-if="!props.errors.education_start_date.required">
+                                            <div v-if="!props.errors.start_date.required">
                                                 <?php echo esc_html(tdf_string('field_is_required')); ?>
                                             </div>
                                         </div>
@@ -163,27 +163,27 @@ if (!$lstCurrentUser instanceof User) {
                                 class="listivo-field-group__label"
                                 for="listivo-name"
                         >
-                            <?php echo esc_html(tdf_string('education_end_date')); ?>
+                            <?php echo esc_html(tdf_string('end_date')); ?>
                         </label>
 
                         <div class="listivo-field-group__field">
                             <div
                                     class="listivo-input-v2"
                                     :class="{
-                                        'listivo-input-v2--error': props.showErrors && (!props.errors.education_end_date.required),
+                                        'listivo-input-v2--error': props.showErrors && (!props.errors.end_date.required),
                                     }"
                             >
                                 <input
-                                        id="listivo-education_end_date"
+                                        id="listivo-end_date"
                                         type="date"
-                                        :value="props.education_end_date"
-                                        @input="props.setEducationEndDate($event.target.value)"
-                                        placeholder="<?php echo esc_attr(tdf_string('education_end_date')); ?>"
+                                        :value="props.end_date"
+                                        @input="props.setEndDate($event.target.value)"
+                                        placeholder="<?php echo esc_attr(tdf_string('end_date')); ?>"
                                 >
 
                                 <template>
                                     <div
-                                            v-if="props.showErrors && (!props.errors.education_end_date.required || !props.errors.education_end_date.minLength)"
+                                            v-if="props.showErrors && (!props.errors.end_date.required || !props.errors.end_date.minLength)"
                                             class="listivo-input-v2__error"
                                     >
                                         <div class="listivo-field-error">
@@ -198,7 +198,7 @@ if (!$lstCurrentUser instanceof User) {
                                                 </svg>
                                             </div>
 
-                                            <div v-if="!props.errors.education_end_date.required">
+                                            <div v-if="!props.errors.end_date.required">
                                                 <?php echo esc_html(tdf_string('field_is_required')); ?>
                                             </div>
                                         </div>
@@ -213,27 +213,27 @@ if (!$lstCurrentUser instanceof User) {
                                 class="listivo-field-group__label"
                                 for="listivo-name"
                         >
-                            <?php echo esc_html(tdf_string('insitute_title')); ?>
+                            <?php echo esc_html(tdf_string('company_title')); ?>
                         </label>
 
                         <div class="listivo-field-group__field">
                             <div
                                     class="listivo-input-v2"
                                     :class="{
-                                        'listivo-input-v2--error': props.showErrors && (!props.errors.insitute_title.required || !props.errors.insitute_title.minLength),
+                                        'listivo-input-v2--error': props.showErrors && (!props.errors.company_title.required || !props.errors.company_title.minLength),
                                     }"
                             >
                                 <input
-                                        id="listivo-insitute_title"
+                                        id="listivo-company_title"
                                         type="text"
-                                        :value="props.insitute_title"
-                                        @input="props.setInsituteTitle($event.target.value)"
-                                        placeholder="<?php echo esc_attr(tdf_string('insitute_title')); ?>"
+                                        :value="props.company_title"
+                                        @input="props.setCompanyTitle($event.target.value)"
+                                        placeholder="<?php echo esc_attr(tdf_string('company_title')); ?>"
                                 >
 
                                 <template>
                                     <div
-                                            v-if="props.showErrors && (!props.errors.insitute_title.required || !props.errors.insitute_title.minLength)"
+                                            v-if="props.showErrors && (!props.errors.company_title.required || !props.errors.company_title.minLength)"
                                             class="listivo-input-v2__error"
                                     >
                                         <div class="listivo-field-error">
@@ -248,7 +248,7 @@ if (!$lstCurrentUser instanceof User) {
                                                 </svg>
                                             </div>
 
-                                            <div v-if="!props.errors.insitute_title.required">
+                                            <div v-if="!props.errors.company_title.required">
                                                 <?php echo esc_html(tdf_string('field_is_required')); ?>
                                             </div>
                                         </div>
@@ -263,20 +263,20 @@ if (!$lstCurrentUser instanceof User) {
                                 class="listivo-field-group__label"
                                 for="listivo-name"
                         >
-                            <?php echo esc_html(tdf_string('education_description')); ?>
+                            <?php echo esc_html(tdf_string('job_description')); ?>
                         </label>
 
                         <div class="listivo-field-group__field">
                             <div
                                     class="listivo-input-v2"
                                     :class="{
-                                        'listivo-input-v2--error': props.showErrors && (!props.errors.education_description.required || !props.errors.education_description.minLength),
+                                        'listivo-input-v2--error': props.showErrors && (!props.errors.job_description.required || !props.errors.job_description.minLength),
                                     }"
                             >
-                            <textarea style="margin-top:100px; border: 1px solid var(--e-global-color-lcolor3);" rows="10" cols="70" :value="props.education_description"  placeholder="<?php echo esc_attr(tdf_string('education_description')); ?>" @input="props.setEducationDescription($event.target.value)" id="listivo-education_description"></textarea>
+                            <textarea style="margin-top:100px; border: 1px solid var(--e-global-color-lcolor3);" rows="10" cols="70" :value="props.job_description"  placeholder="<?php echo esc_attr(tdf_string('job_description')); ?>" @input="props.setJobDescription($event.target.value)" id="listivo-job_description"></textarea>
                                 <template>
                                     <div
-                                            v-if="props.showErrors && (!props.errors.education_description.required || !props.errors.education_description.minLength)"
+                                            v-if="props.showErrors && (!props.errors.job_description.required || !props.errors.job_description.minLength)"
                                             class="listivo-input-v2__error"
                                     >
                                         <div class="listivo-field-error">
@@ -291,7 +291,7 @@ if (!$lstCurrentUser instanceof User) {
                                                 </svg>
                                             </div>
 
-                                            <div v-if="!props.errors.insitute_title.required">
+                                            <div v-if="!props.errors.company_title.required">
                                                 <?php echo esc_html(tdf_string('field_is_required')); ?>
                                             </div>
                                         </div>
@@ -301,20 +301,20 @@ if (!$lstCurrentUser instanceof User) {
                         </div>
                     </div>
 
-                    <a href="javascript:;" style="margin-top:10px; left:50%" @click.prevent="props.addEducation"   class="listivo-button listivo-button--primary-1 listivo-button-primary-1-colors-with-stroke-selector">
-                        <?php echo esc_html(tdf_string('add_education')); ?>
+                    <a href="javascript:;" style="margin-top:10px; left:50%" @click.prevent="props.addExperience"   class="listivo-button listivo-button--primary-1 listivo-button-primary-1-colors-with-stroke-selector">
+                        <?php echo esc_html(tdf_string('add_experience')); ?>
                     </a>
 
                    
                 
                 </div>
-<!-- {{props.addedEducations}} -->
-                <div v-if="props.addedEducations.length > 0" style="width: 43%;margin-left: 5%;" class="listivo-panel-user-settings__skills-list" style="padding: 10px; background-color: #f9f9f9; border-radius: 8px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);">
+
+                <div v-if="props.addedJobs.length > 0" style="width: 43%;margin-left: 5%;" class="listivo-panel-user-settings__skills-list" style="padding: 10px; background-color: #f9f9f9; border-radius: 8px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);">
                     <ul style="list-style-type: none; padding: 0; margin: 0;">
-                        <li v-for="(education, index) in props.addedEducations" :key="index" style="display: flex; justify-content: space-between; align-items: center; padding: 8px 0; border-bottom: 1px solid #ddd;">
-                            <span v-if="education.education_end_date && education.education_end_date.trim() !== '0000-00-00'" style="font-size: 16px; color: #333;">{{ education.degree_title }} ( {{ education.education_start_date }} - {{ education.education_end_date }} )</span>
-                            <span v-else style="font-size: 16px; color: #333;">{{ education.degree_title }} ( {{ education.education_start_date }} - Present )</span>
-                            <i class="fa fa-trash" @click.prevent="props.removeEducation(index)" aria-hidden="true" style="font-size: 16px; color: #ff4d4d; cursor: pointer;"></i>
+                        <li v-for="(job, index) in props.addedJobs" :key="index" style="display: flex; justify-content: space-between; align-items: center; padding: 8px 0; border-bottom: 1px solid #ddd;">
+                            <span v-if="job.end_date && job.end_date.trim() !== '0000-00-00'" style="font-size: 16px; color: #333;">{{ job.job_title }} ( {{ job.start_date }} - {{ job.end_date }} )</span>
+                            <span v-else style="font-size: 16px; color: #333;">{{ job.job_title }} ( {{ job.start_date }} - Present )</span>
+                            <i class="fa fa-trash" @click.prevent="props.removeExperience(index)" aria-hidden="true" style="font-size: 16px; color: #ff4d4d; cursor: pointer;"></i>
                         </li>
                     </ul>
                 </div>

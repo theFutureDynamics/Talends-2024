@@ -42,7 +42,7 @@ if (!$lstCurrentUser instanceof User) {
                     
                     <?php get_template_part('templates/widgets/general/panel/settings/education'); ?>
 
-                    <?php get_template_part('templates/widgets/general/panel/settings/image'); ?>
+                    <?php // get_template_part('templates/widgets/general/panel/settings/image'); ?>
 
                     <?php get_template_part('templates/widgets/general/panel/settings/socials'); ?>
 

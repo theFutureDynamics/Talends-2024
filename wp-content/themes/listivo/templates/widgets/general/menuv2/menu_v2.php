@@ -727,7 +727,7 @@ $lstSimpleMenu = tdf_settings()->showMenuAccount();
 
                     <?php if (tdf_settings()->showMenuCtaButton()) : ?>
                         <?php if ($lstCurrentWidget->getCtaType() === 'button') : ?>
-                            <div class="listivo-menu-v2__button">
+                            <?php /* <div class="listivo-menu-v2__button">
                                 <a
                                     <?php if ($lstCurrentWidget->getCtaButtonStyle() === 'primary_1') : ?>
                                         class="listivo-button listivo-button--primary-1"
@@ -754,7 +754,7 @@ $lstSimpleMenu = tdf_settings()->showMenuAccount();
                                         <?php endif; ?>
                                     </span>
                                 </a>
-                            </div>
+                            </div> <?php */ ?>
                         <?php elseif ($lstCurrentWidget->getCtaType() === 'phone') : ?>
                             <a
                                     class="listivo-menu-v2__phone"

@@ -132,6 +132,17 @@ if (!\Tangibledesign\Framework\Core\App::class) {
     add_theme_support('automatic-feed-links');
 }
 
+function enqueue_stripe_js() {
+    wp_enqueue_script('stripe', 'https://js.stripe.com/v3/');
+}
+add_action('wp_enqueue_scripts', 'enqueue_stripe_js');
+
+function listivo_enqueue_styles_and_scripts() {
+    wp_enqueue_style('listivo-main-style', get_stylesheet_uri());
+    // Enqueue other necessary stylesheets or scripts here
+}
+add_action('wp_enqueue_scripts', 'listivo_enqueue_styles_and_scripts');
+
 if (!isset($content_width)) {
     $content_width = 900;
 }

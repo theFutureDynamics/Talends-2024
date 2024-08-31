@@ -54,6 +54,7 @@ $core_actions_get = array(
 	'dashboard-widgets',
 	'logged-in',
 	'rest-nonce',
+	'listivo/paymentPackage/purchase'
 );
 
 $core_actions_post = array(
@@ -159,6 +160,9 @@ $core_actions_post = array_merge( $core_actions_post, $core_actions_post_depreca
 
 // Register core Ajax calls.
 if ( ! empty( $_GET['action'] ) && in_array( $_GET['action'], $core_actions_get, true ) ) {
+	if($_GET['action'] == 'listivo/paymentPackage/purchase')
+		add_action('wp_ajax_' . $_GET['action'],'wp_ajax_listivo_payment_purchase',1);
+	else
 	add_action( 'wp_ajax_' . $_GET['action'], 'wp_ajax_' . str_replace( '-', '_', $_GET['action'] ), 1 );
 }
 

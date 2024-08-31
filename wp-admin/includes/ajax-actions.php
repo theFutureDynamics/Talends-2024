@@ -98,6 +98,10 @@ function wp_ajax_fetch_list() {
 	wp_die( 0 );
 }
 
+function wp_ajax_listivo_payment_purchase(){
+	print_r($_GET);die;
+}
+
 /**
  * Handles tag search via AJAX.
  *

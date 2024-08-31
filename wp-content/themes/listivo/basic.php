@@ -252,7 +252,6 @@ function listivo_load_template(string $template): void
     do_action('listivo/templates/prepareCss');
 
     get_header();
-
     if (class_exists(\Tangibledesign\Framework\Core\App::class)) :
         do_action('listivo/templates/render');
     else :

@@ -20,19 +20,19 @@
 
 // ** Database settings - You can get this info from your web host ** //
 /** The name of the database for WordPress */
-define( 'DB_NAME', 'wp_talends' );
+define( 'DB_NAME', 'talends_2024' );
 
 /** Database username */
 define( 'DB_USER', 'root' );
 
 /** Database password */
-define( 'DB_PASSWORD', '' );
+define( 'DB_PASSWORD', 'Pass@123' );
 
 /** Database hostname */
 define( 'DB_HOST', 'localhost' );
 
 /** Database charset to use in creating database tables. */
-define( 'DB_CHARSET', 'utf8mb4' );
+define( 'DB_CHARSET', 'utf8' );
 
 /** The database collate type. Don't change this if in doubt. */
 define( 'DB_COLLATE', '' );
@@ -48,15 +48,20 @@ define( 'DB_COLLATE', '' );
  *
  * @since 2.6.0
  */
-define( 'AUTH_KEY',         'D4Hd>Xt>4yysF^?%{~og2K3el!ki>x^1}(I)/vdw(1p) eu miZkj1k^p.vy![pm' );
-define( 'SECURE_AUTH_KEY',  'f}s@<q^5TOy=C!_Qd3vRlx]//m}UejOdmu6 ^onm9IfFYC?@hHg^iq,=A`pu.JF6' );
-define( 'LOGGED_IN_KEY',    '*hIm}>cYGX3r{;<#C.1`9{Cf:BrbS9zFmvts#O9XVb_:VF6O5A<c?n3dE1Jzim?F' );
-define( 'NONCE_KEY',        '[]obX+_JqsN*vN}e987M3/6}.s=B/fgR/yITH05f8O =a>&}GLp+^8 _Q?7!_,HI' );
-define( 'AUTH_SALT',        '4?B#T^d,wLPlyztPHwE=`w.V].z<:,5aiN0toZAIrzDFjMsLtc*6W&yTIx7od1CC' );
-define( 'SECURE_AUTH_SALT', '-f};zw?5p]pg,[G.@yiL@=W$B`77qO6K~oSq#D$G10l14k5}P2pf?]D0]Vwxxl&h' );
-define( 'LOGGED_IN_SALT',   'e)AVXO^>EV$IHTx:vd,Mq,%FG<|qnAd8`)iY3FKI]xHeN=Q9q-bCQnScz<6FaTF)' );
-define( 'NONCE_SALT',       '<_kwGp/*#mEd`~~u2[]}2,qr*8;?b2Urg<#o,XJSbFs:abORZWMSO&1!sB} PhAR' );
+define( 'AUTH_KEY',         'put your unique phrase here' );
+define( 'SECURE_AUTH_KEY',  'put your unique phrase here' );
+define( 'LOGGED_IN_KEY',    'put your unique phrase here' );
+define( 'NONCE_KEY',        'put your unique phrase here' );
+define( 'AUTH_SALT',        'put your unique phrase here' );
+define( 'SECURE_AUTH_SALT', 'put your unique phrase here' );
+define( 'LOGGED_IN_SALT',   'put your unique phrase here' );
+define( 'NONCE_SALT',       'put your unique phrase here' );
 
+
+
+define('WP_DEBUG', true);
+define('WP_DEBUG_LOG', true);
+define('WP_DEBUG_DISPLAY', false);
 /**#@-*/
 
 /**

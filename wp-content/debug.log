@@ -628,3 +628,143 @@
 [31-Aug-2024 06:39:46 UTC]   Automatic plugin updates starting...
 [31-Aug-2024 06:39:46 UTC]   Automatic plugin updates complete.
 [31-Aug-2024 06:39:47 UTC] Automatic updates complete.
+[31-Aug-2024 08:18:15 UTC] PHP Warning:  wp_update_themes(): An unexpected error occurred. Something may be wrong with WordPress.org or this server&#8217;s configuration. If you continue to have problems, please try the <a href="https://wordpress.org/support/forums/">support forums</a>. (WordPress could not establish a secure connection to WordPress.org. Please contact your server administrator.) in C:\laragon\www\wp_talends\wp-includes\functions.php on line 6085
+[31-Aug-2024 08:18:45 UTC] PHP Warning:  Undefined array key "value" in C:\laragon\www\wp_talends\wp-content\plugins\elementor\includes\controls\base-multiple.php on line 87
+[31-Aug-2024 08:18:45 UTC] PHP Warning:  Undefined array key "value" in C:\laragon\www\wp_talends\wp-content\plugins\elementor\includes\controls\base-multiple.php on line 87
+[31-Aug-2024 08:18:45 UTC] PHP Warning:  Undefined array key "value" in C:\laragon\www\wp_talends\wp-content\plugins\elementor\includes\controls\base-multiple.php on line 87
+[31-Aug-2024 08:30:41 UTC] PHP Warning:  Undefined array key "value" in C:\laragon\www\wp_talends\wp-content\plugins\elementor\includes\controls\base-multiple.php on line 87
+[31-Aug-2024 08:30:41 UTC] PHP Warning:  Undefined array key "value" in C:\laragon\www\wp_talends\wp-content\plugins\elementor\includes\controls\base-multiple.php on line 87
+[31-Aug-2024 08:30:41 UTC] PHP Warning:  Undefined array key "value" in C:\laragon\www\wp_talends\wp-content\plugins\elementor\includes\controls\base-multiple.php on line 87
+[31-Aug-2024 08:31:02 UTC] PHP Warning:  Undefined array key "value" in C:\laragon\www\wp_talends\wp-content\plugins\elementor\includes\controls\base-multiple.php on line 87
+[31-Aug-2024 08:31:02 UTC] PHP Warning:  Undefined array key "value" in C:\laragon\www\wp_talends\wp-content\plugins\elementor\includes\controls\base-multiple.php on line 87
+[31-Aug-2024 08:31:02 UTC] PHP Warning:  Undefined array key "value" in C:\laragon\www\wp_talends\wp-content\plugins\elementor\includes\controls\base-multiple.php on line 87
+[31-Aug-2024 08:32:10 UTC] PHP Warning:  Undefined array key "value" in C:\laragon\www\wp_talends\wp-content\plugins\elementor\includes\controls\base-multiple.php on line 87
+[31-Aug-2024 08:32:10 UTC] PHP Warning:  Undefined array key "value" in C:\laragon\www\wp_talends\wp-content\plugins\elementor\includes\controls\base-multiple.php on line 87
+[31-Aug-2024 08:32:10 UTC] PHP Warning:  Undefined array key "value" in C:\laragon\www\wp_talends\wp-content\plugins\elementor\includes\controls\base-multiple.php on line 87
+[31-Aug-2024 08:35:17 UTC] PHP Deprecated:  ltrim(): Passing null to parameter #1 ($string) of type string is deprecated in C:\laragon\www\wp_talends\wp-includes\formatting.php on line 4482
+[31-Aug-2024 08:35:17 UTC] PHP Deprecated:  ltrim(): Passing null to parameter #1 ($string) of type string is deprecated in C:\laragon\www\wp_talends\wp-includes\formatting.php on line 4482
+[31-Aug-2024 08:36:13 UTC] PHP Deprecated:  Function print_emoji_styles is <strong>deprecated</strong> since version 6.4.0! Use wp_enqueue_emoji_styles instead. in C:\laragon\www\wp_talends\wp-includes\functions.php on line 6085
+[31-Aug-2024 08:40:50 UTC] PHP Warning:  Undefined array key "value" in C:\laragon\www\wp_talends\wp-content\plugins\elementor\includes\controls\base-multiple.php on line 87
+[31-Aug-2024 08:40:50 UTC] PHP Warning:  Undefined array key "value" in C:\laragon\www\wp_talends\wp-content\plugins\elementor\includes\controls\base-multiple.php on line 87
+[31-Aug-2024 08:40:50 UTC] PHP Warning:  Undefined array key "value" in C:\laragon\www\wp_talends\wp-content\plugins\elementor\includes\controls\base-multiple.php on line 87
+[31-Aug-2024 08:53:46 UTC] PHP Warning:  Undefined array key "value" in C:\laragon\www\wp_talends\wp-content\plugins\elementor\includes\controls\base-multiple.php on line 87
+[31-Aug-2024 08:53:46 UTC] PHP Warning:  Undefined array key "value" in C:\laragon\www\wp_talends\wp-content\plugins\elementor\includes\controls\base-multiple.php on line 87
+[31-Aug-2024 08:53:46 UTC] PHP Warning:  Undefined array key "value" in C:\laragon\www\wp_talends\wp-content\plugins\elementor\includes\controls\base-multiple.php on line 87
+[31-Aug-2024 08:54:16 UTC] PHP Warning:  Undefined array key "value" in C:\laragon\www\wp_talends\wp-content\plugins\elementor\includes\controls\base-multiple.php on line 87
+[31-Aug-2024 08:54:16 UTC] PHP Warning:  Undefined array key "value" in C:\laragon\www\wp_talends\wp-content\plugins\elementor\includes\controls\base-multiple.php on line 87
+[31-Aug-2024 08:54:16 UTC] PHP Warning:  Undefined array key "value" in C:\laragon\www\wp_talends\wp-content\plugins\elementor\includes\controls\base-multiple.php on line 87
+[31-Aug-2024 08:57:04 UTC] PHP Warning:  Undefined array key "value" in C:\laragon\www\wp_talends\wp-content\plugins\elementor\includes\controls\base-multiple.php on line 87
+[31-Aug-2024 08:57:04 UTC] PHP Warning:  Undefined array key "value" in C:\laragon\www\wp_talends\wp-content\plugins\elementor\includes\controls\base-multiple.php on line 87
+[31-Aug-2024 08:57:04 UTC] PHP Warning:  Undefined array key "value" in C:\laragon\www\wp_talends\wp-content\plugins\elementor\includes\controls\base-multiple.php on line 87
+[31-Aug-2024 09:03:32 UTC] PHP Warning:  Undefined array key "value" in C:\laragon\www\wp_talends\wp-content\plugins\elementor\includes\controls\base-multiple.php on line 87
+[31-Aug-2024 09:03:32 UTC] PHP Warning:  Undefined array key "value" in C:\laragon\www\wp_talends\wp-content\plugins\elementor\includes\controls\base-multiple.php on line 87
+[31-Aug-2024 09:03:32 UTC] PHP Warning:  Undefined array key "value" in C:\laragon\www\wp_talends\wp-content\plugins\elementor\includes\controls\base-multiple.php on line 87
+[31-Aug-2024 09:03:42 UTC] PHP Warning:  Undefined array key "value" in C:\laragon\www\wp_talends\wp-content\plugins\elementor\includes\controls\base-multiple.php on line 87
+[31-Aug-2024 09:03:42 UTC] PHP Warning:  Undefined array key "value" in C:\laragon\www\wp_talends\wp-content\plugins\elementor\includes\controls\base-multiple.php on line 87
+[31-Aug-2024 09:03:42 UTC] PHP Warning:  Undefined array key "value" in C:\laragon\www\wp_talends\wp-content\plugins\elementor\includes\controls\base-multiple.php on line 87
+[31-Aug-2024 09:05:31 UTC] WordPress database error Server shutdown in progress for query SELECT option_value FROM wp_options WHERE option_name = 'elementor_tracker_notice' LIMIT 1 made by do_action('admin_init'), WP_Hook->do_action, WP_Hook->apply_filters, ElementorPro\License\Admin->handle_tracker_actions, get_option
+[31-Aug-2024 09:29:25 UTC] PHP Warning:  Undefined array key "value" in C:\laragon\www\wp_talends\wp-content\plugins\elementor\includes\controls\base-multiple.php on line 87
+[31-Aug-2024 09:29:25 UTC] PHP Warning:  Undefined array key "value" in C:\laragon\www\wp_talends\wp-content\plugins\elementor\includes\controls\base-multiple.php on line 87
+[31-Aug-2024 09:29:25 UTC] PHP Warning:  Undefined array key "value" in C:\laragon\www\wp_talends\wp-content\plugins\elementor\includes\controls\base-multiple.php on line 87
+[31-Aug-2024 09:39:29 UTC] PHP Warning:  Undefined array key "value" in C:\laragon\www\wp_talends\wp-content\plugins\elementor\includes\controls\base-multiple.php on line 87
+[31-Aug-2024 09:39:29 UTC] PHP Warning:  Undefined array key "value" in C:\laragon\www\wp_talends\wp-content\plugins\elementor\includes\controls\base-multiple.php on line 87
+[31-Aug-2024 09:39:29 UTC] PHP Warning:  Undefined array key "value" in C:\laragon\www\wp_talends\wp-content\plugins\elementor\includes\controls\base-multiple.php on line 87
+[31-Aug-2024 09:43:03 UTC] PHP Warning:  Undefined array key "value" in C:\laragon\www\wp_talends\wp-content\plugins\elementor\includes\controls\base-multiple.php on line 87
+[31-Aug-2024 09:43:03 UTC] PHP Warning:  Undefined array key "value" in C:\laragon\www\wp_talends\wp-content\plugins\elementor\includes\controls\base-multiple.php on line 87
+[31-Aug-2024 09:43:03 UTC] PHP Warning:  Undefined array key "value" in C:\laragon\www\wp_talends\wp-content\plugins\elementor\includes\controls\base-multiple.php on line 87
+[31-Aug-2024 09:45:23 UTC] PHP Warning:  Undefined array key "value" in C:\laragon\www\wp_talends\wp-content\plugins\elementor\includes\controls\base-multiple.php on line 87
+[31-Aug-2024 09:45:23 UTC] PHP Warning:  Undefined array key "value" in C:\laragon\www\wp_talends\wp-content\plugins\elementor\includes\controls\base-multiple.php on line 87
+[31-Aug-2024 09:45:23 UTC] PHP Warning:  Undefined array key "value" in C:\laragon\www\wp_talends\wp-content\plugins\elementor\includes\controls\base-multiple.php on line 87
+[31-Aug-2024 09:48:10 UTC] PHP Warning:  Undefined array key "value" in C:\laragon\www\wp_talends\wp-content\plugins\elementor\includes\controls\base-multiple.php on line 87
+[31-Aug-2024 09:48:10 UTC] PHP Warning:  Undefined array key "value" in C:\laragon\www\wp_talends\wp-content\plugins\elementor\includes\controls\base-multiple.php on line 87
+[31-Aug-2024 09:48:10 UTC] PHP Warning:  Undefined array key "value" in C:\laragon\www\wp_talends\wp-content\plugins\elementor\includes\controls\base-multiple.php on line 87
+[31-Aug-2024 09:52:18 UTC] PHP Warning:  Undefined array key "value" in C:\laragon\www\wp_talends\wp-content\plugins\elementor\includes\controls\base-multiple.php on line 87
+[31-Aug-2024 09:52:18 UTC] PHP Warning:  Undefined array key "value" in C:\laragon\www\wp_talends\wp-content\plugins\elementor\includes\controls\base-multiple.php on line 87
+[31-Aug-2024 09:52:18 UTC] PHP Warning:  Undefined array key "value" in C:\laragon\www\wp_talends\wp-content\plugins\elementor\includes\controls\base-multiple.php on line 87
+[31-Aug-2024 09:53:34 UTC] PHP Warning:  Undefined array key "value" in C:\laragon\www\wp_talends\wp-content\plugins\elementor\includes\controls\base-multiple.php on line 87
+[31-Aug-2024 09:53:34 UTC] PHP Warning:  Undefined array key "value" in C:\laragon\www\wp_talends\wp-content\plugins\elementor\includes\controls\base-multiple.php on line 87
+[31-Aug-2024 09:53:34 UTC] PHP Warning:  Undefined array key "value" in C:\laragon\www\wp_talends\wp-content\plugins\elementor\includes\controls\base-multiple.php on line 87
+[31-Aug-2024 10:00:33 UTC] PHP Warning:  Undefined array key "value" in C:\laragon\www\wp_talends\wp-content\plugins\elementor\includes\controls\base-multiple.php on line 87
+[31-Aug-2024 10:00:33 UTC] PHP Warning:  Undefined array key "value" in C:\laragon\www\wp_talends\wp-content\plugins\elementor\includes\controls\base-multiple.php on line 87
+[31-Aug-2024 10:00:33 UTC] PHP Warning:  Undefined array key "value" in C:\laragon\www\wp_talends\wp-content\plugins\elementor\includes\controls\base-multiple.php on line 87
+[31-Aug-2024 10:10:23 UTC] PHP Warning:  Undefined array key "value" in C:\laragon\www\wp_talends\wp-content\plugins\elementor\includes\controls\base-multiple.php on line 87
+[31-Aug-2024 10:10:23 UTC] PHP Warning:  Undefined array key "value" in C:\laragon\www\wp_talends\wp-content\plugins\elementor\includes\controls\base-multiple.php on line 87
+[31-Aug-2024 10:10:23 UTC] PHP Warning:  Undefined array key "value" in C:\laragon\www\wp_talends\wp-content\plugins\elementor\includes\controls\base-multiple.php on line 87
+[31-Aug-2024 10:12:41 UTC] PHP Warning:  Undefined array key "value" in C:\laragon\www\wp_talends\wp-content\plugins\elementor\includes\controls\base-multiple.php on line 87
+[31-Aug-2024 10:12:41 UTC] PHP Warning:  Undefined array key "value" in C:\laragon\www\wp_talends\wp-content\plugins\elementor\includes\controls\base-multiple.php on line 87
+[31-Aug-2024 10:12:41 UTC] PHP Warning:  Undefined array key "value" in C:\laragon\www\wp_talends\wp-content\plugins\elementor\includes\controls\base-multiple.php on line 87
+[31-Aug-2024 10:15:08 UTC] PHP Warning:  Undefined array key "value" in C:\laragon\www\wp_talends\wp-content\plugins\elementor\includes\controls\base-multiple.php on line 87
+[31-Aug-2024 10:15:08 UTC] PHP Warning:  Undefined array key "value" in C:\laragon\www\wp_talends\wp-content\plugins\elementor\includes\controls\base-multiple.php on line 87
+[31-Aug-2024 10:15:08 UTC] PHP Warning:  Undefined array key "value" in C:\laragon\www\wp_talends\wp-content\plugins\elementor\includes\controls\base-multiple.php on line 87
+[31-Aug-2024 10:17:01 UTC] PHP Warning:  Undefined array key "value" in C:\laragon\www\wp_talends\wp-content\plugins\elementor\includes\controls\base-multiple.php on line 87
+[31-Aug-2024 10:17:01 UTC] PHP Warning:  Undefined array key "value" in C:\laragon\www\wp_talends\wp-content\plugins\elementor\includes\controls\base-multiple.php on line 87
+[31-Aug-2024 10:17:01 UTC] PHP Warning:  Undefined array key "value" in C:\laragon\www\wp_talends\wp-content\plugins\elementor\includes\controls\base-multiple.php on line 87
+[31-Aug-2024 10:19:49 UTC] PHP Warning:  Undefined array key "value" in C:\laragon\www\wp_talends\wp-content\plugins\elementor\includes\controls\base-multiple.php on line 87
+[31-Aug-2024 10:19:49 UTC] PHP Warning:  Undefined array key "value" in C:\laragon\www\wp_talends\wp-content\plugins\elementor\includes\controls\base-multiple.php on line 87
+[31-Aug-2024 10:19:49 UTC] PHP Warning:  Undefined array key "value" in C:\laragon\www\wp_talends\wp-content\plugins\elementor\includes\controls\base-multiple.php on line 87
+[31-Aug-2024 10:32:34 UTC] PHP Warning:  Undefined array key "value" in C:\laragon\www\wp_talends\wp-content\plugins\elementor\includes\controls\base-multiple.php on line 87
+[31-Aug-2024 10:32:34 UTC] PHP Warning:  Undefined array key "value" in C:\laragon\www\wp_talends\wp-content\plugins\elementor\includes\controls\base-multiple.php on line 87
+[31-Aug-2024 10:32:34 UTC] PHP Warning:  Undefined array key "value" in C:\laragon\www\wp_talends\wp-content\plugins\elementor\includes\controls\base-multiple.php on line 87
+[31-Aug-2024 10:40:19 UTC] PHP Warning:  Undefined array key "value" in C:\laragon\www\wp_talends\wp-content\plugins\elementor\includes\controls\base-multiple.php on line 87
+[31-Aug-2024 10:40:19 UTC] PHP Warning:  Undefined array key "value" in C:\laragon\www\wp_talends\wp-content\plugins\elementor\includes\controls\base-multiple.php on line 87
+[31-Aug-2024 10:40:19 UTC] PHP Warning:  Undefined array key "value" in C:\laragon\www\wp_talends\wp-content\plugins\elementor\includes\controls\base-multiple.php on line 87
+[31-Aug-2024 10:53:35 UTC] PHP Warning:  Undefined array key "value" in C:\laragon\www\wp_talends\wp-content\plugins\elementor\includes\controls\base-multiple.php on line 87
+[31-Aug-2024 10:53:35 UTC] PHP Warning:  Undefined array key "value" in C:\laragon\www\wp_talends\wp-content\plugins\elementor\includes\controls\base-multiple.php on line 87
+[31-Aug-2024 10:53:35 UTC] PHP Warning:  Undefined array key "value" in C:\laragon\www\wp_talends\wp-content\plugins\elementor\includes\controls\base-multiple.php on line 87
+[31-Aug-2024 10:56:26 UTC] PHP Warning:  Undefined array key "value" in C:\laragon\www\wp_talends\wp-content\plugins\elementor\includes\controls\base-multiple.php on line 87
+[31-Aug-2024 10:56:26 UTC] PHP Warning:  Undefined array key "value" in C:\laragon\www\wp_talends\wp-content\plugins\elementor\includes\controls\base-multiple.php on line 87
+[31-Aug-2024 10:56:26 UTC] PHP Warning:  Undefined array key "value" in C:\laragon\www\wp_talends\wp-content\plugins\elementor\includes\controls\base-multiple.php on line 87
+[31-Aug-2024 11:02:12 UTC] PHP Warning:  Undefined array key "value" in C:\laragon\www\wp_talends\wp-content\plugins\elementor\includes\controls\base-multiple.php on line 87
+[31-Aug-2024 11:02:12 UTC] PHP Warning:  Undefined array key "value" in C:\laragon\www\wp_talends\wp-content\plugins\elementor\includes\controls\base-multiple.php on line 87
+[31-Aug-2024 11:02:12 UTC] PHP Warning:  Undefined array key "value" in C:\laragon\www\wp_talends\wp-content\plugins\elementor\includes\controls\base-multiple.php on line 87
+[31-Aug-2024 11:03:29 UTC] PHP Warning:  Undefined array key "value" in C:\laragon\www\wp_talends\wp-content\plugins\elementor\includes\controls\base-multiple.php on line 87
+[31-Aug-2024 11:03:29 UTC] PHP Warning:  Undefined array key "value" in C:\laragon\www\wp_talends\wp-content\plugins\elementor\includes\controls\base-multiple.php on line 87
+[31-Aug-2024 11:03:29 UTC] PHP Warning:  Undefined array key "value" in C:\laragon\www\wp_talends\wp-content\plugins\elementor\includes\controls\base-multiple.php on line 87
+[31-Aug-2024 11:04:08 UTC] PHP Warning:  Undefined array key "value" in C:\laragon\www\wp_talends\wp-content\plugins\elementor\includes\controls\base-multiple.php on line 87
+[31-Aug-2024 11:04:08 UTC] PHP Warning:  Undefined array key "value" in C:\laragon\www\wp_talends\wp-content\plugins\elementor\includes\controls\base-multiple.php on line 87
+[31-Aug-2024 11:04:08 UTC] PHP Warning:  Undefined array key "value" in C:\laragon\www\wp_talends\wp-content\plugins\elementor\includes\controls\base-multiple.php on line 87
+[31-Aug-2024 11:15:29 UTC] PHP Notice:  Function wp_enqueue_script() was called <strong>incorrectly</strong>. "wp-editor" script should not be enqueued together with the new widgets editor (wp-edit-widgets or wp-customize-widgets). Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (This message was added in version 5.8.0.) in C:\laragon\www\wp_talends\wp-includes\functions.php on line 6085
+[31-Aug-2024 11:23:55 UTC] PHP Notice:  Function wp_enqueue_script() was called <strong>incorrectly</strong>. "wp-editor" script should not be enqueued together with the new widgets editor (wp-edit-widgets or wp-customize-widgets). Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (This message was added in version 5.8.0.) in C:\laragon\www\wp_talends\wp-includes\functions.php on line 6085
+[31-Aug-2024 11:46:33 UTC] PHP Warning:  Undefined array key "value" in C:\laragon\www\wp_talends\wp-content\plugins\elementor\includes\controls\base-multiple.php on line 87
+[31-Aug-2024 11:46:33 UTC] PHP Warning:  Undefined array key "value" in C:\laragon\www\wp_talends\wp-content\plugins\elementor\includes\controls\base-multiple.php on line 87
+[31-Aug-2024 11:46:33 UTC] PHP Warning:  Undefined array key "value" in C:\laragon\www\wp_talends\wp-content\plugins\elementor\includes\controls\base-multiple.php on line 87
+[31-Aug-2024 11:55:53 UTC] PHP Warning:  Undefined array key "value" in C:\laragon\www\wp_talends\wp-content\plugins\elementor\includes\controls\base-multiple.php on line 87
+[31-Aug-2024 11:55:53 UTC] PHP Warning:  Undefined array key "value" in C:\laragon\www\wp_talends\wp-content\plugins\elementor\includes\controls\base-multiple.php on line 87
+[31-Aug-2024 11:55:53 UTC] PHP Warning:  Undefined array key "value" in C:\laragon\www\wp_talends\wp-content\plugins\elementor\includes\controls\base-multiple.php on line 87
+[31-Aug-2024 11:56:41 UTC] PHP Warning:  Undefined array key "value" in C:\laragon\www\wp_talends\wp-content\plugins\elementor\includes\controls\base-multiple.php on line 87
+[31-Aug-2024 11:56:41 UTC] PHP Warning:  Undefined array key "value" in C:\laragon\www\wp_talends\wp-content\plugins\elementor\includes\controls\base-multiple.php on line 87
+[31-Aug-2024 11:56:41 UTC] PHP Warning:  Undefined array key "value" in C:\laragon\www\wp_talends\wp-content\plugins\elementor\includes\controls\base-multiple.php on line 87
+[31-Aug-2024 12:00:03 UTC] PHP Warning:  Undefined array key "value" in C:\laragon\www\wp_talends\wp-content\plugins\elementor\includes\controls\base-multiple.php on line 87
+[31-Aug-2024 12:00:03 UTC] PHP Warning:  Undefined array key "value" in C:\laragon\www\wp_talends\wp-content\plugins\elementor\includes\controls\base-multiple.php on line 87
+[31-Aug-2024 12:00:03 UTC] PHP Warning:  Undefined array key "value" in C:\laragon\www\wp_talends\wp-content\plugins\elementor\includes\controls\base-multiple.php on line 87
+[31-Aug-2024 12:01:02 UTC] PHP Warning:  Undefined array key "value" in C:\laragon\www\wp_talends\wp-content\plugins\elementor\includes\controls\base-multiple.php on line 87
+[31-Aug-2024 12:01:02 UTC] PHP Warning:  Undefined array key "value" in C:\laragon\www\wp_talends\wp-content\plugins\elementor\includes\controls\base-multiple.php on line 87
+[31-Aug-2024 12:01:02 UTC] PHP Warning:  Undefined array key "value" in C:\laragon\www\wp_talends\wp-content\plugins\elementor\includes\controls\base-multiple.php on line 87
+[31-Aug-2024 12:16:44 UTC] PHP Warning:  Array to string conversion in C:\laragon\www\wp_talends\wp-content\plugins\listivo-core\src\Widgets\Helpers\Controls\ButtonControls.php on line 97
+[31-Aug-2024 12:16:54 UTC] PHP Warning:  Array to string conversion in C:\laragon\www\wp_talends\wp-content\plugins\listivo-core\src\Widgets\Helpers\Controls\ButtonControls.php on line 97
+[31-Aug-2024 12:17:03 UTC] PHP Warning:  Array to string conversion in C:\laragon\www\wp_talends\wp-content\plugins\listivo-core\src\Widgets\Helpers\Controls\ButtonControls.php on line 97
+[31-Aug-2024 12:17:10 UTC] PHP Warning:  Array to string conversion in C:\laragon\www\wp_talends\wp-content\plugins\listivo-core\src\Widgets\Helpers\Controls\ButtonControls.php on line 97
+[31-Aug-2024 12:17:16 UTC] PHP Warning:  Array to string conversion in C:\laragon\www\wp_talends\wp-content\plugins\listivo-core\src\Widgets\Helpers\Controls\ButtonControls.php on line 97
+[31-Aug-2024 12:17:36 UTC] PHP Warning:  Array to string conversion in C:\laragon\www\wp_talends\wp-content\plugins\listivo-core\src\Widgets\Helpers\Controls\ButtonControls.php on line 97
+[31-Aug-2024 12:25:11 UTC] PHP Deprecated:  ltrim(): Passing null to parameter #1 ($string) of type string is deprecated in C:\laragon\www\wp_talends\wp-includes\formatting.php on line 4482
+[31-Aug-2024 12:25:11 UTC] PHP Deprecated:  ltrim(): Passing null to parameter #1 ($string) of type string is deprecated in C:\laragon\www\wp_talends\wp-includes\formatting.php on line 4482
+[31-Aug-2024 12:31:24 UTC] PHP Warning:  Undefined array key "value" in C:\laragon\www\wp_talends\wp-content\plugins\elementor\includes\controls\base-multiple.php on line 87
+[31-Aug-2024 12:31:24 UTC] PHP Warning:  Undefined array key "value" in C:\laragon\www\wp_talends\wp-content\plugins\elementor\includes\controls\base-multiple.php on line 87
+[31-Aug-2024 12:31:24 UTC] PHP Warning:  Undefined array key "value" in C:\laragon\www\wp_talends\wp-content\plugins\elementor\includes\controls\base-multiple.php on line 87
+[31-Aug-2024 12:35:12 UTC] PHP Warning:  Undefined array key "value" in C:\laragon\www\wp_talends\wp-content\plugins\elementor\includes\controls\base-multiple.php on line 87
+[31-Aug-2024 12:35:12 UTC] PHP Warning:  Undefined array key "value" in C:\laragon\www\wp_talends\wp-content\plugins\elementor\includes\controls\base-multiple.php on line 87
+[31-Aug-2024 12:35:12 UTC] PHP Warning:  Undefined array key "value" in C:\laragon\www\wp_talends\wp-content\plugins\elementor\includes\controls\base-multiple.php on line 87
+[31-Aug-2024 12:40:07 UTC] PHP Warning:  Array to string conversion in C:\laragon\www\wp_talends\wp-content\plugins\listivo-core\src\Widgets\Helpers\Controls\ButtonControls.php on line 97
+[31-Aug-2024 12:46:23 UTC] PHP Warning:  Undefined array key "value" in C:\laragon\www\wp_talends\wp-content\plugins\elementor\includes\controls\base-multiple.php on line 87
+[31-Aug-2024 12:46:23 UTC] PHP Warning:  Undefined array key "value" in C:\laragon\www\wp_talends\wp-content\plugins\elementor\includes\controls\base-multiple.php on line 87
+[31-Aug-2024 12:46:23 UTC] PHP Warning:  Undefined array key "value" in C:\laragon\www\wp_talends\wp-content\plugins\elementor\includes\controls\base-multiple.php on line 87
+[31-Aug-2024 15:55:26 UTC] Automatic updates starting...
+[31-Aug-2024 15:55:27 UTC]   Automatic plugin updates starting...
+[31-Aug-2024 15:55:27 UTC]   Automatic plugin updates complete.
+[31-Aug-2024 15:55:28 UTC] Automatic updates complete.
+[31-Aug-2024 16:12:49 UTC] PHP Deprecated:  ltrim(): Passing null to parameter #1 ($string) of type string is deprecated in C:\laragon\www\wp_talends\wp-includes\formatting.php on line 4482
+[31-Aug-2024 16:12:49 UTC] PHP Deprecated:  ltrim(): Passing null to parameter #1 ($string) of type string is deprecated in C:\laragon\www\wp_talends\wp-includes\formatting.php on line 4482
+[31-Aug-2024 16:39:13 UTC] PHP Deprecated:  ltrim(): Passing null to parameter #1 ($string) of type string is deprecated in C:\laragon\www\wp_talends\wp-includes\formatting.php on line 4482
+[31-Aug-2024 16:39:13 UTC] PHP Deprecated:  ltrim(): Passing null to parameter #1 ($string) of type string is deprecated in C:\laragon\www\wp_talends\wp-includes\formatting.php on line 4482
+[31-Aug-2024 16:41:03 UTC] PHP Deprecated:  Function print_emoji_styles is <strong>deprecated</strong> since version 6.4.0! Use wp_enqueue_emoji_styles instead. in C:\laragon\www\wp_talends\wp-includes\functions.php on line 6085
+[31-Aug-2024 16:42:04 UTC] PHP Deprecated:  Function print_emoji_styles is <strong>deprecated</strong> since version 6.4.0! Use wp_enqueue_emoji_styles instead. in C:\laragon\www\wp_talends\wp-includes\functions.php on line 6085

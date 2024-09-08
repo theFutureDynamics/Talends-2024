@@ -638,7 +638,10 @@ $image_url = get_site_url() . '/wp-content/uploads/2022/08/award.png';
         </div>
         <?php if(count($awards) > 0): ?>
 
-            <div class="elementor-element elementor-element-6057b14 elementor-widget elementor-widget-lst_services_v4" data-id="6057b14" data-element_type="widget" data-widget_type="lst_services_v4.default">
+            <div class="elementor-element elementor-element-6057b14 elementor-widget elementor-widget-lst_services_v4" data-id="6057b14" data-element_type="widget" data-widget_type="lst_services_v4.default" style="
+    width: 100%;
+    margin-top: 60px;
+">
                 <div class="elementor-widget-container">
                     <div class="listivo-services-v4">
                         <div class="listivo-services-v4__list">

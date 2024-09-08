@@ -30,6 +30,7 @@ $educations = $lstUser->getUserEducation();
 $servics = $lstUser->getUserExpertises();
 $portfolios = $lstUser->getUserPortfolio();
 $awards = $lstUser->getUserAwards();
+$image_url = get_site_url() . '/wp-content/uploads/2022/08/award.png';
 ?>
 
 <style>/*! elementor - v3.23.0 - 05-08-2024 */
@@ -643,7 +644,7 @@ $awards = $lstUser->getUserAwards();
                         <div class="listivo-services-v4__list">
                             <div class="listivo-service-v4">
                                 <div class="listivo-service-v4__image">
-                                    <img src="http://wp_talends.test:8081/wp-content/uploads/2022/08/award.png" alt="Award2">
+                                    <img src="<?php echo esc_url($image_url); ?>" alt="Award2">
                                 </div>
                                 <h3 class="listivo-service-v4__label">
                                     Awards1                
@@ -654,7 +655,7 @@ $awards = $lstUser->getUserAwards();
                             </div>
                             <div class="listivo-service-v4">
                             <div class="listivo-service-v4__image">
-                                <img src="http://wp_talends.test:8081/wp-content/uploads/2022/08/award.png" alt="Award2">
+                                <img src="<?php echo esc_url($image_url); ?>" alt="Award2">
                             </div>
                             <h3 class="listivo-service-v4__label">
                                 Award2                
@@ -665,7 +666,7 @@ $awards = $lstUser->getUserAwards();
                             </div>
                             <div class="listivo-service-v4">
                             <div class="listivo-service-v4__image">
-                                <img src="http://wp_talends.test:8081/wp-content/uploads/2022/08/award.png" alt="Awards3">
+                                <img src="<?php echo esc_url($image_url); ?>" alt="Awards3">
                             </div>
                             <h3 class="listivo-service-v4__label">
                                 Awards3                

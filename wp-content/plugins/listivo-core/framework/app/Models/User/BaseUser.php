@@ -621,10 +621,111 @@ abstract class BaseUser extends BaseModel
         return $this->user->budget;
     }
 
+    public function getTeamInfo(): string
+    {
+        return $this->user->team_info;
+    }
+
     public function getDepartment(): string
     {
         return $this->user->department;
     }
+
+    public function getUserAwards(): array 
+      {
+          global $wpdb;
+          // Check if user_id is available
+          if (empty($this->user->ID)) {
+              return [];
+          }
+          
+          // Prepare the SQL query
+          $user_id = (int) $this->user->ID; // Ensure user_id is an integer
+          $table_name = $wpdb->prefix . 'awards'; // Table name with prefix
+          
+          $query = $wpdb->prepare(
+              "SELECT id,award_title1,award_description1, award_title2, award_description2, award_title3,award_description3, user_id FROM $table_name WHERE user_id = %d",
+              $user_id
+          );
+          
+          // Execute the query
+          $results = $wpdb->get_results($query, ARRAY_A);
+          
+          // Check if we have results
+          if (empty($results)) {
+            return [];
+          }
+          
+        if (count($results)) {
+            return $results[0];
+        } else {
+            return [];
+        }
+      }
+
+      public function getUserExpertises(): array 
+      {
+          global $wpdb;
+          // Check if user_id is available
+          if (empty($this->user->ID)) {
+              return [];
+          }
+          
+          // Prepare the SQL query
+          $user_id = (int) $this->user->ID; // Ensure user_id is an integer
+          $table_name = $wpdb->prefix . 'user_expertises'; // Table name with prefix
+          
+          $query = $wpdb->prepare(
+              "SELECT id,expertise_title,expertise_description,user_id FROM $table_name WHERE user_id = %d",
+              $user_id
+          );
+          
+          // Execute the query
+          $results = $wpdb->get_results($query, ARRAY_A);
+          
+          // Check if we have results
+          if (empty($results)) {
+            return [];
+          }
+          
+        if (count($results)) {
+            return $results;
+        } else {
+            return [];
+        }
+      }
+
+      public function getUserPortfolio(): array 
+      {
+          global $wpdb;
+          // Check if user_id is available
+          if (empty($this->user->ID)) {
+              return [];
+          }
+          
+          // Prepare the SQL query
+          $user_id = (int) $this->user->ID; // Ensure user_id is an integer
+          $table_name = $wpdb->prefix . 'portfolio'; // Table name with prefix
+          
+          $query = $wpdb->prepare(
+              "SELECT id,portfolio_image,portfolio_description,user_id FROM $table_name WHERE user_id = %d",
+              $user_id
+          );
+          
+          // Execute the query
+          $results = $wpdb->get_results($query, ARRAY_A);
+          
+          // Check if we have results
+          if (empty($results)) {
+            return [];
+          }
+          
+        if (count($results)) {
+            return $results;
+        } else {
+            return [];
+        }
+      }
 
 
 }

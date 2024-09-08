@@ -32,6 +32,8 @@ class UserSettingsServiceProvider extends ServiceProvider
         add_filter('send_email_change_email', static function () {
             return false;
         });
+
+        add_action('admin_post_' . tdf_prefix() . '/user/portfolio/save', [$this, 'savePortfolio']);
     }
 
     public function setPhone(): void
@@ -217,6 +219,17 @@ class UserSettingsServiceProvider extends ServiceProvider
         }
         
         $this->successJsonResponse();
+    }
+
+    public function savePortfolio(): void
+    {
+        
+        if (!wp_verify_nonce($_POST['nonce'], tdf_prefix() . '_save_portfolio')) {
+            $this->errorJsonResponse();
+            return;
+        }
+        print_r($_FILES);
+        print_r($_POST);die;
     }
 
     public function saveSocials(): void

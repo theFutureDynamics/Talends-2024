@@ -102,6 +102,11 @@ function wp_ajax_listivo_payment_purchase(){
 	print_r($_GET);die;
 }
 
+function wp_ajax_save_portfolio(){
+	echo 'nnnn';die;
+	print_r($_POST);
+}
+
 /**
  * Handles tag search via AJAX.
  *

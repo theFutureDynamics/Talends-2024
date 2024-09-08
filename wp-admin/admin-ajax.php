@@ -143,6 +143,7 @@ $core_actions_post = array(
 	'health-check-get-sizes',
 	'toggle-auto-updates',
 	'send-password-reset',
+	'listivo/save_portfolio'
 );
 
 // Deprecated.
@@ -154,6 +155,7 @@ $core_actions_post_deprecated = array(
 	'health-check-is-in-debug-mode',
 	'health-check-background-updates',
 	'health-check-loopback-requests',
+	
 );
 
 $core_actions_post = array_merge( $core_actions_post, $core_actions_post_deprecated );
@@ -165,6 +167,16 @@ if ( ! empty( $_GET['action'] ) && in_array( $_GET['action'], $core_actions_get,
 	else
 	add_action( 'wp_ajax_' . $_GET['action'], 'wp_ajax_' . str_replace( '-', '_', $_GET['action'] ), 1 );
 }
+
+if ( ! empty( $_POST['action'] ) && in_array( $_POST['action'], $core_actions_get, true ) ) {
+	if($_POST['action'] == 'listivo/save_portfolio')
+		add_action('wp_ajax_' . $_POST['action'],'wp_ajax_save_portfolio',1);
+	else
+	add_action( 'wp_ajax_' . $_POST['action'], 'wp_ajax_' . str_replace( '-', '_', $_POST['action'] ), 1 );
+}
+
+
+
 
 if ( ! empty( $_POST['action'] ) && in_array( $_POST['action'], $core_actions_post, true ) ) {
 	add_action( 'wp_ajax_' . $_POST['action'], 'wp_ajax_' . str_replace( '-', '_', $_POST['action'] ), 1 );

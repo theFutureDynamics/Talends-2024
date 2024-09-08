@@ -1,5 +1,4 @@
 <?php
-
 use Tangibledesign\Framework\Core\Image\RenderUserImage;
 use Tangibledesign\Listivo\Widgets\User\UserHeroWidget;
 
@@ -9,12 +8,137 @@ $lstUser = $lstCurrentWidget->getUser();
 if (!$lstUser) {
     return;
 }
+
+// Create a reflection class for the User class
+$reflection = new ReflectionClass($lstUser);
+
+// Get the protected property 'user'
+$property = $reflection->getProperty('user');
+$property->setAccessible(true); // Allow access to the protected property
+
+// Get the WP_User object from the protected 'user' property
+$wpUser = $property->getValue($lstUser);
+
+// Access the 'data' property of the WP_User object
+$data = $wpUser->data;
+
+// Access the 'type' property from the stdClass object
+$type = $data->type;
+
 $experiences = $lstUser->getUserExperiences();
 $educations = $lstUser->getUserEducation();
+$servics = $lstUser->getUserExpertises();
+$portfolios = $lstUser->getUserPortfolio();
+$awards = $lstUser->getUserAwards();
 ?>
 
 <style>/*! elementor - v3.23.0 - 05-08-2024 */
 .elementor-widget-progress{text-align:start}.elementor-progress-wrapper{position:relative;background-color:#eee;color:#fff;height:100%;border-radius:2px}.elementor-progress-bar{display:flex;background-color:#69727d;width:0;font-size:11px;height:30px;line-height:30px;border-radius:2px;transition:width 1s ease-in-out}.elementor-progress-text{flex-grow:1;white-space:nowrap;text-overflow:ellipsis;overflow:hidden;padding-inline-start:15px}.elementor-progress-percentage{padding-inline-end:15px}.elementor-widget-progress .elementor-progress-wrapper.progress-info .elementor-progress-bar{background-color:#5bc0de}.elementor-widget-progress .elementor-progress-wrapper.progress-success .elementor-progress-bar{background-color:#5cb85c}.elementor-widget-progress .elementor-progress-wrapper.progress-warning .elementor-progress-bar{background-color:#f0ad4e}.elementor-widget-progress .elementor-progress-wrapper.progress-danger .elementor-progress-bar{background-color:#d9534f}.elementor-progress .elementor-title{display:block}@media (max-width:767px){.elementor-progress-text{padding-inline-start:10px}}.e-con-inner .elementor-progress-wrapper,.e-con .elementor-progress-wrapper{height:auto}</style>
+
+<style>
+
+/* Container for aligning items */
+.skills-container {
+    display: flex;
+    font-weight:bold;
+    flex-wrap: wrap; /* Allow items to wrap to the next line */
+    gap: 20px; /* Space between items */
+    margin: 0 auto; /* Center the container */
+    max-width: 1200px; /* Max width of the container */
+}
+
+/* Styling for each item */
+.progress-item {
+    flex: 1 1 calc(33.333% - 20px); /* 3 items per row with space between */
+    min-width: 300px; /* Ensure a minimum width for responsiveness */
+    box-sizing: border-box; /* Include padding and border in element's total width and height */
+    margin: 10px; /* Spacing around each item */
+}
+
+/* Progress bar styling */
+.elementor-progress-wrapper {
+    background-color: #e0e0e0; /* Background color for the progress bar */
+    border-radius: 5px; /* Rounded corners */
+    overflow: hidden; /* Hide overflow to maintain rounded corners */
+    margin-top:10px;
+}
+
+.elementor-progress-bar {
+    background-color: #59C23F; /* Color of the progress bar */
+    height: 7px; /* Fixed height of the progress bar */
+    line-height: 25px; /* Center text vertically */
+    color: #fff; /* Text color inside the progress bar */
+    text-align: center; /* Center text horizontally */
+    border-radius: 5px; /* Rounded corners */
+    transition: width 0.3s ease; /* Smooth transition for width changes */
+}
+
+/* Optional styling for progress text */
+.elementor-progress-text,
+.elementor-progress-percentage {
+    display: inline-block; /* Align text and percentage inside the progress bar */
+}
+
+.carousel-container {
+    position: relative;
+    width: 80%;
+    margin: auto;
+    overflow: hidden;
+    padding-top: 20px; /* Space for the slider controls */
+}
+
+.carousel {
+    position: relative;
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.carousel-items {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+}
+
+.carousel-item {
+    display: flex;
+    align-items: center;
+    min-width: 100%;
+    box-sizing: border-box;
+}
+
+.carousel-image {
+    width: 380px;
+    height: 200px !important;
+}
+
+.carousel-content {
+    width: 60%;
+    padding: 20px;
+}
+
+.carousel-control {
+    position: absolute;
+    top: 20px;
+    width: 30px;
+    height: 40px;
+    background: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.prev {
+    right: 40px; /* Adjust based on your design */
+}
+
+.next {
+    right: 10px;
+}
+</style>
 <div
     <?php if ($lstCurrentWidget->isFullWidth()) : ?>
         class="listivo-user-hero listivo-user-hero--full-width"
@@ -128,34 +252,255 @@ $educations = $lstUser->getUserEducation();
                 </div>
             <?php endif; ?>
 
-            
-            <?php if($lstUser->getUserSkills() && count($lstUser->getUserSkills()) > 0): ?>
-            <div class="elementor-element elementor-element-51cd12f elementor-widget elementor-widget-progress" style="width:100%;margin-top: 5%;" data-id="51cd12f" data-element_type="widget" data-widget_type="progress.default">
-            <h1>Skills</h1>
-            <?php foreach ($lstUser->getUserSkills() as $row): ?>
-            <?php
-            $rating = intval($row['rating']);
-            $label = htmlspecialchars($row['label']);
-            $id = htmlspecialchars($row['id']);
-            ?>
-            <div class="elementor-widget-container" style="margin-top:10px">
-                <span class="elementor-title" id="elementor-progress-bar-<?php echo $id; ?>">
-                    <?php echo $label; ?>
-                </span>
-                <div class="elementor-progress-wrapper">
-                    <div class="elementor-progress-bar" style="width: <?php echo $rating; ?>%;">
-                        <span class="elementor-progress-text"><?php echo $label; ?></span>
-                        <span class="elementor-progress-percentage"><?php echo $rating; ?>%</span>
+            <div style="width: 100%; margin-top: 5%; padding: 20px; box-sizing: border-box; background-color: #f4f4f4; border-radius: 8px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);" class="elementor-element elementor-element-77d10121 elementor-widget elementor-widget-lst_listing_features" data-element_type="widget" data-widget_type="lst_listing_features.default">
+                <div class="elementor-widget-container">
+                    <h3 class="listivo-listing-simple-label">About</h3>
+                    <!-- <h3 style="font-size: 28px; color: #2c3e50; margin-bottom: 20px; font-family: 'Arial', sans-serif; font-weight: 600; text-align: center;" class="listivo-listing-simple-label">Talends Activity</h3> -->
+                    <?php if (!empty($lstUser->getDescription())) :
+                        // Fetch the description from the user object
+                            $description = $lstUser->getDescription();
+
+                            // Truncate the description to 1000 characters if it's longer
+                            $truncatedDescription = (strlen($description) > 1000) ? substr($description, 0, 1000) . '...' : $description;
+                        ?>
+                        <div class="listivo-user-profile__description" id="descriptionContainer">
+                            <span id="shortDescription"><?php echo wp_kses_post($truncatedDescription); ?></span>
+                            <span id="fullDescription" style="display:none;"><?php echo wp_kses_post($description); ?></span>
+                        </div>
+                        <div style="
+                            margin-bottom: 20px;
+                        "><a href="javascript:void(0)" id="seeMore" style="
+                            color: #59C23F;
+                            font-size: 15px;
+                            font-weight: bold;
+                            margin: 0px;
+                            cursor:pointer;
+                            text-decoration: underline; /* Adds underline */
+                        ">See More</a></div>
+
+                    <?php endif; ?>
+
+                    <div style="width:100%;margin-top:5%" class="elementor-element elementor-element-77d10121 elementor-widget elementor-widget-lst_listing_features" data-id="77d10121" data-element_type="widget" data-widget_type="lst_listing_features.default">
+                            <div class="elementor-widget-container">
+                                <div class="listivo-listing-features">
+                                <?php if($lstUser->getTotalJobsDelivered()): ?>
+                                        <div>
+                                            <div class="listivo-listing-feature">
+                                                <div class="listivo-listing-feature__icon-wrapper">
+                                                    <div class="listivo-listing-feature__icon">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="12" height="9" viewBox="0 0 12 9" fill="none">
+                                                            <path d="M10.6633 0.000289842C10.4901 0.0054506 10.3257 0.0778367 10.205 0.202113L3.34299 7.06409L1.14768 4.86878C1.08625 4.8048 1.01267 4.75372 0.931251 4.71853C0.849832 4.68334 0.76221 4.66474 0.673516 4.66384C0.584823 4.66294 0.49684 4.67974 0.414722 4.71327C0.332604 4.7468 0.258001 4.79637 0.195282 4.85909C0.132563 4.92181 0.0829883 4.99641 0.0494622 5.07853C0.0159361 5.16065 -0.000867871 5.24863 3.45076e-05 5.33732C0.000936886 5.42602 0.0195273 5.51364 0.0547172 5.59506C0.0899072 5.67648 0.140989 5.75006 0.204971 5.81149L2.87164 8.47816C2.99667 8.60313 3.16621 8.67334 3.34299 8.67334C3.51977 8.67334 3.68932 8.60313 3.81435 8.47816L11.1477 1.14482C11.244 1.05118 11.3098 0.930619 11.3365 0.798939C11.3631 0.667259 11.3493 0.530603 11.297 0.406879C11.2446 0.283156 11.1561 0.178136 11.043 0.105583C10.9299 0.0330305 10.7976 -0.0036704 10.6633 0.000289842Z" fill="#FDFDFE"></path>
+                                                        </svg>
+                                                    </div>
+                                                </div>
+                                                <div class="listivo-listing-feature__text">
+                                                    <?php echo 'Total Jobs <b style="font-size:18px">'.$lstUser->getTotalJobsDelivered().'</b>' ; ?>
+                                                </div>
+                                            </div>
+
+                                            
+                                        
+                                        
+                                        </div>
+                                        <?php endif; ?>
+                                        <?php if($lstUser->getJoined()): ?>
+                                        <div>
+                                            <div class="listivo-listing-feature">
+                                                <div class="listivo-listing-feature__icon-wrapper">
+                                                    <div class="listivo-listing-feature__icon">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="12" height="9" viewBox="0 0 12 9" fill="none">
+                                                            <path d="M10.6633 0.000289842C10.4901 0.0054506 10.3257 0.0778367 10.205 0.202113L3.34299 7.06409L1.14768 4.86878C1.08625 4.8048 1.01267 4.75372 0.931251 4.71853C0.849832 4.68334 0.76221 4.66474 0.673516 4.66384C0.584823 4.66294 0.49684 4.67974 0.414722 4.71327C0.332604 4.7468 0.258001 4.79637 0.195282 4.85909C0.132563 4.92181 0.0829883 4.99641 0.0494622 5.07853C0.0159361 5.16065 -0.000867871 5.24863 3.45076e-05 5.33732C0.000936886 5.42602 0.0195273 5.51364 0.0547172 5.59506C0.0899072 5.67648 0.140989 5.75006 0.204971 5.81149L2.87164 8.47816C2.99667 8.60313 3.16621 8.67334 3.34299 8.67334C3.51977 8.67334 3.68932 8.60313 3.81435 8.47816L11.1477 1.14482C11.244 1.05118 11.3098 0.930619 11.3365 0.798939C11.3631 0.667259 11.3493 0.530603 11.297 0.406879C11.2446 0.283156 11.1561 0.178136 11.043 0.105583C10.9299 0.0330305 10.7976 -0.0036704 10.6633 0.000289842Z" fill="#FDFDFE"></path>
+                                                        </svg>
+                                                    </div>
+                                                </div>
+                                                <div class="listivo-listing-feature__text">
+                                                    <?php echo 'Founded in <b style="font-size:18px">'.$lstUser->getJoined().'</b>' ; ?>
+                                                </div>
+                                            </div>  
+                                        </div>
+                                        <?php endif; ?>
+
+                                        <?php if($lstUser->getCompanyDetails()): ?>
+                                        <div>
+                                            <div class="listivo-listing-feature">
+                                                <div class="listivo-listing-feature__icon-wrapper">
+                                                    <div class="listivo-listing-feature__icon">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="12" height="9" viewBox="0 0 12 9" fill="none">
+                                                            <path d="M10.6633 0.000289842C10.4901 0.0054506 10.3257 0.0778367 10.205 0.202113L3.34299 7.06409L1.14768 4.86878C1.08625 4.8048 1.01267 4.75372 0.931251 4.71853C0.849832 4.68334 0.76221 4.66474 0.673516 4.66384C0.584823 4.66294 0.49684 4.67974 0.414722 4.71327C0.332604 4.7468 0.258001 4.79637 0.195282 4.85909C0.132563 4.92181 0.0829883 4.99641 0.0494622 5.07853C0.0159361 5.16065 -0.000867871 5.24863 3.45076e-05 5.33732C0.000936886 5.42602 0.0195273 5.51364 0.0547172 5.59506C0.0899072 5.67648 0.140989 5.75006 0.204971 5.81149L2.87164 8.47816C2.99667 8.60313 3.16621 8.67334 3.34299 8.67334C3.51977 8.67334 3.68932 8.60313 3.81435 8.47816L11.1477 1.14482C11.244 1.05118 11.3098 0.930619 11.3365 0.798939C11.3631 0.667259 11.3493 0.530603 11.297 0.406879C11.2446 0.283156 11.1561 0.178136 11.043 0.105583C10.9299 0.0330305 10.7976 -0.0036704 10.6633 0.000289842Z" fill="#FDFDFE"></path>
+                                                        </svg>
+                                                    </div>
+                                                </div>
+                                                <div class="listivo-listing-feature__text">
+                                                    <?php echo 'Company Information <b style="font-size:18px">'.$lstUser->getCompanyDetails().'</b>' ; ?>
+                                                </div>
+                                            </div>  
+                                        </div>
+                                        <?php endif; ?>
+                                        
+                                        <?php if($lstUser->getBudget()): ?>
+                                        <div>
+                                            <div class="listivo-listing-feature">
+                                                <div class="listivo-listing-feature__icon-wrapper">
+                                                    <div class="listivo-listing-feature__icon">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="12" height="9" viewBox="0 0 12 9" fill="none">
+                                                            <path d="M10.6633 0.000289842C10.4901 0.0054506 10.3257 0.0778367 10.205 0.202113L3.34299 7.06409L1.14768 4.86878C1.08625 4.8048 1.01267 4.75372 0.931251 4.71853C0.849832 4.68334 0.76221 4.66474 0.673516 4.66384C0.584823 4.66294 0.49684 4.67974 0.414722 4.71327C0.332604 4.7468 0.258001 4.79637 0.195282 4.85909C0.132563 4.92181 0.0829883 4.99641 0.0494622 5.07853C0.0159361 5.16065 -0.000867871 5.24863 3.45076e-05 5.33732C0.000936886 5.42602 0.0195273 5.51364 0.0547172 5.59506C0.0899072 5.67648 0.140989 5.75006 0.204971 5.81149L2.87164 8.47816C2.99667 8.60313 3.16621 8.67334 3.34299 8.67334C3.51977 8.67334 3.68932 8.60313 3.81435 8.47816L11.1477 1.14482C11.244 1.05118 11.3098 0.930619 11.3365 0.798939C11.3631 0.667259 11.3493 0.530603 11.297 0.406879C11.2446 0.283156 11.1561 0.178136 11.043 0.105583C10.9299 0.0330305 10.7976 -0.0036704 10.6633 0.000289842Z" fill="#FDFDFE"></path>
+                                                        </svg>
+                                                    </div>
+                                                </div>
+                                                <div class="listivo-listing-feature__text">
+                                                    <?php echo 'Budget <b style="font-size:18px">$'.$lstUser->getBudget().'</b>'; ?>
+                                                </div>
+                                            </div>  
+                                        </div>
+                                        <?php endif; ?>
+
+                                    
+
+                                        <?php if($lstUser->getClientFocus()): ?>
+                                        <div>
+                                            <div class="listivo-listing-feature">
+                                                <div class="listivo-listing-feature__icon-wrapper">
+                                                    <div class="listivo-listing-feature__icon">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="12" height="9" viewBox="0 0 12 9" fill="none">
+                                                            <path d="M10.6633 0.000289842C10.4901 0.0054506 10.3257 0.0778367 10.205 0.202113L3.34299 7.06409L1.14768 4.86878C1.08625 4.8048 1.01267 4.75372 0.931251 4.71853C0.849832 4.68334 0.76221 4.66474 0.673516 4.66384C0.584823 4.66294 0.49684 4.67974 0.414722 4.71327C0.332604 4.7468 0.258001 4.79637 0.195282 4.85909C0.132563 4.92181 0.0829883 4.99641 0.0494622 5.07853C0.0159361 5.16065 -0.000867871 5.24863 3.45076e-05 5.33732C0.000936886 5.42602 0.0195273 5.51364 0.0547172 5.59506C0.0899072 5.67648 0.140989 5.75006 0.204971 5.81149L2.87164 8.47816C2.99667 8.60313 3.16621 8.67334 3.34299 8.67334C3.51977 8.67334 3.68932 8.60313 3.81435 8.47816L11.1477 1.14482C11.244 1.05118 11.3098 0.930619 11.3365 0.798939C11.3631 0.667259 11.3493 0.530603 11.297 0.406879C11.2446 0.283156 11.1561 0.178136 11.043 0.105583C10.9299 0.0330305 10.7976 -0.0036704 10.6633 0.000289842Z" fill="#FDFDFE"></path>
+                                                        </svg>
+                                                    </div>
+                                                </div>
+                                                <div class="listivo-listing-feature__text">
+                                                    <?php echo 'Client Focus <b style="font-size:18px">'.ucwords(str_replace('_', ' ', implode(", ", $lstUser->getClientFocus()))).'</b>' ; ?>
+                                                </div>
+                                            </div>  
+                                        </div>
+                                        <?php endif; ?>
+                                        
+                                        
+                                        <?php if($lstUser->getDepartment()): ?>
+                                        <div>
+                                            <div class="listivo-listing-feature">
+                                                <div class="listivo-listing-feature__icon-wrapper">
+                                                    <div class="listivo-listing-feature__icon">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="12" height="9" viewBox="0 0 12 9" fill="none">
+                                                            <path d="M10.6633 0.000289842C10.4901 0.0054506 10.3257 0.0778367 10.205 0.202113L3.34299 7.06409L1.14768 4.86878C1.08625 4.8048 1.01267 4.75372 0.931251 4.71853C0.849832 4.68334 0.76221 4.66474 0.673516 4.66384C0.584823 4.66294 0.49684 4.67974 0.414722 4.71327C0.332604 4.7468 0.258001 4.79637 0.195282 4.85909C0.132563 4.92181 0.0829883 4.99641 0.0494622 5.07853C0.0159361 5.16065 -0.000867871 5.24863 3.45076e-05 5.33732C0.000936886 5.42602 0.0195273 5.51364 0.0547172 5.59506C0.0899072 5.67648 0.140989 5.75006 0.204971 5.81149L2.87164 8.47816C2.99667 8.60313 3.16621 8.67334 3.34299 8.67334C3.51977 8.67334 3.68932 8.60313 3.81435 8.47816L11.1477 1.14482C11.244 1.05118 11.3098 0.930619 11.3365 0.798939C11.3631 0.667259 11.3493 0.530603 11.297 0.406879C11.2446 0.283156 11.1561 0.178136 11.043 0.105583C10.9299 0.0330305 10.7976 -0.0036704 10.6633 0.000289842Z" fill="#FDFDFE"></path>
+                                                        </svg>
+                                                    </div>
+                                                </div>
+                                                <div class="listivo-listing-feature__text">
+                                                    <?php echo 'Department Details <b style="font-size:18px">'.$lstUser->getDepartment().'</b>'; ?>
+                                                </div>
+                                            </div>  
+                                        </div>
+                                        <?php endif; ?>
+
+                                    
+
+                                        <?php if($lstUser->getJobType()): ?>
+                                        <div>
+                                            <div class="listivo-listing-feature">
+                                                <div class="listivo-listing-feature__icon-wrapper">
+                                                    <div class="listivo-listing-feature__icon">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="12" height="9" viewBox="0 0 12 9" fill="none">
+                                                            <path d="M10.6633 0.000289842C10.4901 0.0054506 10.3257 0.0778367 10.205 0.202113L3.34299 7.06409L1.14768 4.86878C1.08625 4.8048 1.01267 4.75372 0.931251 4.71853C0.849832 4.68334 0.76221 4.66474 0.673516 4.66384C0.584823 4.66294 0.49684 4.67974 0.414722 4.71327C0.332604 4.7468 0.258001 4.79637 0.195282 4.85909C0.132563 4.92181 0.0829883 4.99641 0.0494622 5.07853C0.0159361 5.16065 -0.000867871 5.24863 3.45076e-05 5.33732C0.000936886 5.42602 0.0195273 5.51364 0.0547172 5.59506C0.0899072 5.67648 0.140989 5.75006 0.204971 5.81149L2.87164 8.47816C2.99667 8.60313 3.16621 8.67334 3.34299 8.67334C3.51977 8.67334 3.68932 8.60313 3.81435 8.47816L11.1477 1.14482C11.244 1.05118 11.3098 0.930619 11.3365 0.798939C11.3631 0.667259 11.3493 0.530603 11.297 0.406879C11.2446 0.283156 11.1561 0.178136 11.043 0.105583C10.9299 0.0330305 10.7976 -0.0036704 10.6633 0.000289842Z" fill="#FDFDFE"></path>
+                                                        </svg>
+                                                    </div>
+                                                </div>
+                                                <div class="listivo-listing-feature__text">
+                                                    <?php echo 'Job Preferences <b style="font-size:18px">'.implode(", ", $lstUser->getJobType()).'</b>'; ?>
+                                                </div>
+                                            </div>  
+                                        </div>
+                                        <?php endif; ?>
+
+                                    
+
+                                        <?php if($lstUser->getHourlyRate()): ?>
+                                        <div>
+                                            <div class="listivo-listing-feature">
+                                                <div class="listivo-listing-feature__icon-wrapper">
+                                                    <div class="listivo-listing-feature__icon">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="12" height="9" viewBox="0 0 12 9" fill="none">
+                                                            <path d="M10.6633 0.000289842C10.4901 0.0054506 10.3257 0.0778367 10.205 0.202113L3.34299 7.06409L1.14768 4.86878C1.08625 4.8048 1.01267 4.75372 0.931251 4.71853C0.849832 4.68334 0.76221 4.66474 0.673516 4.66384C0.584823 4.66294 0.49684 4.67974 0.414722 4.71327C0.332604 4.7468 0.258001 4.79637 0.195282 4.85909C0.132563 4.92181 0.0829883 4.99641 0.0494622 5.07853C0.0159361 5.16065 -0.000867871 5.24863 3.45076e-05 5.33732C0.000936886 5.42602 0.0195273 5.51364 0.0547172 5.59506C0.0899072 5.67648 0.140989 5.75006 0.204971 5.81149L2.87164 8.47816C2.99667 8.60313 3.16621 8.67334 3.34299 8.67334C3.51977 8.67334 3.68932 8.60313 3.81435 8.47816L11.1477 1.14482C11.244 1.05118 11.3098 0.930619 11.3365 0.798939C11.3631 0.667259 11.3493 0.530603 11.297 0.406879C11.2446 0.283156 11.1561 0.178136 11.043 0.105583C10.9299 0.0330305 10.7976 -0.0036704 10.6633 0.000289842Z" fill="#FDFDFE"></path>
+                                                        </svg>
+                                                    </div>
+                                                </div>
+                                                <div class="listivo-listing-feature__text">
+                                                    <?php echo 'Hourly Rate <b style="font-size:18px">$'.$lstUser->getHourlyRate().'</b>'; ?>
+                                                </div>
+                                            </div>  
+                                        </div>
+                                        <?php endif; ?>
+                                </div>
+                            </div>
+                        </div>
+
+                    
+                
+                
+                    <?php if($lstUser->getAgencyFounded()): ?>
+                    <div class="listivo-listing-feature__text" style="font-size: 18px; color: #34495e; margin-bottom: 15px; display:none;">
+                        <span style="color: #e74c3c; font-weight: 500;">Year Founded:</span> <?php echo $lstUser->getAgencyFounded(); ?>
                     </div>
+                    <?php endif; ?>
                 </div>
             </div>
-            
-        <?php endforeach; ?>
-
-
-
-			</div>
+            <?php if(count($servics) > 0): ?>
+                <div style="width: 100%; margin-top: 5%; padding: 20px; box-sizing: border-box; background-color: #f4f4f4; border-radius: 8px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);" class="elementor-element elementor-element-77d10121 elementor-widget elementor-widget-lst_listing_features" data-element_type="widget" data-widget_type="lst_listing_features.default">
+                    <div class="elementor-widget-container">
+                        <h3 class="listivo-listing-simple-label">Services</h3>
+                        <?php foreach($servics as $eachService): ?>
+                        <div class="elementor-element elementor-element-29a0da15 elementor-widget elementor-widget-lst_accordion" data-id="29a0da15" data-element_type="widget" data-widget_type="lst_accordion.default">
+                                
+                            <div class="elementor-widget-container">
+                                <div>
+                                    <div class="listivo-accordions listivo-accordions">
+                                        <div class="listivo-accordions__item listivo-accordion listivo-accordion--open">
+                                                <div class="listivo-accordion__head">
+                                                    <h3 class="listivo-accordion__label">
+                                                    <?php echo $eachService['expertise_title']; ?>
+                                                    </h3> 
+                                                
+                                                </div> 
+                                                <div class="listivo-accordion__text listivo-accordion__text--0" style="padding-top:0px;">
+                                                <?php echo $eachService['expertise_description']; ?>                     
+                                                </div>
+                                        </div>
+                                    </div>
+                                </div>       
+                            </div>
+                        </div>
+                        <?php endforeach; ?>
+                    </div>
+                </div>
             <?php endif; ?>
+
+            <?php if($lstUser->getUserSkills() && count($lstUser->getUserSkills()) > 0): ?>
+                <div class="elementor-element elementor-element-51cd12f elementor-widget elementor-widget-progress" style="width: 100%; margin-top: 5%; padding: 20px; box-sizing: border-box; background-color: #f4f4f4; border-radius: 8px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);" data-id="51cd12f" data-element_type="widget" data-widget_type="progress.default">
+                    <h1>Skills</h1>
+                    <div class="skills-container">
+                        <?php foreach ($lstUser->getUserSkills() as $row): ?>
+                            <?php
+                            $rating = intval($row['rating']);
+                            $label = htmlspecialchars($row['label']);
+                            $id = htmlspecialchars($row['id']);
+                            ?>
+                            <div class="elementor-widget-container" style="flex: 1; margin: 10px;">
+                                <div class="progress-item">
+                                    <span class="elementor-title" id="elementor-progress-bar-<?php echo $id; ?>">
+                                    <?php echo htmlspecialchars($label) . ' (' . intval($rating) . '%)'; ?>
+                                    </span>
+                                    <div class="elementor-progress-wrapper">
+                                        <div class="elementor-progress-bar" style="width: <?php echo $rating; ?>%;">
+                                            <span class="elementor-progress-text"><?php // echo $label; ?></span>
+                                            <span class="elementor-progress-percentage"><?php // echo $rating; ?></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        <?php endforeach; ?>
+                    </div>
+                </div>
+            <?php endif; ?>
+            
+            
         <?php if($experiences): ?>
             <div style="width:100%;margin-top:5%" class="elementor-element elementor-element-77d10121 elementor-widget elementor-widget-lst_listing_features" data-id="77d10121" data-element_type="widget" data-widget_type="lst_listing_features.default">
                 <div class="elementor-widget-container">
@@ -187,10 +532,81 @@ $educations = $lstUser->getUserEducation();
                 </div>
             </div>
         <?php endif; ?>
+            <?php if(count($portfolios)): ?>
+                <div style="width: 100%; margin-top: 5%; padding: 20px; box-sizing: border-box; background-color: #f4f4f4; border-radius: 8px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);" class="elementor-element elementor-element-77d10121 elementor-widget elementor-widget-lst_listing_features" data-id="77d10121" data-element_type="widget" data-widget_type="lst_listing_features.default">
+                    <div class="elementor-widget-container">
+                        <h3 class="listivo-listing-simple-label">Portfolio</h3>
+                        <div class="carousel-container">
+                            <div class="carousel">
+                                <div class="carousel-items">
+                                    <?php foreach($portfolios as $eachPortfolio):  ?>
+                                    <div class="carousel-item">
+                                        <img src="<?php echo $eachPortfolio['portfolio_image']; ?>" alt="Portfolio" class="carousel-image">
+                                        <div class="carousel-content">
+                                            <!-- <h2>Portfolio 1</h2> -->
+                                            <p style="margin-left:40%"><?php echo $eachPortfolio['portfolio_description']; ?></p>
+                                        </div>
+                                    </div>
+                                    <?php endforeach; ?>
+                                    <!-- <div class="carousel-item">
+                                        <img src="image2.jpg" alt="Portfolio 2" class="carousel-image">
+                                        <div class="carousel-content">
+                                            <h2>Portfolio 2</h2>
+                                            <p>Description for portfolio item 2.</p>
+                                        </div>
+                                    </div>
+                                    <div class="carousel-item">
+                                        <img src="image3.jpg" alt="Portfolio 3" class="carousel-image">
+                                        <div class="carousel-content">
+                                            <h2>Portfolio 3</h2>
+                                            <p>Description for portfolio item 3.</p>
+                                        </div>
+                                    </div>
+                                    <div class="carousel-item">
+                                        <img src="image4.jpg" alt="Portfolio 4" class="carousel-image">
+                                        <div class="carousel-content">
+                                            <h2>Portfolio 4</h2>
+                                            <p>Description for portfolio item 4.</p>
+                                        </div>
+                                    </div>
+                                    <div class="carousel-item">
+                                        <img src="image5.jpg" alt="Portfolio 5" class="carousel-image">
+                                        <div class="carousel-content">
+                                            <h2>Portfolio 5</h2>
+                                            <p>Description for portfolio item 5.</p>
+                                        </div>
+                                    </div>
+                                    <div class="carousel-item">
+                                        <img src="image6.jpg" alt="Portfolio 6" class="carousel-image">
+                                        <div class="carousel-content">
+                                            <h2>Portfolio 6</h2>
+                                            <p>Description for portfolio item 6.</p>
+                                        </div>
+                                    </div> -->
+                                </div>
+                                
+                            </div>
+                        </div>
+                        <div style="margin:50px">
+                            <button class="carousel-control prev" style="background:#59C23F" onclick="prevSlide()">&#10094;</button>
+                            <button class="carousel-control next" style="background:#59C23F" onclick="nextSlide()">&#10095;</button>
+                        </div>
+                    </div>
+                </div>
+            <?php endif; ?>
 
-        <?php if($educations): ?>
-            <div style="width:100%;margin-top:5%" class="elementor-element elementor-element-77d10121 elementor-widget elementor-widget-lst_listing_features" data-id="77d10121" data-element_type="widget" data-widget_type="lst_listing_features.default">
+            <div style="width: 100%; margin-top: 5%; padding: 20px; box-sizing: border-box; background-color: #f4f4f4; border-radius: 8px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);" class="elementor-element elementor-element-77d10121 elementor-widget elementor-widget-lst_listing_features" data-id="77d10121" data-element_type="widget" data-widget_type="lst_listing_features.default">
                 <div class="elementor-widget-container">
+                    <h3 class="listivo-listing-simple-label">Team</h3>
+                    <div class="">
+                        <span><?php echo $lstUser->getTeamInfo(); ?></span>
+                    </div>
+                </div>
+            </div>
+
+        <?php if($educations && $type !='agency'): ?>
+            <div class="elementor-element elementor-element-51cd12f elementor-widget elementor-widget-progress" style="width: 100%; margin-top: 5%; padding: 20px; box-sizing: border-box; background-color: #f4f4f4; border-radius: 8px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);" data-id="51cd12f" data-element_type="widget" data-widget_type="progress.default">
+                    <div class="elementor-widget-container">
                     <h3 class="listivo-listing-simple-label">Educations</h3>
                     <div class="listivo-listing-features">
                         <?php foreach($educations as $education): ?>
@@ -212,42 +628,61 @@ $educations = $lstUser->getUserEducation();
             </div>
         <?php endif; ?>
 
-        <?php ?>
-        <div style="width:100%;margin-top:5%" class="elementor-element elementor-element-77d10121 elementor-widget elementor-widget-lst_listing_features"  data-element_type="widget" data-widget_type="lst_listing_features.default">
-                <div class="elementor-widget-container">
-                    <h3 class="listivo-listing-simple-label">Talends Activity</h3>
-                    <?php if($lstUser->getTotalJobsDelivered()): ?>
-                    <div class="listivo-listing-feature__text"><span style="color:#FF8267">Total Jobs:</span> <?php echo $lstUser->getTotalJobsDelivered(); ?></div>
-                    <?php endif; ?>
-                    <?php if($lstUser->getJoined()): ?>
-                    <div class="listivo-listing-feature__text"><span style="color:#FF8267">Joined Since:</span> <?php echo $lstUser->getJoined(); ?></div>
-                    <?php endif; ?>
-                    <?php if($lstUser->getCompanyDetails()): ?>
-                    <div class="listivo-listing-feature__text"><span style="color:#FF8267">Company Information:</span> <?php echo $lstUser->getCompanyDetails(); ?></div>
-                    <?php endif; ?>
-                    <?php if($lstUser->getCompanyDetails()): ?>
-                    <div class="listivo-listing-feature__text"><span style="color:#FF8267">Year Founded:</span> <?php echo $lstUser->getAgencyFounded(); ?></div>
-                    <?php endif; ?>
-                    <?php if($lstUser->getBudget()): ?>
-                    <div class="listivo-listing-feature__text"><span style="color:#FF8267">Budget:</span> $<?php echo $lstUser->getBudget(); ?></div>
-                    <?php endif; ?>
-                    <?php if($lstUser->getBudget()): ?>
-                    <div class="listivo-listing-feature__text"><span style="color:#FF8267">Client Focus:</span> <?php echo ucwords(str_replace('_', ' ', implode(", ", $lstUser->getClientFocus()))); ?></div>
-                    <?php endif; ?>
-                    <?php if($lstUser->getDepartment()): ?>
-                    <div class="listivo-listing-feature__text"><span style="color:#FF8267">Department Details:</span> <?php echo $lstUser->getDepartment(); ?></div>
-                    <?php endif; ?>
-                    <?php if($lstUser->getJobType()): ?>
-                    <div class="listivo-listing-feature__text"><span style="color:#FF8267">Job Preferences:</span> <?php echo implode(", ",$lstUser->getJobType()); ?></div>
-                    <?php endif; ?>
-                    <?php if($lstUser->getHourlyRate()): ?>
-                    <div class="listivo-listing-feature__text"><span style="color:#FF8267">Hourly Rate:</span> $<?php echo $lstUser->getHourlyRate(); ?></div>
-                    <?php endif; ?>
-                    <?php if($lstUser->getTagline()): ?>
-                    <div class="listivo-listing-feature__text"><span style="color:#FF8267">Tagline:</span> <?php echo $lstUser->getTagline(); ?></div>
-                    <?php endif; ?>
+        <div class="elementor-element elementor-element-aa918a9 elementor-widget elementor-widget-spacer" data-id="aa918a9" data-element_type="widget" data-widget_type="spacer.default">
+            <div class="elementor-widget-container">
+                <div class="elementor-spacer">
+                    <div class="elementor-spacer-inner"></div>
                 </div>
+            </div>
         </div>
+        <?php if(count($awards) > 0): ?>
+
+            <div class="elementor-element elementor-element-6057b14 elementor-widget elementor-widget-lst_services_v4" data-id="6057b14" data-element_type="widget" data-widget_type="lst_services_v4.default">
+                <div class="elementor-widget-container">
+                    <div class="listivo-services-v4">
+                        <div class="listivo-services-v4__list">
+                            <div class="listivo-service-v4">
+                                <div class="listivo-service-v4__image">
+                                    <img src="http://wp_talends.test:8081/wp-content/uploads/2022/08/award.png" alt="Award2">
+                                </div>
+                                <h3 class="listivo-service-v4__label">
+                                    Awards1                
+                                </h3>
+                                <div class="listivo-service-v4__text">
+                                    <?php  echo @$awards['award_title1']; ?>                                           
+                                </div>
+                            </div>
+                            <div class="listivo-service-v4">
+                            <div class="listivo-service-v4__image">
+                                <img src="http://wp_talends.test:8081/wp-content/uploads/2022/08/award.png" alt="Award2">
+                            </div>
+                            <h3 class="listivo-service-v4__label">
+                                Award2                
+                            </h3>
+                            <div class="listivo-service-v4__text">
+                            <?php  echo @$awards['award_title2']; ?>                                            
+                            </div>
+                            </div>
+                            <div class="listivo-service-v4">
+                            <div class="listivo-service-v4__image">
+                                <img src="http://wp_talends.test:8081/wp-content/uploads/2022/08/award.png" alt="Awards3">
+                            </div>
+                            <h3 class="listivo-service-v4__label">
+                                Awards3                
+                            </h3>
+                            <div class="listivo-service-v4__text">
+                            <?php  echo @$awards['award_title3']; ?>                                         
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        <?php endif; ?>
+
+        <?php ?>
+        
         
 
 
@@ -354,3 +789,49 @@ $educations = $lstUser->getUserEducation();
         </div>
     </div>
 </div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+$(document).ready(function() {
+    $("#seeMore").on("click", function() {
+        var shortDescription = $("#shortDescription");
+        var fullDescription = $("#fullDescription");
+        var seeMoreLink = $("#seeMore");
+
+        if (fullDescription.is(":visible")) {
+            // Hide full description and show truncated
+            fullDescription.hide();
+            shortDescription.show();
+            seeMoreLink.text("See More");
+        } else {
+            // Show full description and hide truncated
+            fullDescription.show();
+            shortDescription.hide();
+            seeMoreLink.text("See Less");
+        }
+    });
+});
+let currentIndex = 0;
+
+function showSlide(index) {
+    const items = document.querySelectorAll('.carousel-item');
+    if (index >= items.length) currentIndex = 0;
+    else if (index < 0) currentIndex = items.length - 1;
+    else currentIndex = index;
+
+    const offset = -currentIndex * 100;
+    document.querySelector('.carousel-items').style.transform = `translateX(${offset}%)`;
+}
+
+function nextSlide() {
+    showSlide(currentIndex + 1);
+}
+
+function prevSlide() {
+    showSlide(currentIndex - 1);
+}
+
+// Initialize the first slide
+showSlide(currentIndex);
+
+</script>

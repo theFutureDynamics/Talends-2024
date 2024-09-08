@@ -574,7 +574,21 @@ add_filter('tdf/strings', function () {
         'startup' => esc_html__('Startup', 'listivo-core'),
         'small_and_mid_enterprises' => esc_html__('Small & Mid Enterprises', 'listivo-core'),
         'large_enterprises' => esc_html__('Large Enterprises', 'listivo-core'),
-
+        'awards' => esc_html__('Awards', 'listivo-core'),
+        'award_title' => esc_html__('Award Title', 'listivo-core'),
+        'award_description' => esc_html__('Award Description', 'listivo-core'),
+        'team_info' => esc_html__('Team Info', 'listivo-core'),
+        'write_something_about_team' => esc_html__('Write something about team', 'listivo-core'),
+        'expertise' => esc_html__('Expertise (What Your Agency Is Best At)', 'listivo-core'),
+        'expertise_title' => esc_html__('Title', 'listivo-core'),
+        'expertise_description' => esc_html__('Job Description', 'listivo-core'),
+        'add_exppertise' => esc_html__('Add Expertise', 'listivo-core'),
+        'portfolio' => esc_html__('Portfolio', 'listivo-core'),
+        'portfolio_image' => esc_html__('Image', 'listivo-core'),
+        'portfolio_description' => esc_html__('Description', 'listivo-core'),
+        'add_portfolio' => esc_html__('Add Portfolio', 'listivo-core'),
+        
+        
         
     ];
 });

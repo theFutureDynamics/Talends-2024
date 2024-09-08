@@ -309,7 +309,11 @@ abstract class PanelWidget extends BaseGeneralWidget
             'agency_founded' => $user->getAgencyFounded(),
             'total_jobs_delivered' => $user->getTotalJobsDelivered(),
             'budget' => '$'.$user->getBudget(),
-            'department_details'=> $user->getDepartment()
+            'department_details'=> $user->getDepartment(),
+            'awards' => $user->getUserAwards(),
+            'team_info' => $user->getTeamInfo(),
+            'newArray' => $user->getUserExpertises(),
+            'portfolios' => $user->getUserPortfolio(),
         ];
     }
 

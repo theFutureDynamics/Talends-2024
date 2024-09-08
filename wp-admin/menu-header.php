@@ -25,7 +25,6 @@ $self = preg_replace( '|^.*/mu-plugins/|i', '', $self );
  * @global string $submenu_file
  */
 global $menu, $submenu, $parent_file, $submenu_file;
-
 /**
  * Filters the parent file of an admin menu sub-menu item.
  *

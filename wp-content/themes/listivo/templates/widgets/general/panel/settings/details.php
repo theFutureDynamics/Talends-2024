@@ -91,7 +91,7 @@ $showFreelancerSettings = ($current_user->type == 'freelancer');
 
                 <lst-user-image
                         class="listivo-panel-accordions__item listivo-panel-accordion"
-                        style="width:50%;float:left;height:615px;border: 1px solid #D5E3EE;margin-right:10px"
+                        style="width:50%;float:left;height:615px;margin-right:10px"
                     <?php if ($lstCurrentUser->getImage()) : ?>
                         :initial-image="<?php echo esc_attr(json_encode($lstCurrentWidget->getUserImageData($lstCurrentUser))); ?>"
                     <?php endif; ?>
@@ -799,6 +799,28 @@ $showFreelancerSettings = ($current_user->type == 'freelancer');
                             </div>
                         </div>
                     </div>
+                    
+                    <?php  if($showAgencySettings): ?>
+                        <div class="listivo-panel-user-settings__field listivo-panel-user-settings__field--full-width listivo-field-group">
+                            <label
+                                    class="listivo-field-group__label"
+                                    for="listivo-description"
+                            >
+                                <?php echo esc_html(tdf_string('team_info')); ?>
+                            </label>
+
+                            <div class="listivo-field-group__field">
+                                <div class="listivo-textarea">
+                                    <textarea
+                                            id="listivo-team_info"
+                                            :value="props.team_info"
+                                            @input="props.setTeamInfo($event.target.value)"
+                                            placeholder="<?php echo esc_attr(tdf_string('write_something_about_team')); ?>"
+                                    ></textarea>
+                                </div>
+                            </div>
+                        </div>
+                    <?php endif; ?>
 
                   
                     <?php if (tdf_settings()->isMarketingConsentsEnabled()) : ?>

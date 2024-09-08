@@ -2574,6 +2574,10 @@ function updateUserAdditionalFields($user_id){
 		);
 	}
 
+	if($_POST['user']['team_info']){
+		$meta_fields['team_info'] = $_POST['user']['team_info'];
+	}
+
 	if($_POST['user']['gender']){
 		$meta_fields['gender'] = $_POST['user']['gender'];
 	}
@@ -2654,8 +2658,98 @@ function updateUserAdditionalFields($user_id){
 	updateSkills($user_id);
 	updateExperiences($user_id);
 	updateEducation($user_id);
+	updateAwards($user_id);
+	updateExpertises($user_id);
 }
 
+function updateExpertises($user_id){
+	global $wpdb;
+	 // Ensure user_id is valid
+	 if ( ! is_numeric($user_id) || $user_id <= 0 ) {
+        return;
+    }
+
+	$deleted = $wpdb->query(
+        $wpdb->prepare(
+            "DELETE FROM {$wpdb->prefix}user_expertises WHERE user_id = %d",
+            $user_id
+        )
+    );
+
+	if ( false === $deleted ) {
+        return;
+    }
+
+	foreach($_POST['user']['agency_expertises'] as $eachExperties){
+		$data = array(
+			'expertise_title'         => $eachExperties['expertise_title'],
+			'expertise_description'    => $eachExperties['expertise_description'],
+			'user_id'       => $user_id
+		);
+
+		$format = array(
+			'%s', // Title as a string
+			'%s', // Description as a string
+			'%d'  // User ID as an integer
+	
+		);
+	
+		$inserted = $wpdb->insert(
+			"{$wpdb->prefix}user_expertises",
+			$data,
+			$format
+		);
+	}
+	
+
+	
+}
+
+function updateAwards($user_id){
+	global $wpdb;
+	 // Ensure user_id is valid
+	 if ( ! is_numeric($user_id) || $user_id <= 0 ) {
+        return;
+    }
+
+	$deleted = $wpdb->query(
+        $wpdb->prepare(
+            "DELETE FROM {$wpdb->prefix}awards WHERE user_id = %d",
+            $user_id
+        )
+    );
+
+	if ( false === $deleted ) {
+        return;
+    }
+
+	$data = array(
+		'award_title1'         => $_POST['user']['award_title1'],
+		'award_description1'    => $_POST['user']['award_description1'],
+		'award_title2'      => $_POST['user']['award_title2'],
+		'award_description2'  => $_POST['user']['award_description2'],
+		'award_title3'   => $_POST['user']['award_title3'],
+		'award_description3' => $_POST['user']['award_description3'],
+		'user_id'       => $user_id
+	);
+
+	$format = array(
+		'%s', // Title as a string
+		'%s', // Description as a string
+		'%s', // Title as a string
+		'%s', // Description as a string
+		'%s', // Title as a string
+		'%s', // Description as a string
+		'%d'  // User ID as an integer
+
+	);
+
+	$inserted = $wpdb->insert(
+		"{$wpdb->prefix}awards",
+		$data,
+		$format
+	);
+}
 
 function updateExperiences($user_id) {
     global $wpdb;

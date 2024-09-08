@@ -12,6 +12,7 @@ $lstCurrentUser = tdf_current_user();
 if (!$lstCurrentUser instanceof User) {
     return;
 }
+// $expertises = $lstCurrentUser->getUserExpertises();
 ?>
 <div class="listivo-panel-section">
     <div class="listivo-container">
@@ -47,8 +48,14 @@ if (!$lstCurrentUser instanceof User) {
                     <?php get_template_part('templates/widgets/general/panel/settings/details'); ?>
 
                     <?php get_template_part('templates/widgets/general/panel/settings/experience'); ?>
+
+                    <?php get_template_part('templates/widgets/general/panel/settings/expertise'); ?>
                     
                     <?php get_template_part('templates/widgets/general/panel/settings/education'); ?>
+
+                    <?php get_template_part('templates/widgets/general/panel/settings/awards'); ?>
+
+                    <?php get_template_part('templates/widgets/general/panel/settings/portfolio'); ?>
 
                     <?php // get_template_part('templates/widgets/general/panel/settings/image'); ?>
 

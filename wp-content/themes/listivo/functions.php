@@ -146,3 +146,168 @@ add_action('wp_enqueue_scripts', 'listivo_enqueue_styles_and_scripts');
 if (!isset($content_width)) {
     $content_width = 900;
 }
+
+// add_action('wp_ajax_listivo_save_user_settings', 'handle_user_settings_submission');
+// add_action('wp_ajax_nopriv_listivo_save_user_settings', 'handle_user_settings_submission'); // Optional, if you want non-logged-in users to access
+
+// function handle_user_settings_submission() {
+//     global $wpdb;
+
+//     // Verify nonce
+//     if (!isset($_POST['_ajax_nonce']) || !wp_verify_nonce($_POST['_ajax_nonce'], 'listivo_save_user_settings')) {
+//         wp_send_json_error(array('error' => 'Invalid nonce.'));
+//         wp_die();
+//     }
+
+//     // Check if a file was uploaded
+//     if (isset($_FILES['portfolio_image'])) {
+//         $uploaded_file = $_FILES['portfolio_image'];
+//         $upload = wp_handle_upload($uploaded_file, array('test_form' => false));
+
+//         if ($upload && !isset($upload['error'])) {
+//             $file_url = $upload['url']; // URL of the uploaded file
+
+//             // Handle other form data if needed
+//             $description = isset($_POST['portfolio_description']) ? sanitize_text_field($_POST['portfolio_description']) : '';
+
+//             // Define the custom table name
+//             $table_name = $wpdb->prefix . 'portfolio';
+
+//             // Insert or update data in the custom table
+//             $user_id = get_current_user_id();
+
+//             $existing = $wpdb->get_var($wpdb->prepare(
+//                 "SELECT COUNT(*) FROM $table_name WHERE user_id = %d",
+//                 $user_id
+//             ));
+
+//             if ($existing) {
+//                 // Update existing record
+//                 $wpdb->update(
+//                     $table_name,
+//                     array(
+//                         'portfolio_image' => $file_url,
+//                         'portfolio_description' => $description
+//                     ),
+//                     array('user_id' => $user_id),
+//                     array(
+//                         '%s',
+//                         '%s'
+//                     ),
+//                     array('%d')
+//                 );
+//             } else {
+//                 // Insert new record
+//                 $wpdb->insert(
+//                     $table_name,
+//                     array(
+//                         'user_id' => $user_id,
+//                         'portfolio_image' => $file_url,
+//                         'portfolio_description' => $description
+//                     ),
+//                     array(
+//                         '%d',
+//                         '%s',
+//                         '%s'
+//                     )
+//                 );
+//             }
+
+//             // Send success response
+//             wp_send_json_success(array('message' => 'Settings saved successfully.'));
+//         } else {
+//             wp_send_json_error(array('error' => $upload['error']));
+//         }
+//     } else {
+//         wp_send_json_error(array('error' => 'No file uploaded.'));
+//     }
+
+//     wp_die(); // This is required to terminate immediately and return a proper response
+// }
+
+
+add_action('wp_ajax_listivo_save_user_settings', 'handle_user_settings_submission');
+add_action('wp_ajax_nopriv_listivo_save_user_settings', 'handle_user_settings_submission');
+
+function handle_user_settings_submission() {
+    global $wpdb;
+    $table_name = $wpdb->prefix . 'portfolio';
+    $user_id = get_current_user_id();
+
+    // Delete record from the custom table
+    $result = $wpdb->delete(
+        $table_name,
+        array('user_id' => $user_id),
+        array('%d')
+    );
+
+    // Verify nonce
+    if (!isset($_POST['_ajax_nonce']) || !wp_verify_nonce($_POST['_ajax_nonce'], 'listivo_save_user_settings')) {
+        wp_send_json_error(array('error' => 'Invalid nonce.'));
+        wp_die();
+    }
+
+    // Check if files and descriptions were uploaded
+    if (!empty($_FILES['portfolio_image']['name']) && !empty($_POST['portfolio_description'])) {
+        $file_count = count($_FILES['portfolio_image']['name']);
+        $descriptions = $_POST['portfolio_description'];
+
+        // Define the custom table name
+       
+       
+
+        for ($i = 0; $i < $file_count; $i++) {
+            $uploaded_file = array(
+                'name'     => $_FILES['portfolio_image']['name'][$i],
+                'type'     => $_FILES['portfolio_image']['type'][$i],
+                'tmp_name' => $_FILES['portfolio_image']['tmp_name'][$i],
+                'error'    => $_FILES['portfolio_image']['error'][$i],
+                'size'     => $_FILES['portfolio_image']['size'][$i]
+            );
+
+            $upload = wp_handle_upload($uploaded_file, array('test_form' => false));
+
+            if ($upload && !isset($upload['error'])) {
+                $file_url = $upload['url']; // URL of the uploaded file
+                $description = isset($descriptions[$i]) ? sanitize_text_field($descriptions[$i]) : '';
+
+                // Insert new record
+                $wpdb->insert(
+                    $table_name,
+                    array(
+                        'user_id'               => $user_id,
+                        'portfolio_image'       => $file_url,
+                        'portfolio_description' => $description
+                    ),
+                    array(
+                        '%d',
+                        '%s',
+                        '%s'
+                    )
+                );
+            } else {
+                wp_send_json_error(array('error' => $upload['error']));
+                wp_die();
+            }
+        }
+
+        // Send success response
+        wp_send_json_success(array('message' => 'Settings saved successfully.'));
+    } else {
+        wp_send_json_error(array('error' => 'No files or descriptions found.'));
+    }
+
+    wp_die();
+}
+
+
+function enqueue_my_scripts() {
+    wp_enqueue_script('my-custom-script', get_template_directory_uri() . '/path-to-your-script.js', array('jquery'), null, true);
+
+    // Pass the AJAX URL and nonce to the script
+    wp_localize_script('my-custom-script', 'myAjax', array(
+        'ajaxUrl' => admin_url('admin-ajax.php'),
+        'nonce'   => wp_create_nonce('listivo_save_user_settings')
+    ));
+}
+add_action('wp_enqueue_scripts', 'enqueue_my_scripts');

@@ -309,7 +309,7 @@ if (!$lstCurrentUser instanceof User) {
                 
                 </div>
 <!-- {{props.addedEducations}} -->
-                <div v-if="props.addedEducations.length > 0" style="width: 43%;margin-left: 5%;" class="listivo-panel-user-settings__skills-list" style="padding: 10px; background-color: #f9f9f9; border-radius: 8px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);">
+                <div v-if="props.addedEducations && props.addedEducations.length > 0" style="width: 43%;margin-left: 5%;" class="listivo-panel-user-settings__skills-list" style="padding: 10px; background-color: #f9f9f9; border-radius: 8px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);">
                     <ul style="list-style-type: none; padding: 0; margin: 0;">
                         <li v-for="(education, index) in props.addedEducations" :key="index" style="display: flex; justify-content: space-between; align-items: center; padding: 8px 0; border-bottom: 1px solid #ddd;">
                             <span v-if="education.education_end_date && education.education_end_date.trim() !== '0000-00-00'" style="font-size: 16px; color: #333;">{{ education.degree_title }} ( {{ education.education_start_date }} - {{ education.education_end_date }} )</span>

@@ -263,7 +263,7 @@ if (!$lstCurrentUser instanceof User) {
             </div>
         </form>
 
-        <div v-if="props.portfolios.length > 0" 
+        <div v-if="props.portfolios && props.portfolios.length > 0" 
      style="width: 60%; margin: 20px auto; padding: 20px; background-color: lightgray; border-radius: 12px; box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1); overflow: hidden;">
   <ul style="list-style-type: none; padding: 0; margin: 0;">
     <li v-for="(portfolio, index) in props.portfolios" :key="index" 

@@ -443,7 +443,7 @@ $image_url = get_site_url() . '/wp-content/uploads/2022/08/award.png';
                     <?php endif; ?>
                 </div>
             </div>
-            <?php if(count($servics) > 0): ?>
+            <?php if(count($servics) > 0 && $type =='agency'): ?>
                 <div style="width: 100%; margin-top: 5%; padding: 20px; box-sizing: border-box; background-color: #f4f4f4; border-radius: 8px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);" class="elementor-element elementor-element-77d10121 elementor-widget elementor-widget-lst_listing_features" data-element_type="widget" data-widget_type="lst_listing_features.default">
                     <div class="elementor-widget-container">
                         <h3 class="listivo-listing-simple-label">Services</h3>
@@ -536,7 +536,26 @@ $image_url = get_site_url() . '/wp-content/uploads/2022/08/award.png';
             <?php if(count($portfolios)): ?>
                 <div style="width: 100%; margin-top: 5%; padding: 20px; box-sizing: border-box; background-color: #f4f4f4; border-radius: 8px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);" class="elementor-element elementor-element-77d10121 elementor-widget elementor-widget-lst_listing_features" data-id="77d10121" data-element_type="widget" data-widget_type="lst_listing_features.default">
                     <div class="elementor-widget-container">
-                        <h3 class="listivo-listing-simple-label">Portfolio</h3>
+                        
+
+                        <div class="listivo-mini-listing-carousel__nav" style="
+                            float: right;
+                            width: 10%;
+                        ">
+                            <div class="listivo-box-arrow" onclick="prevSlide()">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="12" height="11" viewBox="0 0 12 11" fill="none">
+                                    <path d="M4.86195 10.4713C4.99228 10.6017 5.16262 10.6667 5.33329 10.6667C5.50395 10.6667 5.67429 10.6017 5.80462 10.4713C6.06496 10.211 6.06496 9.78898 5.80462 9.52865L2.27593 5.99996H11.3333C11.7013 5.99996 12 5.70129 12 5.33329C12 4.96528 11.7013 4.66662 11.3333 4.66662H2.27593L5.80462 1.13792C6.06496 0.877589 6.06496 0.455586 5.80462 0.195251C5.54429 -0.0650838 5.12229 -0.0650838 4.86195 0.195251L0.195251 4.86195C-0.0650838 5.12229 -0.0650838 5.54429 0.195251 5.80462L4.86195 10.4713Z"></path>
+                                </svg>
+                            </div> 
+                            <div onclick="nextSlide()" class="listivo-box-arrow listivo-box-arrow--disabled">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="12" height="11" viewBox="0 0 12 11" fill="none"><path d="M7.13805 10.4713C7.00772 10.6017 6.83738 10.6667 6.66671 10.6667C6.49604 10.6667 6.32571 10.6017 6.19538 10.4713C5.93504 10.211 5.93504 9.78898 6.19538 9.52865L9.72407 5.99996H0.666672C0.298669 5.99996 0 5.70129 0 5.33329C0 4.96528 0.298669 4.66662 0.666672 4.66662H9.72407L6.19538 1.13792C5.93504 0.877589 5.93504 0.455587 6.19538 0.195251C6.45571 -0.0650838 6.87771 -0.0650838 7.13805 0.195251L11.8047 4.86195C12.0651 5.12229 12.0651 5.54429 11.8047 5.80462L7.13805 10.4713Z"></path></svg>
+                            </div>
+                        </div>
+
+                        <h3 class="listivo-listing-simple-label" style="
+                            width: 80%;
+                        ">Portfolio</h3>
+
                         <div class="carousel-container">
                             <div class="carousel">
                                 <div class="carousel-items">
@@ -588,14 +607,17 @@ $image_url = get_site_url() . '/wp-content/uploads/2022/08/award.png';
                                 
                             </div>
                         </div>
-                        <div style="margin:50px">
+
+                        
+
+                        <!-- <div style="margin:50px">
                             <button class="carousel-control prev" style="background:#59C23F" onclick="prevSlide()">&#10094;</button>
                             <button class="carousel-control next" style="background:#59C23F" onclick="nextSlide()">&#10095;</button>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
             <?php endif; ?>
-
+            <?php if($type =='agency'): ?>
             <div style="width: 100%; margin-top: 5%; padding: 20px; box-sizing: border-box; background-color: #f4f4f4; border-radius: 8px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);" class="elementor-element elementor-element-77d10121 elementor-widget elementor-widget-lst_listing_features" data-id="77d10121" data-element_type="widget" data-widget_type="lst_listing_features.default">
                 <div class="elementor-widget-container">
                     <h3 class="listivo-listing-simple-label">Team</h3>
@@ -604,6 +626,7 @@ $image_url = get_site_url() . '/wp-content/uploads/2022/08/award.png';
                     </div>
                 </div>
             </div>
+            <?php endif; ?>
 
         <?php if($educations && $type !='agency'): ?>
             <div class="elementor-element elementor-element-51cd12f elementor-widget elementor-widget-progress" style="width: 100%; margin-top: 5%; padding: 20px; box-sizing: border-box; background-color: #f4f4f4; border-radius: 8px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);" data-id="51cd12f" data-element_type="widget" data-widget_type="progress.default">

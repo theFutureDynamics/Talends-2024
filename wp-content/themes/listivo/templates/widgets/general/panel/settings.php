@@ -12,6 +12,8 @@ $lstCurrentUser = tdf_current_user();
 if (!$lstCurrentUser instanceof User) {
     return;
 }
+$current_user = wp_get_current_user();
+$isEmployerLogin = ($current_user->type == 'employer');
 // $expertises = $lstCurrentUser->getUserExpertises();
 ?>
 <div class="listivo-panel-section">
@@ -46,7 +48,7 @@ if (!$lstCurrentUser instanceof User) {
                     <?php get_template_part('templates/widgets/general/panel/settings/subscription'); ?>
 
                     <?php get_template_part('templates/widgets/general/panel/settings/details'); ?>
-
+                    <?php if(!$isEmployerLogin): ?>
                     <?php get_template_part('templates/widgets/general/panel/settings/experience'); ?>
 
                     <?php get_template_part('templates/widgets/general/panel/settings/expertise'); ?>
@@ -60,7 +62,7 @@ if (!$lstCurrentUser instanceof User) {
                     <?php // get_template_part('templates/widgets/general/panel/settings/image'); ?>
 
                     <?php get_template_part('templates/widgets/general/panel/settings/socials'); ?>
-
+                    <?php endif; ?>
                     <?php get_template_part('templates/widgets/general/panel/settings/change_password'); ?>
 
                     <?php get_template_part('templates/widgets/general/panel/settings/change_email'); ?>

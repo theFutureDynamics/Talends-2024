@@ -2442,3 +2442,134 @@ Stack trace:
 #43 {main}
   thrown in C:\laragon\www\wp_talends\wp-content\themes\listivo\templates\widgets\user\user_hero.php on line 338
 [08-Sep-2024 18:29:11 UTC] Cron reschedule event error for hook: listivo/notifications/modelExpire/check, Error code: could_not_set, Error message: The cron event list could not be saved., Data: {"schedule":"every_minute","args":[],"interval":60}
+[18-Sep-2024 15:50:10 UTC] PHP Warning:  mysqli_real_connect(): (HY000/1045): Access denied for user 'root'@'localhost' (using password: YES) in C:\laragon\www\wp_talends\wp-includes\class-wpdb.php on line 1982
+[18-Sep-2024 15:57:24 UTC] Automatic updates starting...
+[18-Sep-2024 15:57:24 UTC]   Automatic plugin updates starting...
+[18-Sep-2024 15:57:24 UTC]   Automatic plugin updates complete.
+[18-Sep-2024 15:57:25 UTC] Automatic updates complete.
+[19-Sep-2024 05:41:09 UTC] Cron reschedule event error for hook: listivo/models/checkBumps, Error code: invalid_schedule, Error message: Event schedule does not exist., Data: {"schedule":"every_minute","args":[],"interval":60}
+[19-Sep-2024 05:41:09 UTC] Cron reschedule event error for hook: listivo/models/checkExpired, Error code: invalid_schedule, Error message: Event schedule does not exist., Data: {"schedule":"every_minute","args":[],"interval":60}
+[19-Sep-2024 05:41:09 UTC] Cron reschedule event error for hook: listivo/notifications/send, Error code: invalid_schedule, Error message: Event schedule does not exist., Data: {"schedule":"every_minute","args":[],"interval":60}
+[19-Sep-2024 05:41:09 UTC] Cron reschedule event error for hook: listivo/notifications/modelExpire/check, Error code: invalid_schedule, Error message: Event schedule does not exist., Data: {"schedule":"every_minute","args":[],"interval":60}
+[19-Sep-2024 05:41:09 UTC] Cron reschedule event error for hook: listivo/directMessages/notifications, Error code: invalid_schedule, Error message: Event schedule does not exist., Data: {"schedule":"every_five_minutes","args":[],"interval":300}
+[19-Sep-2024 16:30:44 UTC] Automatic updates starting...
+[19-Sep-2024 16:30:44 UTC]   Automatic plugin updates starting...
+[19-Sep-2024 16:30:44 UTC]   Automatic plugin updates complete.
+[19-Sep-2024 16:30:45 UTC] Automatic updates complete.
+[19-Sep-2024 17:50:29 UTC] PHP Warning:  Undefined array key "agency_expertises" in C:\laragon\www\wp_talends\wp-includes\user.php on line 2683
+[19-Sep-2024 17:50:29 UTC] PHP Warning:  foreach() argument must be of type array|object, null given in C:\laragon\www\wp_talends\wp-includes\user.php on line 2683
+[19-Sep-2024 17:50:29 UTC] PHP Warning:  compact(): Undefined variable $type in C:\laragon\www\wp_talends\wp-includes\user.php on line 2363
+[19-Sep-2024 17:50:30 UTC] PHP Warning:  Undefined array key "agency_expertises" in C:\laragon\www\wp_talends\wp-includes\user.php on line 2683
+[19-Sep-2024 17:50:30 UTC] PHP Warning:  foreach() argument must be of type array|object, null given in C:\laragon\www\wp_talends\wp-includes\user.php on line 2683
+[19-Sep-2024 17:50:30 UTC] PHP Warning:  compact(): Undefined variable $type in C:\laragon\www\wp_talends\wp-includes\user.php on line 2363
+[19-Sep-2024 17:50:30 UTC] PHP Warning:  Undefined array key "agency_expertises" in C:\laragon\www\wp_talends\wp-includes\user.php on line 2683
+[19-Sep-2024 17:50:30 UTC] PHP Warning:  foreach() argument must be of type array|object, null given in C:\laragon\www\wp_talends\wp-includes\user.php on line 2683
+[19-Sep-2024 17:50:30 UTC] PHP Warning:  compact(): Undefined variable $type in C:\laragon\www\wp_talends\wp-includes\user.php on line 2363
+[19-Sep-2024 17:50:30 UTC] PHP Warning:  Undefined array key "agency_expertises" in C:\laragon\www\wp_talends\wp-includes\user.php on line 2683
+[19-Sep-2024 17:50:30 UTC] PHP Warning:  foreach() argument must be of type array|object, null given in C:\laragon\www\wp_talends\wp-includes\user.php on line 2683
+[19-Sep-2024 17:50:30 UTC] PHP Warning:  compact(): Undefined variable $type in C:\laragon\www\wp_talends\wp-includes\user.php on line 2363
+[19-Sep-2024 18:12:03 UTC] PHP Warning:  Undefined array key "agency_expertises" in C:\laragon\www\wp_talends\wp-includes\user.php on line 2683
+[19-Sep-2024 18:12:03 UTC] PHP Warning:  foreach() argument must be of type array|object, null given in C:\laragon\www\wp_talends\wp-includes\user.php on line 2683
+[19-Sep-2024 18:12:03 UTC] PHP Warning:  compact(): Undefined variable $type in C:\laragon\www\wp_talends\wp-includes\user.php on line 2363
+[19-Sep-2024 18:12:03 UTC] PHP Warning:  Undefined array key "agency_expertises" in C:\laragon\www\wp_talends\wp-includes\user.php on line 2683
+[19-Sep-2024 18:12:03 UTC] PHP Warning:  foreach() argument must be of type array|object, null given in C:\laragon\www\wp_talends\wp-includes\user.php on line 2683
+[19-Sep-2024 18:12:03 UTC] PHP Warning:  compact(): Undefined variable $type in C:\laragon\www\wp_talends\wp-includes\user.php on line 2363
+[19-Sep-2024 18:12:03 UTC] PHP Warning:  Undefined array key "agency_expertises" in C:\laragon\www\wp_talends\wp-includes\user.php on line 2683
+[19-Sep-2024 18:12:03 UTC] PHP Warning:  foreach() argument must be of type array|object, null given in C:\laragon\www\wp_talends\wp-includes\user.php on line 2683
+[19-Sep-2024 18:12:03 UTC] PHP Warning:  compact(): Undefined variable $type in C:\laragon\www\wp_talends\wp-includes\user.php on line 2363
+[19-Sep-2024 18:12:03 UTC] PHP Warning:  Undefined array key "agency_expertises" in C:\laragon\www\wp_talends\wp-includes\user.php on line 2683
+[19-Sep-2024 18:12:03 UTC] PHP Warning:  foreach() argument must be of type array|object, null given in C:\laragon\www\wp_talends\wp-includes\user.php on line 2683
+[19-Sep-2024 18:12:03 UTC] PHP Warning:  compact(): Undefined variable $type in C:\laragon\www\wp_talends\wp-includes\user.php on line 2363
+[19-Sep-2024 18:12:41 UTC] PHP Warning:  Undefined array key "agency_expertises" in C:\laragon\www\wp_talends\wp-includes\user.php on line 2683
+[19-Sep-2024 18:12:41 UTC] PHP Warning:  foreach() argument must be of type array|object, null given in C:\laragon\www\wp_talends\wp-includes\user.php on line 2683
+[19-Sep-2024 18:12:41 UTC] PHP Warning:  compact(): Undefined variable $type in C:\laragon\www\wp_talends\wp-includes\user.php on line 2363
+[19-Sep-2024 18:12:41 UTC] PHP Warning:  Undefined array key "agency_expertises" in C:\laragon\www\wp_talends\wp-includes\user.php on line 2683
+[19-Sep-2024 18:12:41 UTC] PHP Warning:  foreach() argument must be of type array|object, null given in C:\laragon\www\wp_talends\wp-includes\user.php on line 2683
+[19-Sep-2024 18:12:41 UTC] PHP Warning:  compact(): Undefined variable $type in C:\laragon\www\wp_talends\wp-includes\user.php on line 2363
+[19-Sep-2024 18:12:41 UTC] PHP Warning:  Undefined array key "agency_expertises" in C:\laragon\www\wp_talends\wp-includes\user.php on line 2683
+[19-Sep-2024 18:12:41 UTC] PHP Warning:  foreach() argument must be of type array|object, null given in C:\laragon\www\wp_talends\wp-includes\user.php on line 2683
+[19-Sep-2024 18:12:41 UTC] PHP Warning:  compact(): Undefined variable $type in C:\laragon\www\wp_talends\wp-includes\user.php on line 2363
+[19-Sep-2024 18:12:41 UTC] PHP Warning:  Undefined array key "agency_expertises" in C:\laragon\www\wp_talends\wp-includes\user.php on line 2683
+[19-Sep-2024 18:12:41 UTC] PHP Warning:  foreach() argument must be of type array|object, null given in C:\laragon\www\wp_talends\wp-includes\user.php on line 2683
+[19-Sep-2024 18:12:41 UTC] PHP Warning:  compact(): Undefined variable $type in C:\laragon\www\wp_talends\wp-includes\user.php on line 2363
+[19-Sep-2024 18:43:14 UTC] PHP Warning:  Undefined array key "agency_expertises" in C:\laragon\www\wp_talends\wp-includes\user.php on line 2683
+[19-Sep-2024 18:43:14 UTC] PHP Warning:  foreach() argument must be of type array|object, null given in C:\laragon\www\wp_talends\wp-includes\user.php on line 2683
+[19-Sep-2024 18:43:14 UTC] PHP Warning:  compact(): Undefined variable $type in C:\laragon\www\wp_talends\wp-includes\user.php on line 2363
+[19-Sep-2024 18:43:14 UTC] PHP Warning:  Undefined array key "agency_expertises" in C:\laragon\www\wp_talends\wp-includes\user.php on line 2683
+[19-Sep-2024 18:43:14 UTC] PHP Warning:  foreach() argument must be of type array|object, null given in C:\laragon\www\wp_talends\wp-includes\user.php on line 2683
+[19-Sep-2024 18:43:14 UTC] PHP Warning:  compact(): Undefined variable $type in C:\laragon\www\wp_talends\wp-includes\user.php on line 2363
+[19-Sep-2024 18:43:14 UTC] PHP Warning:  Undefined array key "agency_expertises" in C:\laragon\www\wp_talends\wp-includes\user.php on line 2683
+[19-Sep-2024 18:43:14 UTC] PHP Warning:  foreach() argument must be of type array|object, null given in C:\laragon\www\wp_talends\wp-includes\user.php on line 2683
+[19-Sep-2024 18:43:14 UTC] PHP Warning:  compact(): Undefined variable $type in C:\laragon\www\wp_talends\wp-includes\user.php on line 2363
+[19-Sep-2024 18:43:14 UTC] PHP Warning:  Undefined array key "agency_expertises" in C:\laragon\www\wp_talends\wp-includes\user.php on line 2683
+[19-Sep-2024 18:43:14 UTC] PHP Warning:  foreach() argument must be of type array|object, null given in C:\laragon\www\wp_talends\wp-includes\user.php on line 2683
+[19-Sep-2024 18:43:14 UTC] PHP Warning:  compact(): Undefined variable $type in C:\laragon\www\wp_talends\wp-includes\user.php on line 2363
+[19-Sep-2024 18:43:54 UTC] PHP Warning:  compact(): Undefined variable $type in C:\laragon\www\wp_talends\wp-includes\user.php on line 2363
+[19-Sep-2024 18:43:54 UTC] PHP Warning:  compact(): Undefined variable $type in C:\laragon\www\wp_talends\wp-includes\user.php on line 2363
+[19-Sep-2024 18:43:54 UTC] PHP Warning:  compact(): Undefined variable $type in C:\laragon\www\wp_talends\wp-includes\user.php on line 2363
+[19-Sep-2024 18:43:54 UTC] PHP Warning:  compact(): Undefined variable $type in C:\laragon\www\wp_talends\wp-includes\user.php on line 2363
+[19-Sep-2024 19:04:52 UTC] PHP Warning:  Undefined array key "selectedClientFocus" in C:\laragon\www\wp_talends\wp-includes\user.php on line 2589
+[19-Sep-2024 19:04:52 UTC] PHP Warning:  compact(): Undefined variable $type in C:\laragon\www\wp_talends\wp-includes\user.php on line 2363
+[19-Sep-2024 19:04:52 UTC] PHP Warning:  Undefined array key "selectedClientFocus" in C:\laragon\www\wp_talends\wp-includes\user.php on line 2589
+[19-Sep-2024 19:04:52 UTC] PHP Warning:  compact(): Undefined variable $type in C:\laragon\www\wp_talends\wp-includes\user.php on line 2363
+[19-Sep-2024 19:04:52 UTC] PHP Warning:  Undefined array key "selectedClientFocus" in C:\laragon\www\wp_talends\wp-includes\user.php on line 2589
+[19-Sep-2024 19:04:52 UTC] PHP Warning:  compact(): Undefined variable $type in C:\laragon\www\wp_talends\wp-includes\user.php on line 2363
+[19-Sep-2024 19:04:52 UTC] PHP Warning:  Undefined array key "selectedClientFocus" in C:\laragon\www\wp_talends\wp-includes\user.php on line 2589
+[19-Sep-2024 19:04:52 UTC] PHP Warning:  compact(): Undefined variable $type in C:\laragon\www\wp_talends\wp-includes\user.php on line 2363
+[19-Sep-2024 19:13:32 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function printr_r() in C:\laragon\www\wp_talends\wp-content\themes\listivo\templates\widgets\general\panel\header.php:9
+Stack trace:
+#0 C:\laragon\www\wp_talends\wp-includes\template.php(812): require()
+#1 C:\laragon\www\wp_talends\wp-includes\template.php(745): load_template('C:\\laragon\\www\\...', false, Array)
+#2 C:\laragon\www\wp_talends\wp-includes\general-template.php(206): locate_template(Array, true, false, Array)
+#3 C:\laragon\www\wp_talends\wp-content\themes\listivo\templates\widgets\general\panel\list.php(17): get_template_part('templates/widge...')
+#4 C:\laragon\www\wp_talends\wp-includes\template.php(812): require('C:\\laragon\\www\\...')
+#5 C:\laragon\www\wp_talends\wp-includes\template.php(745): load_template('C:\\laragon\\www\\...', false, Array)
+#6 C:\laragon\www\wp_talends\wp-includes\general-template.php(206): locate_template(Array, true, false, Array)
+#7 C:\laragon\www\wp_talends\wp-content\plugins\listivo-core\framework\app\Widgets\General\PanelWidget.php(101): get_template_part('templates/widge...')
+#8 C:\laragon\www\wp_talends\wp-content\themes\listivo\templates\widgets\general\panel\panel.php(6): Tangibledesign\Framework\Widgets\General\PanelWidget->loadPanelTemplate()
+#9 C:\laragon\www\wp_talends\wp-includes\template.php(812): require('C:\\laragon\\www\\...')
+#10 C:\laragon\www\wp_talends\wp-includes\template.php(745): load_template('C:\\laragon\\www\\...', false, Array)
+#11 C:\laragon\www\wp_talends\wp-includes\general-template.php(206): locate_template(Array, true, false, Array)
+#12 C:\laragon\www\wp_talends\wp-content\plugins\listivo-core\framework\app\Widgets\General\PanelWidget.php(81): get_template_part('templates/widge...')
+#13 C:\laragon\www\wp_talends\wp-content\plugins\listivo-core\framework\app\Widgets\Widget.php(61): Tangibledesign\Framework\Widgets\General\PanelWidget->loadTemplate()
+#14 C:\laragon\www\wp_talends\wp-content\plugins\elementor\includes\base\controls-stack.php(2325): Tangibledesign\Framework\Widgets\Widget->render()
+#15 C:\laragon\www\wp_talends\wp-content\plugins\elementor\includes\base\widget-base.php(635): Elementor\Controls_Stack->render_by_mode()
+#16 C:\laragon\www\wp_talends\wp-content\plugins\elementor\includes\base\widget-base.php(776): Elementor\Widget_Base->render_content()
+#17 C:\laragon\www\wp_talends\wp-content\plugins\elementor\includes\base\element-base.php(483): Elementor\Widget_Base->print_content()
+#18 C:\laragon\www\wp_talends\wp-content\plugins\elementor\modules\element-cache\module.php(73): Elementor\Element_Base->print_element()
+#19 C:\laragon\www\wp_talends\wp-includes\shortcodes.php(434): Elementor\Modules\ElementCache\Module->Elementor\Modules\ElementCache\{closure}(Array, '', 'elementor-eleme...')
+#20 [internal function]: do_shortcode_tag(Array)
+#21 C:\laragon\www\wp_talends\wp-includes\shortcodes.php(273): preg_replace_callback('/\\[(\\[?)(elemen...', 'do_shortcode_ta...', '\t\t<section clas...')
+#22 C:\laragon\www\wp_talends\wp-content\plugins\elementor\core\base\document.php(1856): do_shortcode('\t\t<section clas...')
+#23 C:\laragon\www\wp_talends\wp-content\plugins\elementor\core\base\document.php(1201): Elementor\Core\Base\Document->print_elements(Array)
+#24 C:\laragon\www\wp_talends\wp-content\plugins\elementor\includes\frontend.php(1158): Elementor\Core\Base\Document->print_elements_with_wrapper(Array)
+#25 C:\laragon\www\wp_talends\wp-content\plugins\elementor\includes\frontend.php(1053): Elementor\Frontend->get_builder_content(6323)
+#26 C:\laragon\www\wp_talends\wp-includes\class-wp-hook.php(324): Elementor\Frontend->apply_builder_in_content('<a\n            ...')
+#27 C:\laragon\www\wp_talends\wp-includes\plugin.php(205): WP_Hook->apply_filters('<a\n            ...', Array)
+#28 C:\laragon\www\wp_talends\wp-content\plugins\listivo-core\framework\app\Widgets\TemplateLoaderWidget.php(76): apply_filters('the_content', '<a\n            ...')
+#29 C:\laragon\www\wp_talends\wp-content\plugins\listivo-core\framework\app\Widgets\TemplateLoaderWidget.php(27): Tangibledesign\Framework\Widgets\TemplateLoaderWidget->renderPage()
+#30 C:\laragon\www\wp_talends\wp-content\plugins\listivo-core\framework\app\Widgets\Widget.php(59): Tangibledesign\Framework\Widgets\TemplateLoaderWidget->renderContent()
+#31 C:\laragon\www\wp_talends\wp-content\plugins\elementor\includes\base\controls-stack.php(2325): Tangibledesign\Framework\Widgets\Widget->render()
+#32 C:\laragon\www\wp_talends\wp-content\plugins\elementor\includes\base\widget-base.php(635): Elementor\Controls_Stack->render_by_mode()
+#33 C:\laragon\www\wp_talends\wp-content\plugins\elementor\includes\base\widget-base.php(776): Elementor\Widget_Base->render_content()
+#34 C:\laragon\www\wp_talends\wp-content\plugins\elementor\includes\base\element-base.php(483): Elementor\Widget_Base->print_content()
+#35 C:\laragon\www\wp_talends\wp-content\plugins\elementor\modules\element-cache\module.php(73): Elementor\Element_Base->print_element()
+#36 C:\laragon\www\wp_talends\wp-includes\shortcodes.php(434): Elementor\Modules\ElementCache\Module->Elementor\Modules\ElementCache\{closure}(Array, '', 'elementor-eleme...')
+#37 [internal function]: do_shortcode_tag(Array)
+#38 C:\laragon\www\wp_talends\wp-includes\shortcodes.php(273): preg_replace_callback('/\\[(\\[?)(elemen...', 'do_shortcode_ta...', '\t\t<section clas...')
+#39 C:\laragon\www\wp_talends\wp-content\plugins\elementor\core\base\document.php(1856): do_shortcode('\t\t<section clas...')
+#40 C:\laragon\www\wp_talends\wp-content\plugins\elementor\core\base\document.php(1201): Elementor\Core\Base\Document->print_elements(Array)
+#41 C:\laragon\www\wp_talends\wp-content\plugins\elementor\includes\frontend.php(1158): Elementor\Core\Base\Document->print_elements_with_wrapper(Array)
+#42 C:\laragon\www\wp_talends\wp-content\plugins\elementor\includes\frontend.php(1226): Elementor\Frontend->get_builder_content(6141, false)
+#43 C:\laragon\www\wp_talends\wp-content\plugins\listivo-core\framework\app\Models\Template\LayoutTemplate.php(20): Elementor\Frontend->get_builder_content_for_display(6141)
+#44 C:\laragon\www\wp_talends\wp-content\plugins\listivo-core\framework\app\Providers\TemplateLoaderServiceProvider.php(48): Tangibledesign\Framework\Models\Template\LayoutTemplate->display()
+#45 C:\laragon\www\wp_talends\wp-includes\class-wp-hook.php(324): Tangibledesign\Framework\Providers\TemplateLoaderServiceProvider->render('')
+#46 C:\laragon\www\wp_talends\wp-includes\class-wp-hook.php(348): WP_Hook->apply_filters('', Array)
+#47 C:\laragon\www\wp_talends\wp-includes\plugin.php(517): WP_Hook->do_action(Array)
+#48 C:\laragon\www\wp_talends\wp-content\themes\listivo\basic.php(256): do_action('listivo/templat...')
+#49 C:\laragon\www\wp_talends\wp-content\themes\listivo\page.php(8): listivo_load_template('templates/blog/...')
+#50 C:\laragon\www\wp_talends\wp-includes\template-loader.php(106): include('C:\\laragon\\www\\...')
+#51 C:\laragon\www\wp_talends\wp-blog-header.php(19): require_once('C:\\laragon\\www\\...')
+#52 C:\laragon\www\wp_talends\index.php(17): require('C:\\laragon\\www\\...')
+#53 {main}
+  thrown in C:\laragon\www\wp_talends\wp-content\themes\listivo\templates\widgets\general\panel\header.php on line 9

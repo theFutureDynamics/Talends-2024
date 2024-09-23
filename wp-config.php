@@ -59,8 +59,8 @@ define( 'NONCE_SALT',       '<_kwGp/*#mEd`~~u2[]}2,qr*8;?b2Urg<#o,XJSbFs:abORZWM
 
 
 /** Custom WordPress URLs */
-define('WP_HOME', 'http://3.82.196.218');
-define('WP_SITEURL', 'http://3.82.196.218');
+define('WP_HOME', 'http://54.174.237.66');
+define('WP_SITEURL', 'http://54.174.237.66');
 /**#@-*/
 
 /**

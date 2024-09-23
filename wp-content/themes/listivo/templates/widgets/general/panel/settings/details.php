@@ -593,6 +593,7 @@ $showFreelancerSettings = ($current_user->type == 'freelancer');
                             </div>
                         </div>
                     </div>
+                     
                     <div class="listivo-panel-user-settings__field listivo-field-group" style="float:left;">
                             <label
                                     class="listivo-field-group__label"
@@ -680,7 +681,7 @@ $showFreelancerSettings = ($current_user->type == 'freelancer');
                             </div>
                         </div>
                         <!-- <div class="listivo-panel-user-settings__field  listivo-field-group"> -->
-                    
+                    <?php // if(!$showEmployerSettings): ?>
                         <div class="listivo-panel-user-settings__field listivo-field-group" style="float:left;">
                             <label
                                 class="listivo-field-group__label"
@@ -749,6 +750,7 @@ $showFreelancerSettings = ($current_user->type == 'freelancer');
                                 </lst-select>
                             </div>
                         </div>
+                    <?php //  endif; ?>
 
                         
 
@@ -779,7 +781,7 @@ $showFreelancerSettings = ($current_user->type == 'freelancer');
                             </div>
                         </div>
                     <?php endif; ?>
-
+                <?php if(!$showEmployerSettings):  ?>    
                     <div class="listivo-panel-user-settings__field listivo-panel-user-settings__field--full-width listivo-field-group">
                         <label
                                 class="listivo-field-group__label"
@@ -799,6 +801,7 @@ $showFreelancerSettings = ($current_user->type == 'freelancer');
                             </div>
                         </div>
                     </div>
+               
                     
                     <?php  if($showAgencySettings): ?>
                         <div class="listivo-panel-user-settings__field listivo-panel-user-settings__field--full-width listivo-field-group">
@@ -877,7 +880,7 @@ $showFreelancerSettings = ($current_user->type == 'freelancer');
                                 </div>
                             </div>
                         <?php endif; ?>
-
+                
                         <?php if (!tdf_settings()->disableViber()) : ?>
                             <div class="listivo-field-group listivo-field-group--checkbox listivo-margin-top-7">
                                 <div class="listivo-field-group__field">
@@ -1133,7 +1136,7 @@ $showFreelancerSettings = ($current_user->type == 'freelancer');
                                         </div>
                             </div>
                         <?php endif; ?>
-                        
+                     
                         <?php if(!$showEmployerSettings): ?>
                             <?php if($showInterneSettings): ?>
                             <div class="listivo-panel-user-settings__field listivo-panel-user-settings__field listivo-field-group" style="float:right;">
@@ -1483,7 +1486,7 @@ $showFreelancerSettings = ($current_user->type == 'freelancer');
                             </div>
 
                         <?php  endif; ?>
-
+                 
                         <?php if ($showAgencySettings): ?>
                             <div class="listivo-panel-user-settings__field listivo-field-group" style="margin-top: -98px;">
                                 <?php else: ?>
@@ -1588,9 +1591,9 @@ $showFreelancerSettings = ($current_user->type == 'freelancer');
                             </div>
 
                         </div>
-
+                    <?php endif; ?>
                         
-
+                
                         
 
                     
@@ -1602,7 +1605,7 @@ $showFreelancerSettings = ($current_user->type == 'freelancer');
                 
 
 
-                <div class="listivo-panel-accordion__bottom">
+                <div class="listivo-panel-accordion__bottom" style="width:100%">
                     <button
                             class="listivo-button listivo-button--primary-1 listivo-button-primary-1-colors-with-stroke-selector"
                             :class="{'listivo-button--loading': props.inProgress}"

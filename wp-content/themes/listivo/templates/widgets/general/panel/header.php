@@ -4,10 +4,17 @@ use Tangibledesign\Framework\Widgets\General\PanelWidget;
 
 /* @var PanelWidget $lstCurrentWidget */
 global $lstCurrentWidget;
+
+$current_user = wp_get_current_user();
+$isEmployerLogin = ($current_user->type == 'employer');
+// $showAgencySettings = ($current_user->type == 'agency');
+// $showEmployerSettings = ($current_user->type == 'employer');
+// $showInterneSettings = ($current_user->type == 'intern');
+// $showFreelancerSettings = ($current_user->type == 'freelancer');
 ?>
 <div class="listivo-panel-menu">
     <div class="listivo-panel-menu__list">
-        <?php if (tdf_current_user()->canCreateModels()) : ?>
+        <?php if (tdf_current_user()->canCreateModels() && !$isEmployerLogin) : ?>
             <a
                 <?php if ($lstCurrentWidget->isActionActive(PanelWidget::ACTION_CREATE)) : ?>
                     class="listivo-panel-menu__item listivo-panel-menu__item--active"
@@ -20,7 +27,7 @@ global $lstCurrentWidget;
             </a>
         <?php endif; ?>
 
-        <?php if (tdf_current_user()->isModerator()) : ?>
+        <?php if (tdf_current_user()->isModerator() ) : ?>
             <a
                 <?php if ($lstCurrentWidget->isActionActive(PanelWidget::ACTION_MODERATION)) : ?>
                     class="listivo-panel-menu__item listivo-panel-menu__item--active"
@@ -46,7 +53,7 @@ global $lstCurrentWidget;
             </a>
         <?php endif; ?>
 
-        <?php if (tdf_current_user()->canCreateModels()) : ?>
+        <?php if (tdf_current_user()->canCreateModels() && !$isEmployerLogin) : ?>
             <a
                 <?php if ($lstCurrentWidget->isActionActive(PanelWidget::ACTION_LIST)) : ?>
                     class="listivo-panel-menu__item listivo-panel-menu__item--active"
@@ -59,7 +66,7 @@ global $lstCurrentWidget;
             </a>
         <?php endif; ?>
 
-        <?php if (tdf_settings()->isFavoriteEnabled()) : ?>
+        <?php if (tdf_settings()->isFavoriteEnabled() && !$isEmployerLogin) : ?>
             <a
                 <?php if ($lstCurrentWidget->isActionActive(PanelWidget::ACTION_FAVORITES)) : ?>
                     class="listivo-panel-menu__item listivo-panel-menu__item--active"

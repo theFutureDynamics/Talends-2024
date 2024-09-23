@@ -20,13 +20,21 @@
 
 // ** Database settings - You can get this info from your web host ** //
 /** The name of the database for WordPress */
-define( 'DB_NAME', 'talends_2024_sep' );
+// define( 'DB_NAME', 'talends_2024' );
+
+// /** Database username */
+// define( 'DB_USER', 'root' );
+
+// /** Database password */
+// define( 'DB_PASSWORD', 'Pass@123' );
+
+define( 'DB_NAME', 'wp_talends' );
 
 /** Database username */
 define( 'DB_USER', 'root' );
 
 /** Database password */
-define( 'DB_PASSWORD', 'Pass@123' );
+define( 'DB_PASSWORD', '' );
 
 /** Database hostname */
 define( 'DB_HOST', 'localhost' );
@@ -59,8 +67,11 @@ define( 'NONCE_SALT',       '<_kwGp/*#mEd`~~u2[]}2,qr*8;?b2Urg<#o,XJSbFs:abORZWM
 
 
 /** Custom WordPress URLs */
-define('WP_HOME', 'http://54.174.237.66');
-define('WP_SITEURL', 'http://54.174.237.66');
+// define('WP_HOME', 'http://3.82.196.218');
+// define('WP_SITEURL', 'http://3.82.196.218');
+
+define('WP_HOME', 'http://wp_talends.test');
+define('WP_SITEURL', 'http://wp_talends.test');
 /**#@-*/
 
 /**

@@ -2573,3 +2573,19 @@ Stack trace:
 #52 C:\laragon\www\wp_talends\index.php(17): require('C:\\laragon\\www\\...')
 #53 {main}
   thrown in C:\laragon\www\wp_talends\wp-content\themes\listivo\templates\widgets\general\panel\header.php on line 9
+[21-Sep-2024 09:23:04 UTC] Automatic updates starting...
+[21-Sep-2024 09:23:05 UTC]   Automatic plugin updates starting...
+[21-Sep-2024 09:23:05 UTC]   Automatic plugin updates complete.
+[21-Sep-2024 09:23:06 UTC] Automatic updates complete.
+[22-Sep-2024 07:51:55 UTC] Automatic updates starting...
+[22-Sep-2024 07:51:56 UTC]   Automatic plugin updates starting...
+[22-Sep-2024 07:51:56 UTC]   Automatic plugin updates complete.
+[22-Sep-2024 07:51:56 UTC] Automatic updates complete.
+[22-Sep-2024 15:36:31 UTC] Automatic updates starting...
+[22-Sep-2024 15:36:32 UTC]   Automatic plugin updates starting...
+[22-Sep-2024 15:36:32 UTC]   Automatic plugin updates complete.
+[22-Sep-2024 15:36:37 UTC] Automatic updates complete.
+[23-Sep-2024 05:10:25 UTC] PHP Warning:  wp_version_check(): An unexpected error occurred. Something may be wrong with WordPress.org or this server&#8217;s configuration. If you continue to have problems, please try the <a href="https://wordpress.org/support/forums/">support forums</a>. (WordPress could not establish a secure connection to WordPress.org. Please contact your server administrator.) in C:\laragon\www\wp_talends\wp-includes\functions.php on line 6085
+[23-Sep-2024 05:10:25 UTC] PHP Warning:  wp_update_plugins(): An unexpected error occurred. Something may be wrong with WordPress.org or this server&#8217;s configuration. If you continue to have problems, please try the <a href="https://wordpress.org/support/forums/">support forums</a>. (WordPress could not establish a secure connection to WordPress.org. Please contact your server administrator.) in C:\laragon\www\wp_talends\wp-includes\functions.php on line 6085
+[23-Sep-2024 05:10:25 UTC] PHP Warning:  wp_update_themes(): An unexpected error occurred. Something may be wrong with WordPress.org or this server&#8217;s configuration. If you continue to have problems, please try the <a href="https://wordpress.org/support/forums/">support forums</a>. (WordPress could not establish a secure connection to WordPress.org. Please contact your server administrator.) in C:\laragon\www\wp_talends\wp-includes\functions.php on line 6085
+[23-Sep-2024 05:10:26 UTC] PHP Warning:  wp_update_plugins(): An unexpected error occurred. Something may be wrong with WordPress.org or this server&#8217;s configuration. If you continue to have problems, please try the <a href="https://wordpress.org/support/forums/">support forums</a>. (WordPress could not establish a secure connection to WordPress.org. Please contact your server administrator.) in C:\laragon\www\wp_talends\wp-includes\functions.php on line 6085

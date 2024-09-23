@@ -20,7 +20,7 @@
 
 // ** Database settings - You can get this info from your web host ** //
 /** The name of the database for WordPress */
-define( 'DB_NAME', 'talends_2024' );
+define( 'DB_NAME', 'talends_2024_sep' );
 
 /** Database username */
 define( 'DB_USER', 'root' );

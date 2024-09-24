@@ -547,7 +547,7 @@ abstract class BaseUser extends BaseModel
                  'job_title' => $row['title'],
                  'start_date'  => $row['start_date'],
                  'end_date'  => $row['end_date'],
-                 'company_name'  => $row['company_name'],
+                 'company_title'  => $row['company_name'],
                  'description'  => $row['description'],
                  'type'  => $row['type'],
                  'user_id'  => $row['user_id'],

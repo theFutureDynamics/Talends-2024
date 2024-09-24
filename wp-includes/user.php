@@ -2773,15 +2773,19 @@ function updateExperiences($user_id) {
         echo 'Failed to delete existing skills.';
         return;
     }
-
-
+	
     // Get data from POST
     if ( isset($_POST['user']['experiences']) && is_array($_POST['user']['experiences']) ) {
         $experiences = $_POST['user']['experiences'];
         foreach ( $experiences as $experience ) {
             // Sanitize and validate data
             $job_title = sanitize_text_field( $experience['job_title'] );
-            $job_description = sanitize_textarea_field( $experience['job_description'] );
+			if($experience['description'])
+				$job_description = sanitize_textarea_field( $experience['description'] );
+			else
+				$job_description = sanitize_textarea_field( $experience['job_description'] );
+			
+            
             $company_title = sanitize_text_field( $experience['company_title'] );
             $start_date = sanitize_text_field( $experience['start_date'] );
             $end_date = sanitize_text_field( $experience['end_date'] );
@@ -2794,34 +2798,47 @@ function updateExperiences($user_id) {
 
             // Check if the experience already exists
             $existing_id = $wpdb->get_var($wpdb->prepare(
-                "SELECT id FROM {$wpdb->prefix}user_job_experiences WHERE title = %s  AND user_id = %d",
+                "SELECT id FROM {$wpdb->prefix}user_job_experiences WHERE title = %s  AND user_id = %d AND type = %s ",
                 $job_title,
-                $user_id
+                $user_id,
+				'experience'
             ));
 			
             if ( $existing_id ) {
                 // Update existing record
-                $updated = $wpdb->update(
-                    "{$wpdb->prefix}user_job_experiences",
-                    array(
-                        'start_date'    => $start_date,
-                        'end_date'      => $end_date,
-                        'company_name'  => $company_title,
-                        'description'   => $job_description
-                    ),
-                    array(
-                        'id' => $existing_id
-                    ),
-                    array(
-                        '%s', // Start date as a string
-                        '%s', // End date as a string
-                        '%s', // Company name as a string
-                        '%s'  // Description as a string
-                    ),
-                    array(
-                        '%d'  // ID as an integer
-                    )
-                );
+                $data = array();
+				$formats = array();
+
+				if (!empty($start_date)) {
+					$data['start_date'] = $start_date;
+					$formats[] = '%s'; // Format for start_date
+				}
+
+				if (!empty($end_date)) {
+					$data['end_date'] = $end_date;
+					$formats[] = '%s'; // Format for end_date
+				}
+
+				if (!empty($company_title)) {
+					$data['company_name'] = $company_title;
+					$formats[] = '%s'; // Format for company_name
+				}
+
+				if (!empty($job_description)) {
+					$data['description'] = $job_description;
+					$formats[] = '%s'; // Format for description
+				}
+
+				// Proceed with the update only if there's something to update
+				if (!empty($data)) {
+					$updated = $wpdb->update(
+						"{$wpdb->prefix}user_job_experiences",
+						$data,
+						array('id' => $existing_id),
+						$formats,
+						array('%d') // Format for ID
+					);
+				}
 
                 // if ( false === $updated ) {
                 //     echo 'Failed to update experience for job title: ' . $job_title;
@@ -2857,7 +2874,6 @@ function updateExperiences($user_id) {
                     $format
                 );
 
-                
             }
         }
     } else {

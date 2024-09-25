@@ -14,6 +14,7 @@ if (!$lstCurrentUser instanceof User) {
 }
 $current_user = wp_get_current_user();
 $isEmployerLogin = ($current_user->type == 'employer');
+$isAgencyLogin = ($current_user->type == 'agency');
 // $expertises = $lstCurrentUser->getUserExpertises();
 ?>
 <div class="listivo-panel-section">
@@ -52,9 +53,9 @@ $isEmployerLogin = ($current_user->type == 'employer');
                     <?php get_template_part('templates/widgets/general/panel/settings/experience'); ?>
 
                     <?php get_template_part('templates/widgets/general/panel/settings/expertise'); ?>
-                    
+                    <?php if(!$isAgencyLogin): ?>
                     <?php get_template_part('templates/widgets/general/panel/settings/education'); ?>
-
+                    <?php endif; ?>
                     <?php get_template_part('templates/widgets/general/panel/settings/awards'); ?>
 
                     <?php get_template_part('templates/widgets/general/panel/settings/portfolio'); ?>

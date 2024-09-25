@@ -698,15 +698,17 @@ $lstSimpleMenu = tdf_settings()->showMenuAccount();
 
                             <?php if ($lstUser) : ?>
                                 <a
-                                        class="listivo-menu-v2__account-link"
+                                        class="listivo-menu-v2__account-link listivo-button listivo-button--primary-1"
                                         href="<?php echo esc_url(tdf_settings()->getPanelPageUrl()); ?>"
+                                        style="padding-top:10px;color:white;"
                                 >
                                     <?php echo esc_html($lstUser->getDisplayName()); ?>
                                 </a>
                             <?php else : ?>
                                 <a
-                                        class="listivo-menu-v2__account-link"
+                                        class="listivo-menu-v2__account-link listivo-button listivo-button--primary-1"
                                         href="<?php echo esc_url(tdf_settings()->getLoginPageUrl()); ?>"
+                                        style="padding-top:10px;color:white;"
                                 >
                                     <?php echo esc_html(tdf_string('log_in')); ?>
                                 </a>
@@ -715,8 +717,9 @@ $lstSimpleMenu = tdf_settings()->showMenuAccount();
                                     <div class="listivo-menu-v2__separator"></div>
 
                                     <a
-                                            class="listivo-menu-v2__account-link"
+                                            class="listivo-menu-v2__account-link  listivo-button listivo-button--primary-1"
                                             href="<?php echo esc_url(tdf_settings()->getRegisterPageUrl()); ?>"
+                                            style="padding-top:10px;color:white;"
                                     >
                                         <?php echo esc_html(tdf_string('register')); ?>
                                     </a>

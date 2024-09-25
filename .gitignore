@@ -1,5 +1,6 @@
 # Ignore wp-config.php file
 wp-config.php
+./wp-config.php
 
 # Ignore the uploads directory
 wp-content/uploads/

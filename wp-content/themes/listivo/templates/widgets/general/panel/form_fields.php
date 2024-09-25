@@ -38,12 +38,12 @@ else :
     if (tdf_settings()->getAutoGenerateModelTitleFields()->isEmpty()) :
         $lstCurrentWidget->getNameField()->loadTemplate();
     endif;
-
+    
     $lstMainCategory = $lstCurrentWidget->getMainCategoryField();
     if ($lstMainCategory) :
         $lstMainCategory->loadTemplate();
     endif;
-
+    
     /* @var PanelField $lstField */
     foreach ($lstCurrentWidget->getMultilevelTaxonomyFields() as $lstField) :
         if ($lstMainCategory && $lstMainCategory->getKey() === $lstField->getKey()) {

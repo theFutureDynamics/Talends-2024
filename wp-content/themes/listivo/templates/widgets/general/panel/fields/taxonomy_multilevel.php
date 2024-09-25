@@ -5,8 +5,17 @@ global $lstPanelField, $lstCurrentWidget;
 /* @var \Tangibledesign\Framework\Models\Field\TaxonomyField $lstTaxonomy */
 $lstTaxonomy = $lstPanelField->getField();
 $lstParentTaxonomies = $lstTaxonomy->getParentTaxonomyFields();
+
 $lstAllowedTermIds = $lstPanelField->getAllowedTermIds($lstCurrentWidget->getPackage());
 $lstInitialTerms = $lstPanelField->getTerms();
+$post = $lstTaxonomy->getPost();
+$current_user = wp_get_current_user();
+$isAgencyCase = false;
+$olderCheck = $lstTaxonomy->multilevelFrontendPanelMultipleValues();
+if($post && isset($post->post_title) && $post->post_title === 'Category' && $current_user->type != 'agency'){
+     $olderCheck = 0;
+     $isAgencyCase = true;
+}
 ?>
 <lst-multilevel-taxonomy-model-field
         class="listivo-field-group <?php echo esc_attr($lstPanelField->getKey()); ?>"
@@ -18,13 +27,15 @@ $lstInitialTerms = $lstPanelField->getTerms();
         :disable-lazy-load-terms="true"
     <?php endif; ?>
         fetch-terms-request-url="<?php echo esc_url(tdf_action_url('listivo/terms/multilevel/fetch')); ?>"
-        :multi="<?php echo esc_attr($lstTaxonomy->multilevelFrontendPanelMultipleValues() ? 'true' : 'false'); ?>"
+        :multi="<?php echo esc_attr($olderCheck ? 'true' : 'false'); ?>"
         :parent-taxonomies="<?php echo htmlspecialchars(json_encode($lstTaxonomy->getParentTaxonomyFieldIds())); ?>"
         :dependency-terms="modelForm.dependencyTerms"
         :selected-term-ids="modelForm.taxonomyFieldsValueIds"
+        :max-items=2
     <?php if (!empty($lstAllowedTermIds)) : ?>
         :allowed-term-ids="<?php echo htmlspecialchars(json_encode($lstAllowedTermIds)); ?>"
     <?php endif; ?>
+    
 >
     <div
             slot-scope="field"
@@ -71,6 +82,9 @@ $lstInitialTerms = $lstPanelField->getTerms();
                         :is-selected="field.isTermSelected"
                     <?php if (function_exists('customtaxorder_sort_taxonomies')) : ?>
                         order-type="disabled"
+                    <?php endif; ?>
+                    <?php if($isAgencyCase): ?>
+                        max_items="2"
                     <?php endif; ?>
                 >
                     <div

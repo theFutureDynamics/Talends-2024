@@ -81,10 +81,15 @@ class TaxonomyPanelField extends CustomPanelField
 
         global ${tdf_short_prefix() . 'PanelField'};
         ${tdf_short_prefix() . 'PanelField'} = $this;
+        $post = $this->field->getPost();
+
+        
 
         if ($this->field->isMultilevel()) {
+            // if($post && isset($post->post_title) && $post->post_title === 'Category'){
+            //     get_template_part('templates/widgets/general/panel/fields/taxonomy_multiple');
+            // }
             get_template_part('templates/widgets/general/panel/fields/taxonomy_multilevel');
-
             return;
         }
 

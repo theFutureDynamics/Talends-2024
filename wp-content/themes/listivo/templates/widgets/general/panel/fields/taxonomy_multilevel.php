@@ -9,6 +9,7 @@ $lstParentTaxonomies = $lstTaxonomy->getParentTaxonomyFields();
 $lstAllowedTermIds = $lstPanelField->getAllowedTermIds($lstCurrentWidget->getPackage());
 $lstInitialTerms = $lstPanelField->getTerms();
 $post = $lstTaxonomy->getPost();
+// print_r($post);
 $current_user = wp_get_current_user();
 $isAgencyCase = false;
 $olderCheck = $lstTaxonomy->multilevelFrontendPanelMultipleValues();
@@ -16,7 +17,12 @@ if($post && isset($post->post_title) && $post->post_title === 'Category' && $cur
      $olderCheck = 0;
      $isAgencyCase = true;
 }
+if($post && isset($post->post_name) && $post->post_name === 'account-type'){
+    return;
+    // print_r($lstInitialTerms);
+}
 ?>
+<!-- {{modelForm.taxonomyFieldsValueIds}} -->
 <lst-multilevel-taxonomy-model-field
         class="listivo-field-group <?php echo esc_attr($lstPanelField->getKey()); ?>"
         prefix="listivo"
@@ -37,6 +43,7 @@ if($post && isset($post->post_title) && $post->post_title === 'Category' && $cur
     <?php endif; ?>
     
 >
+
     <div
             slot-scope="field"
             v-if="field.isVisible"

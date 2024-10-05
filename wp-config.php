@@ -34,7 +34,7 @@ define( 'DB_NAME', 'talends_2024_sep' );
 define( 'DB_USER', 'root' );
 
 /** Database password */
-define( 'DB_PASSWORD', 'Pass@123' );
+define( 'DB_PASSWORD', '' );
 
 /** Database hostname */
 define( 'DB_HOST', 'localhost' );
@@ -70,8 +70,11 @@ define( 'NONCE_SALT',       '<_kwGp/*#mEd`~~u2[]}2,qr*8;?b2Urg<#o,XJSbFs:abORZWM
 // define('WP_HOME', 'http://3.82.196.218');
 // define('WP_SITEURL', 'http://3.82.196.218');
 
-define('WP_HOME', 'http://54.174.237.66');
-define('WP_SITEURL', 'http://54.174.237.66');
+define('WP_HOME', 'http://wp_talends.test');
+define('WP_SITEURL', 'http://wp_talends.test');
+
+// define('WP_HOME', 'https://ec78-182-176-2-65.ngrok-free.app');
+// define('WP_SITEURL', 'https://ec78-182-176-2-65.ngrok-free.app');
 /**#@-*/
 
 /**
@@ -108,6 +111,8 @@ define('WP_DEBUG_DISPLAY', true); // Keep false for production
 if ( ! defined( 'ABSPATH' ) ) {
 	define( 'ABSPATH', __DIR__ . '/' );
 }
+
+define('MY_PAYTAB_PROFILE_ID', 91323);
 
 /** Sets up WordPress vars and included files. */
 require_once ABSPATH . 'wp-settings.php';

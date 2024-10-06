@@ -242,7 +242,7 @@ $lstSimpleMenu = tdf_settings()->showMenuAccount();
                     </div>
                 </lst-open-mobile-menu>
 
-                <div class="listivo-menu-v2__left">
+                <div style="width:50%" class="listivo-menu-v2__left">
                     <?php if ($lstCurrentWidget->hasLogo()) :
                         $lstLogo = $lstCurrentWidget->getLogo();
                         ?>
@@ -697,13 +697,13 @@ $lstSimpleMenu = tdf_settings()->showMenuAccount();
                             </a>
 
                             <?php if ($lstUser) : ?>
-                                <a
+                                <!-- <a
                                         class="listivo-menu-v2__account-link listivo-button listivo-button--primary-1"
                                         href="<?php echo esc_url(tdf_settings()->getPanelPageUrl()); ?>"
                                         style="padding-top:10px;color:white;"
                                 >
                                     <?php echo esc_html($lstUser->getDisplayName()); ?>
-                                </a>
+                                </a> -->
                             <?php else : ?>
                                 <a
                                         class="listivo-menu-v2__account-link listivo-button listivo-button--primary-1"

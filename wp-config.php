@@ -96,7 +96,10 @@ $table_prefix = 'wp_';
  */
 define( 'WP_DEBUG', true );
 define('WP_DEBUG_LOG', true);
-define('WP_DEBUG_DISPLAY', true); // Keep false for production
+define('WP_DEBUG_DISPLAY', false); // Keep false for production
+define('FS_METHOD', 'direct');
+define('WP_MEMORY_LIMIT', '512M');
+
 
 /* Add any custom values between this line and the "stop editing" line. */
 

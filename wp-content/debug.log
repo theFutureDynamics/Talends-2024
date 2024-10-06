@@ -3203,3 +3203,4 @@ Stack trace:
 [24-Sep-2024 06:08:15 UTC] Cron reschedule event error for hook: listivo/models/checkBumps, Error code: invalid_schedule, Error message: Event schedule does not exist., Data: {"schedule":"every_minute","args":[],"interval":60}
 [24-Sep-2024 06:08:15 UTC] Cron reschedule event error for hook: listivo/notifications/send, Error code: invalid_schedule, Error message: Event schedule does not exist., Data: {"schedule":"every_minute","args":[],"interval":60}
 [24-Sep-2024 06:10:34 UTC] Cron reschedule event error for hook: listivo/directMessages/notifications, Error code: invalid_schedule, Error message: Event schedule does not exist., Data: {"schedule":"every_five_minutes","args":[],"interval":300}
+[05-Oct-2024 03:30:13 UTC] PHP Warning:  mysqli_real_connect(): (HY000/1045): Access denied for user 'root'@'localhost' (using password: YES) in C:\laragon\www\wp_talends\wp-includes\class-wpdb.php on line 1982

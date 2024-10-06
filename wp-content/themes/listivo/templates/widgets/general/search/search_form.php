@@ -119,7 +119,7 @@ $lstSecondaryFieldsKeys = $lstSecondaryFields->map(static function ($lstSecondar
             </div>
         </div>
     <?php endif; ?>
-
+                    
     <?php if ($lstSecondaryFields->isNotEmpty()) : ?>
         <div class="listivo-main-search-form__secondary-wrapper">
             <div class="listivo-container">

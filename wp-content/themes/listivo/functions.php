@@ -300,6 +300,12 @@ function handle_user_settings_submission() {
     wp_die();
 }
 
+// function start_session() {
+//     if (!session_id()) {
+//         session_start();
+//     }
+// }
+// add_action('init', 'start_session');
 
 function enqueue_my_scripts() {
     wp_enqueue_script('my-custom-script', get_template_directory_uri() . '/path-to-your-script.js', array('jquery'), null, true);

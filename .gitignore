@@ -10,3 +10,4 @@ wp-content/uploads/
 *.bak
 *.tmp
 *.log
+wp-config.php

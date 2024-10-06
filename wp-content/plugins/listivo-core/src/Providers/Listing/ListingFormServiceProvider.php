@@ -178,9 +178,64 @@ class ListingFormServiceProvider extends ServiceProvider
         }
 
         do_action(tdf_prefix() . '/model/update', $model, false);
-
+        $this->updateAccountType($modelId);
         $this->successJsonResponse($response);
     }
+
+    function updateAccountType($modelId){
+        global $wpdb;
+        $userId = get_current_user_id();
+        $current_user = wp_get_current_user();
+        $accountType = "intern";
+        if($current_user->type == "agency"){
+            $accountType = "agency";
+        }else if($current_user->type == "freelancer"){
+            $accountType = "freelancer";
+        }
+        
+        $result = $wpdb->get_row(
+            $wpdb->prepare(
+                "SELECT *  FROM {$wpdb->prefix}terms WHERE slug = %s",
+                $accountType
+            )
+        );
+    
+        if (is_null($result)) {
+            return ;
+        }
+
+        $new_result = $wpdb->get_row(
+            $wpdb->prepare(
+                "SELECT *  FROM {$wpdb->prefix}term_relationships WHERE object_id = %d AND term_taxonomy_id = %d",
+                $modelId,
+                $result->term_id
+            )
+        );
+
+        if(is_null($new_result)){
+            $data = array(
+                'object_id'         => $modelId,
+                'term_taxonomy_id'    => $result->term_id,
+                'term_order'       => 0
+            );
+    
+            $format = array(
+                '%d', // Title as a string
+                '%d', // Description as a string
+                '%d'  // User ID as an integer
+        
+            );
+        
+            $inserted = $wpdb->insert(
+                "{$wpdb->prefix}term_relationships",
+                $data,
+                $format
+            );
+        }
+        
+    }
+
+     
 
     private function setExpireDate(Model $model): bool
     {

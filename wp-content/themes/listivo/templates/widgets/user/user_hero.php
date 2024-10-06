@@ -62,6 +62,7 @@ $image_url = get_site_url() . '/wp-content/uploads/2022/08/award.png';
     border-radius: 5px; /* Rounded corners */
     overflow: hidden; /* Hide overflow to maintain rounded corners */
     margin-top:10px;
+    height:auto;
 }
 
 .elementor-progress-bar {
@@ -91,7 +92,7 @@ $image_url = get_site_url() . '/wp-content/uploads/2022/08/award.png';
 .carousel {
     position: relative;
     width: 100%;
-    display: flex;
+    /* display: flex; */
     align-items: center;
 }
 
@@ -139,6 +140,90 @@ $image_url = get_site_url() . '/wp-content/uploads/2022/08/award.png';
 .next {
     right: 10px;
 }
+
+.listivo-listing-features {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.listivo-listing-feature {
+    flex: 1 1 100%; /* Full width on mobile */
+    box-sizing: border-box; /* Ensure padding/margins are included in width */
+}
+
+
+
+@media (min-width: 768px) { /* Adjust the breakpoint as needed */
+    .listivo-listing-feature {
+        flex: 1 1 calc(33.33% - 20px); /* Three per row on larger screens */
+        margin: 10px; /* Space between items */
+    }
+
+    .ewc {
+        flex: auto; /* Three items per row on larger screens */
+        max-width: calc(33.33% - 20px); /* Max width for larger screens */
+    }
+
+    
+}
+
+.listivo-mini-listing-carousel__nav {
+    display: flex;
+    justify-content: flex-end; /* Default to right alignment for larger screens */
+    width: 100%;
+}
+
+.listivo-box-arrow {
+    cursor: pointer; /* Optional: Makes it clear that the arrows are clickable */
+}
+
+@media (max-width: 768px) { /* Adjust this breakpoint as needed */
+    .listivo-mini-listing-carousel__nav {
+        justify-content: space-between; /* Use space-between on mobile */
+    }
+    .listivo-user-hero__content-wrapper {
+        padding: 5% !important;
+        text-align: center !important;
+    }
+
+    .carousel-container{
+        width:100% !important;
+    }
+
+    .cls_about{
+        width: 100% !important;
+    }
+    .edu_div {
+        flex-wrap: wrap !important;
+    }
+    
+}
+
+.cls_about{
+    width: 30%;
+}
+.listivo-content-v2__image-wrapper {
+    max-width: 100%; /* Ensure it doesn’t exceed parent width */
+    overflow: hidden; /* Hide overflow if necessary */
+}
+
+.listivo-content-v2__image {
+    width: 100%; /* Make the image take full width of the container */
+    height: auto; /* Maintain aspect ratio */
+}
+
+.listivo-content-v2__image img {
+    width: 100%; /* Scale image to the width of its container */
+    height: auto; /* Maintain aspect ratio */
+    object-fit: cover; /* Ensures image covers the container without cutting off */
+}
+
+
+.listivo-user-hero__content-wrapper{
+    padding:5%;
+    text-align:left;
+}
+
 </style>
 <div
     <?php if ($lstCurrentWidget->isFullWidth()) : ?>
@@ -252,11 +337,13 @@ $image_url = get_site_url() . '/wp-content/uploads/2022/08/award.png';
                     <?php endif; ?>
                 </div>
             <?php endif; ?>
+        </div>
 
+        <div class="listivo-user-hero__content-wrapper">
             <div style="width: 100%; margin-top: 5%; padding: 20px; box-sizing: border-box; background-color: #f4f4f4; border-radius: 8px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);" class="elementor-element elementor-element-77d10121 elementor-widget elementor-widget-lst_listing_features" data-element_type="widget" data-widget_type="lst_listing_features.default">
                 <div class="elementor-widget-container">
                 <div class="elementor-widget-container">
-                    <div class="listivo-heading-v2-wrapper" style="margin-bottom:50px">
+                    <div class="listivo-heading-v2-wrapper"  style="margin-bottom:50px">
                             <div class="listivo-heading-v2 listivo-heading-v2--center listivo-heading-v2--tablet-center listivo-heading-v2--mobile-center">
                                 <h2 class="listivo-heading-v2__text">
                                    About
@@ -291,10 +378,10 @@ $image_url = get_site_url() . '/wp-content/uploads/2022/08/award.png';
                     <?php endif; ?>
 
                     <div style="width:100%;margin-top:5%" class="elementor-element elementor-element-77d10121 elementor-widget elementor-widget-lst_listing_features" data-id="77d10121" data-element_type="widget" data-widget_type="lst_listing_features.default">
-                            <div class="elementor-widget-container">
+                            <div class="elementor-widget-container" style="text-align:left;">
                                 <div class="listivo-listing-features">
                                 <?php if($lstUser->getTotalJobsDelivered()): ?>
-                                        <div>
+                                        <div class="cls_about">
                                             <div class="listivo-listing-feature">
                                                 <div class="listivo-listing-feature__icon-wrapper">
                                                     <div class="listivo-listing-feature__icon">
@@ -314,7 +401,7 @@ $image_url = get_site_url() . '/wp-content/uploads/2022/08/award.png';
                                         </div>
                                         <?php endif; ?>
                                         <?php if($lstUser->getJoined()): ?>
-                                        <div>
+                                        <div class="cls_about">
                                             <div class="listivo-listing-feature">
                                                 <div class="listivo-listing-feature__icon-wrapper">
                                                     <div class="listivo-listing-feature__icon">
@@ -331,7 +418,7 @@ $image_url = get_site_url() . '/wp-content/uploads/2022/08/award.png';
                                         <?php endif; ?>
 
                                         <?php if($lstUser->getCompanyDetails()): ?>
-                                        <div>
+                                        <div class="cls_about">
                                             <div class="listivo-listing-feature">
                                                 <div class="listivo-listing-feature__icon-wrapper">
                                                     <div class="listivo-listing-feature__icon">
@@ -348,7 +435,7 @@ $image_url = get_site_url() . '/wp-content/uploads/2022/08/award.png';
                                         <?php endif; ?>
                                         
                                         <?php if($lstUser->getBudget()): ?>
-                                        <div>
+                                        <div class="cls_about">
                                             <div class="listivo-listing-feature">
                                                 <div class="listivo-listing-feature__icon-wrapper">
                                                     <div class="listivo-listing-feature__icon">
@@ -367,7 +454,7 @@ $image_url = get_site_url() . '/wp-content/uploads/2022/08/award.png';
                                     
 
                                         <?php if($lstUser->getClientFocus()): ?>
-                                        <div>
+                                        <div class="cls_about">
                                             <div class="listivo-listing-feature">
                                                 <div class="listivo-listing-feature__icon-wrapper">
                                                     <div class="listivo-listing-feature__icon">
@@ -385,7 +472,7 @@ $image_url = get_site_url() . '/wp-content/uploads/2022/08/award.png';
                                         
                                         
                                         <?php if($lstUser->getDepartment()): ?>
-                                        <div>
+                                        <div class="cls_about">
                                             <div class="listivo-listing-feature">
                                                 <div class="listivo-listing-feature__icon-wrapper">
                                                     <div class="listivo-listing-feature__icon">
@@ -404,7 +491,7 @@ $image_url = get_site_url() . '/wp-content/uploads/2022/08/award.png';
                                     
 
                                         <?php if($lstUser->getJobType()): ?>
-                                        <div>
+                                        <div class="cls_about">
                                             <div class="listivo-listing-feature">
                                                 <div class="listivo-listing-feature__icon-wrapper">
                                                     <div class="listivo-listing-feature__icon">
@@ -423,7 +510,7 @@ $image_url = get_site_url() . '/wp-content/uploads/2022/08/award.png';
                                     
 
                                         <?php if($lstUser->getHourlyRate()): ?>
-                                        <div>
+                                        <div class="cls_about">
                                             <div class="listivo-listing-feature">
                                                 <div class="listivo-listing-feature__icon-wrapper">
                                                     <div class="listivo-listing-feature__icon">
@@ -470,14 +557,14 @@ $image_url = get_site_url() . '/wp-content/uploads/2022/08/award.png';
                             <div class="elementor-widget-container">
                                 <div>
                                     <div class="listivo-accordions listivo-accordions">
-                                        <div class="listivo-accordions__item listivo-accordion listivo-accordion--open">
-                                                <div class="listivo-accordion__head">
+                                        <div class="listivo-user-profile__description">
+                                                <div>
                                                     <h3 class="listivo-accordion__label">
                                                     <?php echo $eachService['expertise_title']; ?>
                                                     </h3> 
                                                 
                                                 </div> 
-                                                <div class="listivo-accordion__text listivo-accordion__text--0" style="padding-top:0px;">
+                                                <div  style="padding-top:0px;">
                                                 <?php echo $eachService['expertise_description']; ?>                     
                                                 </div>
                                         </div>
@@ -492,7 +579,7 @@ $image_url = get_site_url() . '/wp-content/uploads/2022/08/award.png';
 
             <?php if($lstUser->getUserSkills() && count($lstUser->getUserSkills()) > 0): ?>
                 <div class="elementor-element elementor-element-51cd12f elementor-widget elementor-widget-progress" style="width: 100%; margin-top: 5%; padding: 20px; box-sizing: border-box; background-color: #f4f4f4; border-radius: 8px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);" data-id="51cd12f" data-element_type="widget" data-widget_type="progress.default">
-                    <div class="listivo-heading-v2-wrapper" style="margin-bottom:50px">
+                    <div class="listivo-heading-v2-wrapper" style="margin-bottom:15px">
                             <div class="listivo-heading-v2 listivo-heading-v2--center listivo-heading-v2--tablet-center listivo-heading-v2--mobile-center">
                                 <h2 class="listivo-heading-v2__text">
                                    Skills
@@ -507,8 +594,8 @@ $image_url = get_site_url() . '/wp-content/uploads/2022/08/award.png';
                             $label = htmlspecialchars($row['label']);
                             $id = htmlspecialchars($row['id']);
                             ?>
-                            <div class="elementor-widget-container" style="flex: 1; margin: 10px;">
-                                <div class="progress-item">
+                            <div class="elementor-widget-container ewc" style="flex: auto;">
+                                <div class="progress-item" style="display:contents; width:100%">
                                     <div class="listivo-service-v8__text" id="elementor-progress-bar-<?php echo $id; ?>">
                                     <?php echo html_entity_decode($label) . ' (' . intval($rating) . '%)'; ?>
                                     </div>
@@ -526,58 +613,61 @@ $image_url = get_site_url() . '/wp-content/uploads/2022/08/award.png';
             <?php endif; ?>
             
             
-        <?php if($experiences): ?>
-            <div style="width:100%;margin-top:5%" class="elementor-element elementor-element-77d10121 elementor-widget elementor-widget-lst_listing_features" data-id="77d10121" data-element_type="widget" data-widget_type="lst_listing_features.default">
-                <div class="elementor-widget-container">
-                    <div class="listivo-heading-v2-wrapper" style="margin-bottom:50px">
-                            <div class="listivo-heading-v2 listivo-heading-v2--center listivo-heading-v2--tablet-center listivo-heading-v2--mobile-center">
-                                <h2 class="listivo-heading-v2__text">
-                                Experiences
-                                </h2>
+            <?php if($experiences): ?>
+                <div style="width: 100%; margin-top: 5%; padding: 20px; box-sizing: border-box; background-color: #f4f4f4; border-radius: 8px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);" class="elementor-element elementor-element-77d10121 elementor-widget elementor-widget-lst_listing_features" data-id="77d10121" data-element_type="widget" data-widget_type="lst_listing_features.default">
+                    <div class="elementor-widget-container">
+                        <div class="listivo-heading-v2-wrapper"  style="margin-bottom:50px">
+                                <div class="listivo-heading-v2 listivo-heading-v2--center listivo-heading-v2--tablet-center listivo-heading-v2--mobile-center">
+                                    <h2 class="listivo-heading-v2__text">
+                                    Experiences
+                                    </h2>
+                                </div>
                             </div>
-                        </div>
-                    <div class="listivo-listing-features">
-                        <?php foreach($experiences as $eachExp): ?>
-                            <div>
-                                <div class="listivo-listing-feature">
-                                    <div class="listivo-listing-feature__icon-wrapper">
-                                        <div class="listivo-listing-feature__icon">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="9" viewBox="0 0 12 9" fill="none">
-                                                <path d="M10.6633 0.000289842C10.4901 0.0054506 10.3257 0.0778367 10.205 0.202113L3.34299 7.06409L1.14768 4.86878C1.08625 4.8048 1.01267 4.75372 0.931251 4.71853C0.849832 4.68334 0.76221 4.66474 0.673516 4.66384C0.584823 4.66294 0.49684 4.67974 0.414722 4.71327C0.332604 4.7468 0.258001 4.79637 0.195282 4.85909C0.132563 4.92181 0.0829883 4.99641 0.0494622 5.07853C0.0159361 5.16065 -0.000867871 5.24863 3.45076e-05 5.33732C0.000936886 5.42602 0.0195273 5.51364 0.0547172 5.59506C0.0899072 5.67648 0.140989 5.75006 0.204971 5.81149L2.87164 8.47816C2.99667 8.60313 3.16621 8.67334 3.34299 8.67334C3.51977 8.67334 3.68932 8.60313 3.81435 8.47816L11.1477 1.14482C11.244 1.05118 11.3098 0.930619 11.3365 0.798939C11.3631 0.667259 11.3493 0.530603 11.297 0.406879C11.2446 0.283156 11.1561 0.178136 11.043 0.105583C10.9299 0.0330305 10.7976 -0.0036704 10.6633 0.000289842Z" fill="#FDFDFE"></path>
-                                            </svg>
+                        <div class="listivo-listing-features">
+                            <?php foreach($experiences as $eachExp): ?>
+                                <div>
+                                    <div class="listivo-listing-feature">
+                                        <div class="listivo-listing-feature__icon-wrapper">
+                                            <div class="listivo-listing-feature__icon">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="12" height="9" viewBox="0 0 12 9" fill="none">
+                                                    <path d="M10.6633 0.000289842C10.4901 0.0054506 10.3257 0.0778367 10.205 0.202113L3.34299 7.06409L1.14768 4.86878C1.08625 4.8048 1.01267 4.75372 0.931251 4.71853C0.849832 4.68334 0.76221 4.66474 0.673516 4.66384C0.584823 4.66294 0.49684 4.67974 0.414722 4.71327C0.332604 4.7468 0.258001 4.79637 0.195282 4.85909C0.132563 4.92181 0.0829883 4.99641 0.0494622 5.07853C0.0159361 5.16065 -0.000867871 5.24863 3.45076e-05 5.33732C0.000936886 5.42602 0.0195273 5.51364 0.0547172 5.59506C0.0899072 5.67648 0.140989 5.75006 0.204971 5.81149L2.87164 8.47816C2.99667 8.60313 3.16621 8.67334 3.34299 8.67334C3.51977 8.67334 3.68932 8.60313 3.81435 8.47816L11.1477 1.14482C11.244 1.05118 11.3098 0.930619 11.3365 0.798939C11.3631 0.667259 11.3493 0.530603 11.297 0.406879C11.2446 0.283156 11.1561 0.178136 11.043 0.105583C10.9299 0.0330305 10.7976 -0.0036704 10.6633 0.000289842Z" fill="#FDFDFE"></path>
+                                                </svg>
+                                            </div>
+                                        </div>
+                                        <div class="listivo-listing-feature__text">
+                                            <?php echo $eachExp['job_title'] ?> ( <?php echo $eachExp['start_date'] ; ?> - <?php if(!empty($eachExp['end_date']) && $eachExp['end_date'] !== '0000-00-00') { echo $eachExp['end_date']; }else { echo 'Present';} ?>  )
                                         </div>
                                     </div>
-                                    <div class="listivo-listing-feature__text">
-                                        <?php echo $eachExp['job_title'] ?> ( <?php echo $eachExp['start_date'] ; ?> - <?php if(!empty($eachExp['end_date']) && $eachExp['end_date'] !== '0000-00-00') { echo $eachExp['end_date']; }else { echo 'Present';} ?>  )
-                                    </div>
+                                    <?php if($eachExp['company_title']): ?>
+                                        <div class="listivo-listing-card-v4__content" style="padding-left:0px;">
+                                            <h3 class="listivo-listing-card-v4__name listivo-listing-card-name-selector">
+                                            <?php echo $eachExp['company_title']; ?>                    
+                                            </h3>
+                                        </div>                        
+                                    <?php endif; ?>
+                                    <?php if(!empty($eachExp['description'])): ?>
+                                        <div class="listivo-content-v2__text" style="margin-top:0px;">
+                                        <?php echo $eachExp['description']; ?>
+                                        </div>
+                                    <?php endif; ?>
                                 </div>
-                                <?php if($eachExp['company_title']): ?>
-                                    <div class="listivo-listing-card-v4__content" style="padding-left:0px;">
-                                        <h3 class="listivo-listing-card-v4__name listivo-listing-card-name-selector">
-                                        <?php echo $eachExp['company_title']; ?>                    
-                                        </h3>
-                                    </div>                        
-                                <?php endif; ?>
-                                <?php if(!empty($eachExp['description'])): ?>
-                                    <div class="listivo-content-v2__text" style="margin-top:0px;">
-                                    <?php echo $eachExp['description']; ?>
-                                    </div>
-                                <?php endif; ?>
-                            </div>
-                        <?php endforeach; ?>
+                            <?php endforeach; ?>
+                        </div>
                     </div>
                 </div>
-            </div>
-        <?php endif; ?>
+            <?php endif; ?>
             <?php if(count($portfolios)): ?>
                 <div style="width: 100%; margin-top: 5%; padding: 20px; box-sizing: border-box; background-color: #f4f4f4; border-radius: 8px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);" class="elementor-element elementor-element-77d10121 elementor-widget elementor-widget-lst_listing_features" data-id="77d10121" data-element_type="widget" data-widget_type="lst_listing_features.default">
                     <div class="elementor-widget-container">
+                        <div class="listivo-heading-v2-wrapper">
+                            <div class="listivo-heading-v2 listivo-heading-v2--center listivo-heading-v2--tablet-center listivo-heading-v2--mobile-center">
+                                <h2 class="listivo-heading-v2__text">
+                                   Portfolio
+                                </h2>
+                            </div>
+                        </div>	
                         
-
-                        <div class="listivo-mini-listing-carousel__nav" style="
-                            float: right;
-                            width: 10%;
-                        ">
+                        <div class="listivo-mini-listing-carousel__nav" >
                             <div class="listivo-box-arrow" onclick="prevSlide()">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="12" height="11" viewBox="0 0 12 11" fill="none">
                                     <path d="M4.86195 10.4713C4.99228 10.6017 5.16262 10.6667 5.33329 10.6667C5.50395 10.6667 5.67429 10.6017 5.80462 10.4713C6.06496 10.211 6.06496 9.78898 5.80462 9.52865L2.27593 5.99996H11.3333C11.7013 5.99996 12 5.70129 12 5.33329C12 4.96528 11.7013 4.66662 11.3333 4.66662H2.27593L5.80462 1.13792C6.06496 0.877589 6.06496 0.455586 5.80462 0.195251C5.54429 -0.0650838 5.12229 -0.0650838 4.86195 0.195251L0.195251 4.86195C-0.0650838 5.12229 -0.0650838 5.54429 0.195251 5.80462L4.86195 10.4713Z"></path>
@@ -588,30 +678,19 @@ $image_url = get_site_url() . '/wp-content/uploads/2022/08/award.png';
                             </div>
                         </div>
 
-                        <div class="listivo-heading-v2-wrapper" style="margin-bottom:50px;">
-                            <div class="listivo-heading-v2 listivo-heading-v2--center listivo-heading-v2--tablet-center listivo-heading-v2--mobile-center">
-                                <h2 class="listivo-heading-v2__text" style="margin-left: 12%;">
-                                   Portfolio
-                                </h2>
-                            </div>
-                        </div>		
-
                         <div class="carousel-container">
                             <div class="carousel">
                                 <div class="carousel-items">
                                     <?php foreach($portfolios as $eachPortfolio):  ?>
                                     <div class="carousel-item">
-                                        <!-- <img src="<?php echo $eachPortfolio['portfolio_image']; ?>" alt="Portfolio" class="carousel-image">
-                                        <div class="carousel-content">
-                                            <p style="margin-left:40%"><?php echo $eachPortfolio['portfolio_description']; ?></p>
-                                        </div> -->
+                                       
 
                                         <div class="elementor-element elementor-element-b41b050 elementor-widget elementor-widget-lst_content_v2" data-id="b41b050" data-element_type="widget" data-widget_type="lst_content_v2.default">
                                             <div class="elementor-widget-container">
                                                 <div class="listivo-content-v2">
                                                     <div class="listivo-content-v2__image-wrapper">
                                                         <div class="listivo-content-v2__image">
-                                                        <img decoding="async" style="height:370px; width:570px;" class=" ls-is-cached lazyloaded" src="<?php echo $eachPortfolio['portfolio_image']; ?>"  alt="Portfolio" style="aspect-ratio: 1024 / 683">
+                                                        <img decoding="async" class=" ls-is-cached lazyloaded" src="<?php echo $eachPortfolio['portfolio_image']; ?>"  alt="Portfolio" style="aspect-ratio: 1024 / 683">
                                                         </div>
                                                     </div>
                                                     <div class="listivo-content-v2__content">
@@ -682,52 +761,52 @@ $image_url = get_site_url() . '/wp-content/uploads/2022/08/award.png';
                 </div>
             <?php endif; ?>
             <?php if($type =='agency'): ?>
-            <div style="width: 100%; margin-top: 5%; padding: 20px; box-sizing: border-box; background-color: #f4f4f4; border-radius: 8px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);" class="elementor-element elementor-element-77d10121 elementor-widget elementor-widget-lst_listing_features" data-id="77d10121" data-element_type="widget" data-widget_type="lst_listing_features.default">
-                <div class="elementor-widget-container">
-                    <div class="listivo-heading-v2-wrapper"  style="margin-bottom:50px">
-                        <div class="listivo-heading-v2 listivo-heading-v2--center listivo-heading-v2--tablet-center listivo-heading-v2--mobile-center">
-                            <h2 class="listivo-heading-v2__text">
-                                Team
-                            </h2>
-                        </div>
-                    </div>		
-                    <div class="listivo-content-v2__text">
-                        <?php echo $lstUser->getTeamInfo(); ?>
-                    </div>
-                </div>
-            </div>
-            <?php endif; ?>
-
-        <?php if($educations && $type !='agency'): ?>
-            <div class="elementor-element elementor-element-51cd12f elementor-widget elementor-widget-progress" style="width: 100%; margin-top: 5%; padding: 20px; box-sizing: border-box; background-color: #f4f4f4; border-radius: 8px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);" data-id="51cd12f" data-element_type="widget" data-widget_type="progress.default">
+                <div style="width: 100%; margin-top: 5%; padding: 20px; box-sizing: border-box; background-color: #f4f4f4; border-radius: 8px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);" class="elementor-element elementor-element-77d10121 elementor-widget elementor-widget-lst_listing_features" data-id="77d10121" data-element_type="widget" data-widget_type="lst_listing_features.default">
                     <div class="elementor-widget-container">
-                    <div class="listivo-heading-v2-wrapper" style="margin-bottom:50px">
+                        <div class="listivo-heading-v2-wrapper">
                             <div class="listivo-heading-v2 listivo-heading-v2--center listivo-heading-v2--tablet-center listivo-heading-v2--mobile-center">
                                 <h2 class="listivo-heading-v2__text">
-                                Educations
+                                    Team
                                 </h2>
                             </div>
+                        </div>		
+                        <div class="listivo-content-v2__text">
+                            <?php echo $lstUser->getTeamInfo(); ?>
                         </div>
-
-                    <div class="listivo-listing-features">
-                        <?php foreach($educations as $education): ?>
-                        <div class="listivo-listing-feature">
-                            <div class="listivo-listing-feature__icon-wrapper">
-                                <div class="listivo-listing-feature__icon">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="9" viewBox="0 0 12 9" fill="none">
-                                        <path d="M10.6633 0.000289842C10.4901 0.0054506 10.3257 0.0778367 10.205 0.202113L3.34299 7.06409L1.14768 4.86878C1.08625 4.8048 1.01267 4.75372 0.931251 4.71853C0.849832 4.68334 0.76221 4.66474 0.673516 4.66384C0.584823 4.66294 0.49684 4.67974 0.414722 4.71327C0.332604 4.7468 0.258001 4.79637 0.195282 4.85909C0.132563 4.92181 0.0829883 4.99641 0.0494622 5.07853C0.0159361 5.16065 -0.000867871 5.24863 3.45076e-05 5.33732C0.000936886 5.42602 0.0195273 5.51364 0.0547172 5.59506C0.0899072 5.67648 0.140989 5.75006 0.204971 5.81149L2.87164 8.47816C2.99667 8.60313 3.16621 8.67334 3.34299 8.67334C3.51977 8.67334 3.68932 8.60313 3.81435 8.47816L11.1477 1.14482C11.244 1.05118 11.3098 0.930619 11.3365 0.798939C11.3631 0.667259 11.3493 0.530603 11.297 0.406879C11.2446 0.283156 11.1561 0.178136 11.043 0.105583C10.9299 0.0330305 10.7976 -0.0036704 10.6633 0.000289842Z" fill="#FDFDFE"></path>
-                                    </svg>
-                                </div>
-                            </div>
-                            <div class="listivo-listing-feature__text">
-                                <?php echo $education['degree_title'] ?> ( <?php echo $education['education_start_date'] ; ?> - <?php if(!empty($education['education_end_date']) && $education['education_end_date'] !== '0000-00-00') { echo $education['education_end_date']; }else { echo 'Present';} ?>  )
-                            </div>
-                        </div>
-                        <?php endforeach; ?>
                     </div>
                 </div>
-            </div>
-        <?php endif; ?>
+            <?php endif; ?>
+
+            <?php if($educations && $type !='agency'): ?>
+                <div class="elementor-element elementor-element-51cd12f elementor-widget elementor-widget-progress" style="width: 100%; margin-top: 5%; padding: 20px; box-sizing: border-box; background-color: #f4f4f4; border-radius: 8px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);" data-id="51cd12f" data-element_type="widget" data-widget_type="progress.default">
+                        <div class="elementor-widget-container">
+                        <div class="listivo-heading-v2-wrapper" style="margin-bottom:50px">
+                                <div class="listivo-heading-v2 listivo-heading-v2--center listivo-heading-v2--tablet-center listivo-heading-v2--mobile-center">
+                                    <h2 class="listivo-heading-v2__text">
+                                    Educations
+                                    </h2>
+                                </div>
+                            </div>
+
+                        <div class="listivo-listing-features edu_div" style="flex-wrap: nowrap">
+                            <?php foreach($educations as $education): ?>
+                            <div class="listivo-listing-feature">
+                                <div class="listivo-listing-feature__icon-wrapper">
+                                    <div class="listivo-listing-feature__icon">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="12" height="9" viewBox="0 0 12 9" fill="none">
+                                            <path d="M10.6633 0.000289842C10.4901 0.0054506 10.3257 0.0778367 10.205 0.202113L3.34299 7.06409L1.14768 4.86878C1.08625 4.8048 1.01267 4.75372 0.931251 4.71853C0.849832 4.68334 0.76221 4.66474 0.673516 4.66384C0.584823 4.66294 0.49684 4.67974 0.414722 4.71327C0.332604 4.7468 0.258001 4.79637 0.195282 4.85909C0.132563 4.92181 0.0829883 4.99641 0.0494622 5.07853C0.0159361 5.16065 -0.000867871 5.24863 3.45076e-05 5.33732C0.000936886 5.42602 0.0195273 5.51364 0.0547172 5.59506C0.0899072 5.67648 0.140989 5.75006 0.204971 5.81149L2.87164 8.47816C2.99667 8.60313 3.16621 8.67334 3.34299 8.67334C3.51977 8.67334 3.68932 8.60313 3.81435 8.47816L11.1477 1.14482C11.244 1.05118 11.3098 0.930619 11.3365 0.798939C11.3631 0.667259 11.3493 0.530603 11.297 0.406879C11.2446 0.283156 11.1561 0.178136 11.043 0.105583C10.9299 0.0330305 10.7976 -0.0036704 10.6633 0.000289842Z" fill="#FDFDFE"></path>
+                                        </svg>
+                                    </div>
+                                </div>
+                                <div class="listivo-listing-feature__text">
+                                    <?php echo $education['degree_title'] ?> ( <?php echo $education['education_start_date'] ; ?> - <?php if(!empty($education['education_end_date']) && $education['education_end_date'] !== '0000-00-00') { echo $education['education_end_date']; }else { echo 'Present';} ?>  )
+                                </div>
+                            </div>
+                            <?php endforeach; ?>
+                        </div>
+                    </div>
+                </div>
+            <?php endif; ?>
 
         <div class="elementor-element elementor-element-aa918a9 elementor-widget elementor-widget-spacer" data-id="aa918a9" data-element_type="widget" data-widget_type="spacer.default">
             <div class="elementor-widget-container">
@@ -738,12 +817,16 @@ $image_url = get_site_url() . '/wp-content/uploads/2022/08/award.png';
         </div>
         <?php if(count($awards) > 0): ?>
 
-            <div class="elementor-element elementor-element-6057b14 elementor-widget elementor-widget-lst_services_v4" data-id="6057b14" data-element_type="widget" data-widget_type="lst_services_v4.default" style="
-    width: 100%;
-    margin-top: 60px;
-">
-                <div class="elementor-widget-container">
+            <div class="elementor-element elementor-element-6057b14 elementor-widget elementor-widget-lst_services_v4" data-id="6057b14" data-element_type="widget" data-widget_type="lst_services_v4.default" style="width: 100%; margin-top: 5%; padding: 20px; box-sizing: border-box; background-color: #f4f4f4; border-radius: 8px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+                <div class="elementor-widget-container" style="padding-top:20px;">
                     <div class="listivo-services-v4">
+                    <div class="listivo-heading-v2-wrapper" style="margin-bottom:50px">
+                                <div class="listivo-heading-v2 listivo-heading-v2--center listivo-heading-v2--tablet-center listivo-heading-v2--mobile-center">
+                                    <h2 class="listivo-heading-v2__text">
+                                    Awards
+                                    </h2>
+                                </div>
+                            </div>
                         <div class="listivo-services-v4__list">
                             <div class="listivo-service-v4">
                                 <div class="listivo-service-v4__image">

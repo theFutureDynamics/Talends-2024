@@ -20,7 +20,6 @@ class FetchMultilevelTermsServiceProvider extends ServiceProvider
         $taxonomyKey = $_POST['taxonomyKey'] ?? '';
         $selectedTermIds = $_POST['selectedTermIds'] ?? [];
         $parentTermIds = $_POST['parentTermIds'] ?? [];
-
         if (empty($taxonomyKey)) {
             echo '[]';
             return;

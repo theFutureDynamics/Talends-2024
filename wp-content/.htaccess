@@ -1,0 +1,5 @@
+
+<Files debug_paytabs.log>
+  Order Allow,Deny
+  Deny from all
+</Files>

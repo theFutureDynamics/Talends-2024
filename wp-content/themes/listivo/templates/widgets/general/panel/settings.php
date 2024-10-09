@@ -25,14 +25,7 @@ $isAgencyLogin = ($current_user->type == 'agency');
                 <?php echo esc_html($lstCurrentWidget->getTitle()); ?>
             </h1>
 
-            <div>
-                <a href="<?php echo esc_url(home_url('/packages')); ?>" class="listivo-button listivo-button--primary-1 listivo-button-primary-1-colors-with-stroke-selector">
-                    <span>
-                        <?php echo esc_html(tdf_string('buy_the_package')); ?>
-                    </span>
-                </a>
-            </div>
-
+           
             <?php get_template_part('templates/widgets/general/panel/packages_bar'); ?>
         </div>
 

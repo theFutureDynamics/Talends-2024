@@ -44,15 +44,15 @@ if (!tdf_current_user()->canCreateModels()) {
         </a>
     <?php endif; ?>
 
-    <?php if (tdf_current_user()->hasPackages() || tdf_current_user()->getNotEmptyBumpUpPackage()) : ?>
-        <a
+   <?php if (tdf_current_user()->hasPackages() || tdf_current_user()->getNotEmptyBumpUpPackage()) : ?>
+        <a style="display:none"
                 class="listivo-packages-bar__current listivo-button-primary-2-selector"
                 href="<?php echo esc_url(PanelWidget::getUrl(PanelWidget::ACTION_MY_PACKAGES)); ?>"
         >
             <?php echo esc_html(tdf_string('my_packages')); ?>
         </a>
     <?php endif; ?>
-
+    
     <?php if (tdf_payment_packages_repository()->getRegularPaymentPackagesForUser(tdf_current_user())->isNotEmpty()) : ?>
         <a
                 class="listivo-packages-bar__buy"

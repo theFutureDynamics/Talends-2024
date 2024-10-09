@@ -5,6 +5,17 @@ const LISTIVO_VERSION = '2.3.62';
 require get_template_directory() . '/basic.php';
 require get_template_directory() . '/src/tgm/class-tgm-plugin-activation.php';
 
+//add_action('template_redirect', 'redirect_after_successful_payment1');
+
+//function redirect_after_successful_payment1() {
+    // Check if the specific query parameter is set for successful payments
+    if (isset($_GET['wc-api']) && $_GET['wc-api'] === 'wc_gateway_r_paytabs_all') {
+        // Redirect to the home URL
+        wp_redirect('http://54.174.237.66/'); // Your target URL
+        exit; // Always call exit after redirecting
+    }
+//}
+
 add_action('after_setup_theme', static function () {
     add_theme_support('post-thumbnails');
     add_theme_support('nav-menus');

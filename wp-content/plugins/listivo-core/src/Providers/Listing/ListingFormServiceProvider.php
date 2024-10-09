@@ -178,7 +178,7 @@ class ListingFormServiceProvider extends ServiceProvider
         }
 
         do_action(tdf_prefix() . '/model/update', $model, false);
-        $this->updateAccountType($modelId);
+        //$this->updateAccountType($modelId);
         $this->successJsonResponse($response);
     }
 

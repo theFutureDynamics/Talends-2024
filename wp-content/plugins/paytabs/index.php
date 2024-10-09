@@ -633,10 +633,3 @@ function handle_paytabs_webhook() {
 
 
 ?>
-
-<script>
-submitForm(amount){
-    alert(amount);
-}
-    
-</script>

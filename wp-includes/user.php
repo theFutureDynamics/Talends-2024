@@ -2638,23 +2638,23 @@ function updateUserAdditionalFields($user_id){
 
 
 	// Construct the SQL query
-	$sql = "UPDATE {$wpdb->users} SET ";
-	$sets = array();
-	foreach ( $sanitized_fields as $key => $value ) {
-		// Use %f for decimal values and %s for strings
-		$placeholder = (is_numeric($value) && $key !="joined" && $key != "agency_founded" && $key !="total_jobs_delivered") ? '%f' : '%s';
-		$sets[] = "{$key} = {$placeholder}";
-	}
-	$sql .= implode(', ', $sets);
-	$sql .= " WHERE ID = %d";
+	// $sql = "UPDATE {$wpdb->users} SET ";
+	// $sets = array();
+	// foreach ( $sanitized_fields as $key => $value ) {
+	// 	// Use %f for decimal values and %s for strings
+	// 	$placeholder = (is_numeric($value) && $key !="joined" && $key != "agency_founded" && $key !="total_jobs_delivered") ? '%f' : '%s';
+	// 	$sets[] = "{$key} = {$placeholder}";
+	// }
+	// $sql .= implode(', ', $sets);
+	// $sql .= " WHERE ID = %d";
 
 
-	// Prepare the query with $wpdb->prepare
-	$values = array_values($sanitized_fields);
-	$values[] = $user_id; // Add user ID for the WHERE clause
-	$sql = $wpdb->prepare($sql, ...$values);
-	// Execute the query
-	$updated = $wpdb->query($sql);
+	// // Prepare the query with $wpdb->prepare
+	// $values = array_values($sanitized_fields);
+	// $values[] = $user_id; // Add user ID for the WHERE clause
+	// $sql = $wpdb->prepare($sql, ...$values);
+	// // Execute the query
+	// $updated = $wpdb->query($sql);
 	updateSkills($user_id);
 	updateExperiences($user_id);
 	updateEducation($user_id);

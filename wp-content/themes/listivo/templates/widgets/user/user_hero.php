@@ -19,11 +19,18 @@ $property->setAccessible(true); // Allow access to the protected property
 // Get the WP_User object from the protected 'user' property
 $wpUser = $property->getValue($lstUser);
 
+
 // Access the 'data' property of the WP_User object
 $data = $wpUser->data;
 
-// Access the 'type' property from the stdClass object
-$type = $data->type;
+global $wpdb;
+$account_type = $wpdb->get_var($wpdb->prepare(
+    "SELECT meta_value FROM $wpdb->usermeta WHERE user_id = %d AND meta_key = %s",
+    $data->ID,
+    'account_type'
+));
+
+
 
 $experiences = $lstUser->getUserExperiences();
 $educations = $lstUser->getUserEducation();
@@ -539,7 +546,7 @@ $image_url = get_site_url() . '/wp-content/uploads/2022/08/award.png';
                     <?php endif; ?>
                 </div>
             </div>
-            <?php if(count($servics) > 0 && $type =='agency'): ?>
+            <?php if(count($servics) > 0 && $account_type =='business'): ?>
                 <div style="width: 100%; margin-top: 5%; padding: 20px; box-sizing: border-box; background-color: #f4f4f4; border-radius: 8px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);" class="elementor-element elementor-element-77d10121 elementor-widget elementor-widget-lst_listing_features" data-element_type="widget" data-widget_type="lst_listing_features.default">
                     <div class="elementor-widget-container">
 
@@ -760,13 +767,14 @@ $image_url = get_site_url() . '/wp-content/uploads/2022/08/award.png';
                     </div>
                 </div>
             <?php endif; ?>
-            <?php if($type =='agency'): ?>
+            <?php if($account_type =='business' && !empty($lstUser->getTeamInfo())): ?>
                 <div style="width: 100%; margin-top: 5%; padding: 20px; box-sizing: border-box; background-color: #f4f4f4; border-radius: 8px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);" class="elementor-element elementor-element-77d10121 elementor-widget elementor-widget-lst_listing_features" data-id="77d10121" data-element_type="widget" data-widget_type="lst_listing_features.default">
                     <div class="elementor-widget-container">
                         <div class="listivo-heading-v2-wrapper">
                             <div class="listivo-heading-v2 listivo-heading-v2--center listivo-heading-v2--tablet-center listivo-heading-v2--mobile-center">
                                 <h2 class="listivo-heading-v2__text">
-                                    Team
+                                
+                                Team
                                 </h2>
                             </div>
                         </div>		
@@ -776,8 +784,7 @@ $image_url = get_site_url() . '/wp-content/uploads/2022/08/award.png';
                     </div>
                 </div>
             <?php endif; ?>
-
-            <?php if($educations && $type !='agency'): ?>
+            <?php if($educations && $account_type == 'regular'): ?>
                 <div class="elementor-element elementor-element-51cd12f elementor-widget elementor-widget-progress" style="width: 100%; margin-top: 5%; padding: 20px; box-sizing: border-box; background-color: #f4f4f4; border-radius: 8px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);" data-id="51cd12f" data-element_type="widget" data-widget_type="progress.default">
                         <div class="elementor-widget-container">
                         <div class="listivo-heading-v2-wrapper" style="margin-bottom:50px">

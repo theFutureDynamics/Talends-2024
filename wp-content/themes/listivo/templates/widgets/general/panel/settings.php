@@ -13,8 +13,17 @@ if (!$lstCurrentUser instanceof User) {
     return;
 }
 $current_user = wp_get_current_user();
-$isEmployerLogin = ($current_user->type == 'employer');
-$isAgencyLogin = ($current_user->type == 'agency');
+$user_id = $current_user->ID;
+
+global $wpdb;
+$account_type = $wpdb->get_var($wpdb->prepare(
+    "SELECT meta_value FROM $wpdb->usermeta WHERE user_id = %d AND meta_key = %s",
+    $user_id,
+    'account_type'
+));
+
+// $isEmployerLogin = ($current_user->type == 'employer');
+// $isAgencyLogin = ($current_user->type == 'agency');
 // $expertises = $lstCurrentUser->getUserExpertises();
 ?>
 <div class="listivo-panel-section">
@@ -45,11 +54,12 @@ $isAgencyLogin = ($current_user->type == 'agency');
                     <?php get_template_part('templates/widgets/general/panel/settings/subscription'); ?>
 
                     <?php get_template_part('templates/widgets/general/panel/settings/details'); ?>
-                    <?php if(!$isEmployerLogin): ?>
+                    <?php // if(!$isEmployerLogin): ?>
+                        <?php if($account_type !='business'): ?>
                     <?php get_template_part('templates/widgets/general/panel/settings/experience'); ?>
-
+                    <?php endif; ?>
                     <?php get_template_part('templates/widgets/general/panel/settings/expertise'); ?>
-                    <?php if(!$isAgencyLogin): ?>
+                    <?php if($account_type !='business'): ?>
                     <?php get_template_part('templates/widgets/general/panel/settings/education'); ?>
                     <?php endif; ?>
                     <?php get_template_part('templates/widgets/general/panel/settings/awards'); ?>
@@ -59,7 +69,7 @@ $isAgencyLogin = ($current_user->type == 'agency');
                     <?php // get_template_part('templates/widgets/general/panel/settings/image'); ?>
 
                     <?php get_template_part('templates/widgets/general/panel/settings/socials'); ?>
-                    <?php endif; ?>
+                    <?php // endif; ?>
                     <?php get_template_part('templates/widgets/general/panel/settings/change_password'); ?>
 
                     <?php get_template_part('templates/widgets/general/panel/settings/change_email'); ?>

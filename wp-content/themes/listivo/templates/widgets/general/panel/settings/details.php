@@ -1,5 +1,4 @@
 <?php
-
 use Tangibledesign\Framework\Models\User\User;
 use Tangibledesign\Listivo\Widgets\General\PanelWidget;
 
@@ -34,10 +33,19 @@ $skillsOptions = array_map(function($skill) {
 
 $skillOptionsJson = htmlspecialchars(json_encode($skillsOptions));
 $current_user = wp_get_current_user();
-$showAgencySettings = ($current_user->type == 'agency');
+$user_id = $current_user->ID;
+
+global $wpdb;
+$account_type = $wpdb->get_var($wpdb->prepare(
+    "SELECT meta_value FROM $wpdb->usermeta WHERE user_id = %d AND meta_key = %s",
+    $user_id,
+    'account_type'
+));
+
+// $showAgencySettings = ($current_user->type == 'agency');
 $showEmployerSettings = ($current_user->type == 'employer');
-$showInterneSettings = ($current_user->type == 'intern');
-$showFreelancerSettings = ($current_user->type == 'freelancer');
+//$showInterneSettings = ($current_user->type == 'intern');
+// $showFreelancerSettings = ($current_user->type == 'freelancer');
 
 //   print_r($lstCurrentWidget->getUserSettings());die;
 ?>
@@ -803,7 +811,7 @@ $showFreelancerSettings = ($current_user->type == 'freelancer');
                     </div>
                
                     
-                    <?php  if($showAgencySettings): ?>
+                    <?php  if($account_type == "business"): ?>
                         <div class="listivo-panel-user-settings__field listivo-panel-user-settings__field--full-width listivo-field-group">
                             <label
                                     class="listivo-field-group__label"
@@ -851,10 +859,9 @@ $showFreelancerSettings = ($current_user->type == 'freelancer');
                                     <?php echo wp_kses_post(tdf_settings()->getMarketingConsentsLabel()); ?>
                                 </div>
                             </div>
-                        <?php endif; ?>
-                    <!-- </div> -->
+                    <?php endif; ?>
                     
-                        <?php if (!tdf_settings()->disableWhatsApp()) : ?>
+                    <?php if (!tdf_settings()->disableWhatsApp()) : ?>
                             <div class="listivo-field-group listivo-field-group--checkbox listivo-margin-top-7">
                                 <div class="listivo-field-group__field">
                                     <div
@@ -879,266 +886,266 @@ $showFreelancerSettings = ($current_user->type == 'freelancer');
                                     <?php echo esc_html(tdf_string('enable_whats_app')); ?>
                                 </div>
                             </div>
-                        <?php endif; ?>
+                    <?php endif; ?>
                 
-                        <?php if (!tdf_settings()->disableViber()) : ?>
-                            <div class="listivo-field-group listivo-field-group--checkbox listivo-margin-top-7">
-                                <div class="listivo-field-group__field">
-                                    <div
-                                            class="listivo-checkbox"
-                                            :class="{'listivo-checkbox--checked': props.viber}"
-                                            @click.prevent="props.setViber"
-                                    >
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="12"
-                                             height="11"
-                                             viewBox="0 0 12 11"
-                                             fill="none">
-                                            <path d="M11.7142 0.779513L10.6378 0.103783C10.3399 -0.0824758 9.93186 -0.011004 9.73252 0.261887L4.45585 7.44801L2.03093 5.20858C1.77765 4.97467 1.3649 4.97467 1.11162 5.20858L0.18996 6.05974C-0.06332 6.29364 -0.06332 6.67482 0.18996 6.9109L3.91881 10.3545C4.12753 10.5473 4.45585 10.6945 4.75135 10.6945C5.04684 10.6945 5.34468 10.5235 5.53698 10.2657L11.8877 1.61335C12.0894 1.34046 12.012 0.965772 11.7142 0.779513Z"
-                                                  fill="#FDFDFE"/>
-                                        </svg>
-                                    </div>
-                                </div>
-
+                    <?php if (!tdf_settings()->disableViber()) : ?>
+                        <div class="listivo-field-group listivo-field-group--checkbox listivo-margin-top-7">
+                            <div class="listivo-field-group__field">
                                 <div
-                                        class="listivo-field-group__label"
+                                        class="listivo-checkbox"
+                                        :class="{'listivo-checkbox--checked': props.viber}"
                                         @click.prevent="props.setViber"
                                 >
-                                    <?php echo esc_html(tdf_string('enable_viber')); ?>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="12"
+                                            height="11"
+                                            viewBox="0 0 12 11"
+                                            fill="none">
+                                        <path d="M11.7142 0.779513L10.6378 0.103783C10.3399 -0.0824758 9.93186 -0.011004 9.73252 0.261887L4.45585 7.44801L2.03093 5.20858C1.77765 4.97467 1.3649 4.97467 1.11162 5.20858L0.18996 6.05974C-0.06332 6.29364 -0.06332 6.67482 0.18996 6.9109L3.91881 10.3545C4.12753 10.5473 4.45585 10.6945 4.75135 10.6945C5.04684 10.6945 5.34468 10.5235 5.53698 10.2657L11.8877 1.61335C12.0894 1.34046 12.012 0.965772 11.7142 0.779513Z"
+                                                fill="#FDFDFE"/>
+                                    </svg>
                                 </div>
                             </div>
-                        <?php endif; ?>
 
+                            <div
+                                    class="listivo-field-group__label"
+                                    @click.prevent="props.setViber"
+                            >
+                                <?php echo esc_html(tdf_string('enable_viber')); ?>
+                            </div>
+                        </div>
+                    <?php endif; ?>
+
+                    <div class="listivo-panel-user-settings__field listivo-panel-user-settings__field listivo-field-group" style="float:left;">
+                        <label
+                                class="listivo-field-group__label"
+                                for="listivo-tagline"
+                        >
+                            <?php echo esc_html(tdf_string('tag_line')); ?>
+                        </label>
+
+                        <div class="listivo-panel-user-settings__field listivo-panel-user-settings__field--full-width listivo-field-group">
+                            <div
+                                    class="listivo-input-v2"
+                                    
+                            >
+                                <input
+                                        id="listivo-tagline"
+                                        type="text"
+                                        :value="props.tagline"
+                                        @input="props.setTagline($event.target.value)"
+                                        placeholder="<?php echo esc_attr(tdf_string('tag_line')); ?>"
+                                >
+                            </div>
+                        </div>
+                    </div>
+                        
+
+                        
+                    <?php  if($account_type == "business"): ?>
                         <div class="listivo-panel-user-settings__field listivo-panel-user-settings__field listivo-field-group" style="float:left;">
                             <label
+                                style="margin-left:40px;"
                                     class="listivo-field-group__label"
                                     for="listivo-tagline"
                             >
-                                <?php echo esc_html(tdf_string('tag_line')); ?>
+                                <?php echo esc_html(tdf_string('joined_since')); ?>
                             </label>
 
-                            <div class="listivo-panel-user-settings__field listivo-panel-user-settings__field--full-width listivo-field-group">
-                                <div
-                                        class="listivo-input-v2"
-                                        
-                                >
+
+                            <div class="listivo-panel-user-settings__field listivo-panel-user-settings__field listivo-field-group">
+                                <div class="listivo-input-v2">
                                     <input
-                                            id="listivo-tagline"
+                                            style="margin-left:40px"
+                                            id="listivo-joined_since"
+                                            inputmode="numeric" oninput="this.value = this.value.replace(/\D+/g, '')"
                                             type="text"
-                                            :value="props.tagline"
-                                            @input="props.setTagline($event.target.value)"
-                                            placeholder="<?php echo esc_attr(tdf_string('tag_line')); ?>"
+                                            :value="props.joined_since"
+                                            @input="props.setJoinedSince"
+                                            placeholder="<?php echo esc_attr(tdf_string('joined_since')); ?>"
                                     >
                                 </div>
                             </div>
                         </div>
                         
+                        <div style="float:right;margin-top:0px;" class="listivo-panel-user-settings__field listivo-panel-user-settings__field listivo-field-group">
+                            <label
+                                    style="padding-left:4%"
+                                    class="listivo-field-group__label"
+                                    for="listivo-tagline"
+                            >
+                                <?php echo esc_html(tdf_string('agency_founded')); ?>
+                            </label>
 
-                        
-                        <?php  if($showAgencySettings): ?>
-                            <div class="listivo-panel-user-settings__field listivo-panel-user-settings__field listivo-field-group" style="float:left;">
-                                <label
-                                    style="margin-left:40px;"
-                                        class="listivo-field-group__label"
-                                        for="listivo-tagline"
-                                >
-                                    <?php echo esc_html(tdf_string('joined_since')); ?>
-                                </label>
-
-
-                                <div class="listivo-panel-user-settings__field listivo-panel-user-settings__field listivo-field-group">
-                                    <div class="listivo-input-v2">
-                                        <input
-                                                style="margin-left:40px"
-                                                id="listivo-joined_since"
-                                                inputmode="numeric" oninput="this.value = this.value.replace(/\D+/g, '')"
-                                                type="text"
-                                                :value="props.joined_since"
-                                                @input="props.setJoinedSince"
-                                                placeholder="<?php echo esc_attr(tdf_string('joined_since')); ?>"
-                                        >
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <div style="float:right;margin-top:0px;" class="listivo-panel-user-settings__field listivo-panel-user-settings__field listivo-field-group">
-                                <label
-                                        style="padding-left:4%"
-                                        class="listivo-field-group__label"
-                                        for="listivo-tagline"
-                                >
-                                    <?php echo esc_html(tdf_string('agency_founded')); ?>
-                                </label>
-
-
-                                <div class="listivo-panel-user-settings__field listivo-panel-user-settings__field listivo-field-group">
-                                    <div class="listivo-input-v2">
-                                        <input
-                                                id="listivo-agency_founded"
-                                                inputmode="numeric" oninput="this.value = this.value.replace(/\D+/g, '')"
-                                                type="text"
-                                                :value="props.agency_founded"
-                                                @input="props.setAgencyFounded"
-                                                placeholder="<?php echo esc_attr(tdf_string('agency_founded')); ?>"
-                                        >
-                                    </div>
-                                </div>
-                            </div>
 
                             <div class="listivo-panel-user-settings__field listivo-panel-user-settings__field listivo-field-group">
-                                <label
-                                        class="listivo-field-group__label"
-                                        for="listivo-tagline"
-                                >
-                                    <?php echo esc_html(tdf_string('total_jobs_delivered')); ?>
-                                </label>
-
-
-                                <div class="listivo-panel-user-settings__field listivo-panel-user-settings__field listivo-field-group">
-                                    <div class="listivo-input-v2">
-                                        <input
-                                                id="listivo-total_jobs_delivered"
-                                                type="text"
-                                                inputmode="numeric" oninput="this.value = this.value.replace(/\D+/g, '')"
-                                                :value="props.total_jobs_delivered"
-                                                @input="props.setTotalJobsDelivered"
-                                                placeholder="<?php echo esc_attr(tdf_string('total_jobs_delivered')); ?>"
-                                        >
-                                    </div>
+                                <div class="listivo-input-v2">
+                                    <input
+                                            id="listivo-agency_founded"
+                                            inputmode="numeric" oninput="this.value = this.value.replace(/\D+/g, '')"
+                                            type="text"
+                                            :value="props.agency_founded"
+                                            @input="props.setAgencyFounded"
+                                            placeholder="<?php echo esc_attr(tdf_string('agency_founded')); ?>"
+                                    >
                                 </div>
                             </div>
+                        </div>
 
-                            
+                        <div class="listivo-panel-user-settings__field listivo-panel-user-settings__field listivo-field-group">
+                            <label
+                                    class="listivo-field-group__label"
+                                    for="listivo-tagline"
+                            >
+                                <?php echo esc_html(tdf_string('total_jobs_delivered')); ?>
+                            </label>
 
-                            
 
-                            
+                            <div class="listivo-panel-user-settings__field listivo-panel-user-settings__field listivo-field-group">
+                                <div class="listivo-input-v2">
+                                    <input
+                                            id="listivo-total_jobs_delivered"
+                                            type="text"
+                                            inputmode="numeric" oninput="this.value = this.value.replace(/\D+/g, '')"
+                                            :value="props.total_jobs_delivered"
+                                            @input="props.setTotalJobsDelivered"
+                                            placeholder="<?php echo esc_attr(tdf_string('total_jobs_delivered')); ?>"
+                                    >
+                                </div>
+                            </div>
+                        </div>
 
-                        <?php endif; ?>
+                        
+
+                        
+
+                        
+
+                    <?php endif; ?>
                        
                         
-                        <?php  if($showAgencySettings): ?>
-                            <div class="listivo-panel-user-settings__field listivo-field-group" style="float:right;margin-top:3%">
-                                        <label
-                                                class="listivo-field-group__label"
-                                                for="listivo-account-type"
+                    <?php  if($account_type == "business"): ?>
+                        <div class="listivo-panel-user-settings__field listivo-field-group" style="float:right;margin-top:3%">
+                                    <label
+                                            class="listivo-field-group__label"
+                                            for="listivo-account-type"
+                                    >
+                                        <?php echo esc_html(tdf_string('budget')); ?>
+                                        
+                                    </label>
+                                    <div class="listivo-field-group__field" style="margin-top: 6%;">
+                                        <lst-select
+                                                :options="<?php echo htmlspecialchars(json_encode([
+                                                    [
+                                                        'name' => tdf_string('500_hundard'),
+                                                        'value' => '$500',
+                                                    ],
+                                                    [
+                                                        'name' => tdf_string('5_thousand'),
+                                                        'value' => '$5000',
+                                                    ],
+                                                    [
+                                                        'name' => tdf_string('10_thousand'),
+                                                        'value' => '$10000',
+                                                    ],
+                                                    [
+                                                        'name' => tdf_string('25_thousand'),
+                                                        'value' => '$25000',
+                                                    ],
+                                                    [
+                                                        'name' => tdf_string('50_thousand'),
+                                                        'value' => '$50000',
+                                                    ],
+                                                    [
+                                                        'name' => tdf_string('1_lakh'),
+                                                        'value' => '$100000',
+                                                    ]
+                                                ])); ?>"
+                                                @input="props.setBudget"
+                                                active-text-class="listivo-select-v2__option--highlight-text"
+                                                highlight-option-class="listivo-select-v2__option--highlight"
+                                                :is-selected="props.isBudgetSet"
+                                                order-type="custom"
                                         >
-                                            <?php echo esc_html(tdf_string('budget')); ?>
-                                            
-                                        </label>
-                                        <div class="listivo-field-group__field" style="margin-top: 6%;">
-                                            <lst-select
-                                                    :options="<?php echo htmlspecialchars(json_encode([
-                                                        [
-                                                            'name' => tdf_string('500_hundard'),
-                                                            'value' => '$500',
-                                                        ],
-                                                        [
-                                                            'name' => tdf_string('5_thousand'),
-                                                            'value' => '$5000',
-                                                        ],
-                                                        [
-                                                            'name' => tdf_string('10_thousand'),
-                                                            'value' => '$10000',
-                                                        ],
-                                                        [
-                                                            'name' => tdf_string('25_thousand'),
-                                                            'value' => '$25000',
-                                                        ],
-                                                        [
-                                                            'name' => tdf_string('50_thousand'),
-                                                            'value' => '$50000',
-                                                        ],
-                                                        [
-                                                            'name' => tdf_string('1_lakh'),
-                                                            'value' => '$100000',
-                                                        ]
-                                                    ])); ?>"
-                                                    @input="props.setBudget"
-                                                    active-text-class="listivo-select-v2__option--highlight-text"
-                                                    highlight-option-class="listivo-select-v2__option--highlight"
-                                                    :is-selected="props.isBudgetSet"
-                                                    order-type="custom"
+                                            <div
+                                                    slot-scope="select"
+                                                    @click="select.onOpen"
+                                                    @focusin="select.focusIn"
+                                                    @focusout="select.focusOut"
+                                                    @keyup.esc="select.onClose"
+                                                    @keyup.up="select.decreaseOptionIndex"
+                                                    @keyup.down="select.increaseOptionIndex"
+                                                    @keyup.enter="select.setOptionByIndex"
+                                                    tabindex="0"
+                                                    class="listivo-login-form__field listivo-select-v2"
+                                                    :class="{
+                                                                            'listivo-select-v2--open':  select.open,
+                                                                        }"
                                             >
-                                                <div
-                                                        slot-scope="select"
-                                                        @click="select.onOpen"
-                                                        @focusin="select.focusIn"
-                                                        @focusout="select.focusOut"
-                                                        @keyup.esc="select.onClose"
-                                                        @keyup.up="select.decreaseOptionIndex"
-                                                        @keyup.down="select.increaseOptionIndex"
-                                                        @keyup.enter="select.setOptionByIndex"
-                                                        tabindex="0"
-                                                        class="listivo-login-form__field listivo-select-v2"
-                                                        :class="{
-                                                                                'listivo-select-v2--open':  select.open,
-                                                                            }"
-                                                >
-                                                    <div class="listivo-select-v2__arrow">
-                                                        <svg xmlns="http://www.w3.org/2000/svg" width="7"
-                                                            height="5"
-                                                            viewBox="0 0 7 5" fill="none">
-                                                            <path d="M3.5 2.56768L5.87477 0.192917C6.13207 -0.0643854 6.54972 -0.0643854 6.80702 0.192917C7.06433 0.45022 7.06433 0.86787 6.80702 1.12517L3.9394 3.99279C3.6964 4.2358 3.30298 4.2358 3.0606 3.99279L0.192977 1.12517C-0.0643257 0.86787 -0.0643257 0.45022 0.192977 0.192917C0.45028 -0.0643854 0.86793 -0.0643854 1.12523 0.192917L3.5 2.56768Z"
-                                                                fill="#2A3946"/>
-                                                        </svg>
+                                                <div class="listivo-select-v2__arrow">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="7"
+                                                        height="5"
+                                                        viewBox="0 0 7 5" fill="none">
+                                                        <path d="M3.5 2.56768L5.87477 0.192917C6.13207 -0.0643854 6.54972 -0.0643854 6.80702 0.192917C7.06433 0.45022 7.06433 0.86787 6.80702 1.12517L3.9394 3.99279C3.6964 4.2358 3.30298 4.2358 3.0606 3.99279L0.192977 1.12517C-0.0643257 0.86787 -0.0643257 0.45022 0.192977 0.192917C0.45028 -0.0643854 0.86793 -0.0643854 1.12523 0.192917L3.5 2.56768Z"
+                                                            fill="#2A3946"/>
+                                                    </svg>
+                                                </div>
+
+                                                <template>
+                                                    <div class="listivo-select-v2__placeholder">
+                                                        <div v-if="props.budget === '$500'">
+                                                            <?php echo esc_html(tdf_string('500_hundard')); ?>
+                                                        </div>
+
+                                                        <div v-else-if="props.budget === '$5000'">
+                                                            <?php echo esc_html(tdf_string('5_thousand')); ?>
+                                                        </div>
+
+                                                        <div v-else-if="props.budget === '$10000'">
+                                                            <?php echo esc_html(tdf_string('10_thousand')); ?>
+                                                        </div>
+
+                                                        <div v-else-if="props.budget === '$25000'">
+                                                            <?php echo esc_html(tdf_string('25_thousand')); ?>
+                                                        </div>
+
+                                                        <div v-else-if="props.budget === '$50000'">
+                                                            <?php echo esc_html(tdf_string('50_thousand')); ?>
+                                                        </div>
+
+                                                        <div v-else-if="props.budget === '$100000'">
+                                                            <?php echo esc_html(tdf_string('1_lakh')); ?>
+                                                        </div>
+                                                        <div v-else>
+                                                            <?php echo esc_html(tdf_string('budget')); ?>
+                                                        </div>
                                                     </div>
 
-                                                    <template>
-                                                        <div class="listivo-select-v2__placeholder">
-                                                            <div v-if="props.budget === '$500'">
-                                                                <?php echo esc_html(tdf_string('500_hundard')); ?>
-                                                            </div>
-
-                                                            <div v-else-if="props.budget === '$5000'">
-                                                                <?php echo esc_html(tdf_string('5_thousand')); ?>
-                                                            </div>
-
-                                                            <div v-else-if="props.budget === '$10000'">
-                                                                <?php echo esc_html(tdf_string('10_thousand')); ?>
-                                                            </div>
-
-                                                            <div v-else-if="props.budget === '$25000'">
-                                                                <?php echo esc_html(tdf_string('25_thousand')); ?>
-                                                            </div>
-
-                                                            <div v-else-if="props.budget === '$50000'">
-                                                                <?php echo esc_html(tdf_string('50_thousand')); ?>
-                                                            </div>
-
-                                                            <div v-else-if="props.budget === '$100000'">
-                                                                <?php echo esc_html(tdf_string('1_lakh')); ?>
-                                                            </div>
-                                                            <div v-else>
-                                                                <?php echo esc_html(tdf_string('budget')); ?>
-                                                            </div>
+                                                    <div v-if="select.open"
+                                                        class="listivo-select-v2__dropdown">
+                                                        <div
+                                                                v-for="(option, index) in select.options"
+                                                                :key="option.id"
+                                                                @click="select.setOption(option)"
+                                                                class="listivo-select-v2__option"
+                                                                :class="{
+                                                                    'listivo-select-v2__option--active': option.selected,
+                                                                    'listivo-select-v2__option--highlight': index === select.optionIndex,
+                                                                    'listivo-select-v2__option--disabled': option.disabled && !option.selected,
+                                                                }"
+                                                        >
+                                                            <div class="listivo-select-v2__value"
+                                                                v-html="option.label"></div>
                                                         </div>
-
-                                                        <div v-if="select.open"
-                                                            class="listivo-select-v2__dropdown">
-                                                            <div
-                                                                    v-for="(option, index) in select.options"
-                                                                    :key="option.id"
-                                                                    @click="select.setOption(option)"
-                                                                    class="listivo-select-v2__option"
-                                                                    :class="{
-                                                                        'listivo-select-v2__option--active': option.selected,
-                                                                        'listivo-select-v2__option--highlight': index === select.optionIndex,
-                                                                        'listivo-select-v2__option--disabled': option.disabled && !option.selected,
-                                                                    }"
-                                                            >
-                                                                <div class="listivo-select-v2__value"
-                                                                    v-html="option.label"></div>
-                                                            </div>
-                                                        </div>
-                                                    </template>
-                                                </div>
-                                            </lst-select>
-                                        </div>
-                            </div>
-                        <?php endif; ?>
+                                                    </div>
+                                                </template>
+                                            </div>
+                                        </lst-select>
+                                    </div>
+                        </div>
+                    <?php endif; ?>
                      
-                        <?php if(!$showEmployerSettings): ?>
-                            <?php if($showInterneSettings): ?>
+                        <?php // if(!$showEmployerSettings): ?>
+                            <?php if($account_type == 'regular'): ?>
                             <div class="listivo-panel-user-settings__field listivo-panel-user-settings__field listivo-field-group" style="float:right;">
                             <?php else: ?> 
                                 <div class="listivo-panel-user-settings__field listivo-panel-user-settings__field listivo-field-group">
@@ -1167,8 +1174,8 @@ $showFreelancerSettings = ($current_user->type == 'freelancer');
                                 </div>
                             </div>
 
-                        <?php endif; ?>    
-                        <?php  if($showAgencySettings): ?>
+                        <?php // endif; ?>    
+                        <?php  if($account_type == "business"): ?>
                             <div class="listivo-panel-user-settings__field listivo-field-group ">
                             <label
                                     class="listivo-field-group__label"
@@ -1187,8 +1194,8 @@ $showFreelancerSettings = ($current_user->type == 'freelancer');
 
                             </div>
                         <?php endif; ?>
-                        <?php if(!$showEmployerSettings): ?>
-                            <?php if ($showAgencySettings): ?>
+                        <?php // if(!$showEmployerSettings): ?>
+                            <?php if ($account_type == "business"): ?>
                                 <div class="listivo-panel-user-settings__field listivo-field-group" style="float: right; margin-top: -7%;">
                             <?php else: ?>
                                 <div class="listivo-panel-user-settings__field listivo-field-group" style="float: right;">
@@ -1208,16 +1215,16 @@ $showFreelancerSettings = ($current_user->type == 'freelancer');
                                     <label for="hybrid"> <?php echo  esc_html(tdf_string('hybrid')) ?> </label>
                                 </div>
                             </div>
-                        <?php endif; ?>
+                        <?php // endif; ?>
 
 
                        
                         
                       
 
-                        <?php if(!$showInterneSettings && !$showFreelancerSettings): ?>
+                        <?php // if(!$account_type !='regular' && !$showFreelancerSettings): ?>
                             
-                            <?php if ($showAgencySettings): ?>
+                            <?php if ($account_type == "business"): ?>
                                 <div class="listivo-panel-user-settings__field listivo-field-group" style="margin-left: auto; margin-right: 0;">
                                 <?php else: ?>
                                 <div class="listivo-panel-user-settings__field listivo-field-group" style="float: left;padding-top: 20px;margin-left: 35px;">
@@ -1341,10 +1348,10 @@ $showFreelancerSettings = ($current_user->type == 'freelancer');
                                     </lst-select>
                                 </div>
                             </div>
-                        <?php endif; ?>
+                        <?php // endif; ?>
 
                         
-                        <?php if($showEmployerSettings): ?>
+                        <?php  if($showEmployerSettings): ?>
                             <div class="listivo-panel-user-settings__field listivo-field-group" style="float:right;margin-top:0px">
                                 <label
                                         class="listivo-field-group__label"
@@ -1485,9 +1492,9 @@ $showFreelancerSettings = ($current_user->type == 'freelancer');
                                 </div>
                             </div>
 
-                        <?php  endif; ?>
+                        <?php   endif; ?>
                  
-                        <?php if ($showAgencySettings): ?>
+                        <?php if ($account_type == "business"): ?>
                             <div class="listivo-panel-user-settings__field listivo-field-group" style="margin-top: -98px;">
                                 <?php else: ?>
                             <div class="listivo-panel-user-settings__field listivo-field-group">
@@ -1592,13 +1599,6 @@ $showFreelancerSettings = ($current_user->type == 'freelancer');
 
                         </div>
                     <?php endif; ?>
-                        
-                
-                        
-
-                    
-
-
                 </div>
 
 

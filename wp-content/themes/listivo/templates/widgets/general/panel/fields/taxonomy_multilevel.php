@@ -11,9 +11,18 @@ $lstInitialTerms = $lstPanelField->getTerms();
 $post = $lstTaxonomy->getPost();
 // print_r($post);
 $current_user = wp_get_current_user();
+$user_id = $current_user->ID;
+
+global $wpdb;
+$account_type = $wpdb->get_var($wpdb->prepare(
+    "SELECT meta_value FROM $wpdb->usermeta WHERE user_id = %d AND meta_key = %s",
+    $user_id,
+    'account_type'
+));
+
 $isAgencyCase = false;
 $olderCheck = $lstTaxonomy->multilevelFrontendPanelMultipleValues();
-if($post && isset($post->post_title) && $post->post_title === 'Category' && $current_user->type != 'agency'){
+if($post && isset($post->post_title) && $post->post_title === 'Category' && $account_type != 'business'){
      $olderCheck = 0;
      $isAgencyCase = true;
 }
@@ -37,7 +46,7 @@ if($post && isset($post->post_name) && $post->post_name === 'account-type'){
         :parent-taxonomies="<?php echo htmlspecialchars(json_encode($lstTaxonomy->getParentTaxonomyFieldIds())); ?>"
         :dependency-terms="modelForm.dependencyTerms"
         :selected-term-ids="modelForm.taxonomyFieldsValueIds"
-        :max-items=2
+        :max-items=3
     <?php if (!empty($lstAllowedTermIds)) : ?>
         :allowed-term-ids="<?php echo htmlspecialchars(json_encode($lstAllowedTermIds)); ?>"
     <?php endif; ?>
@@ -91,7 +100,7 @@ if($post && isset($post->post_name) && $post->post_name === 'account-type'){
                         order-type="disabled"
                     <?php endif; ?>
                     <?php if($isAgencyCase): ?>
-                        max_items="2"
+                        max_items="3"
                     <?php endif; ?>
                 >
                     <div

@@ -600,6 +600,7 @@ if (tdf_settings()->showFacebookAuth() || tdf_settings()->showGoogleAuth()) : ?>
                         <template v-if="!registerForm.errors.email.email">
                             <?php echo esc_html(tdf_string('email_invalid_format')); ?>
                         </template>
+
                     </div>
                 </template>
             </div>
@@ -867,7 +868,16 @@ if (tdf_settings()->showFacebookAuth() || tdf_settings()->showGoogleAuth()) : ?>
                             </div>
 
                             <?php echo wp_kses_post(tdf_settings()->getPolicyLabel()); ?>
-
+                            <!-- Handling custom errors -->
+                            <template>
+                                <div class="listivo-login-form__checkbox-error" v-if="!registerForm.isEmailValid">
+                                        Only business emails are accepted (abc@talends.com)
+                                </div>
+                                <div class="listivo-login-form__checkbox-error" v-if="registerForm.duplicateuserNameEmail !=''">
+                                        {{ registerForm.duplicateuserNameEmail }}
+                                </div>
+                                
+                            </template>
                             <template>
                                 <div v-if="registerForm.showErrors">
                                     <div

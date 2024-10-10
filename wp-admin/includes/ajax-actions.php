@@ -99,12 +99,12 @@ function wp_ajax_fetch_list() {
 }
 
 function wp_ajax_listivo_payment_purchase(){
-	print_r($_GET);die;
+//	print_r($_GET);die;
 }
 
 function wp_ajax_save_portfolio(){
-	echo 'nnnn';die;
-	print_r($_POST);
+//	echo 'nnnn';die;
+//	print_r($_POST);
 }
 
 /**

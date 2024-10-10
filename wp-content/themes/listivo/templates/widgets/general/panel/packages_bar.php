@@ -45,7 +45,7 @@ if (!tdf_current_user()->canCreateModels()) {
     <?php endif; ?>
 
    <?php if (tdf_current_user()->hasPackages() || tdf_current_user()->getNotEmptyBumpUpPackage()) : ?>
-        <a style="display:none"
+        <a
                 class="listivo-packages-bar__current listivo-button-primary-2-selector"
                 href="<?php echo esc_url(PanelWidget::getUrl(PanelWidget::ACTION_MY_PACKAGES)); ?>"
         >

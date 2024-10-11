@@ -38989,3 +38989,31 @@ label[for=listivo-phone-with-country-code] {
 .listivo-form-with-image-section__form {
     margin-top: var(--e-global-size-4);
 }
+
+/* Media query for mobile devices */
+@media (max-width: 768px) { /* You can adjust the max-width as needed */
+    .portfolio_listings {
+        width: 90% !important;
+        margin: 10px !important; /* Adjust margin if necessary */
+    }
+    .listings-custom-class{
+        width: 90% !important;
+        margin-left: 5% !important;
+    }
+}
+
+
+.portfolio_listings{
+    width: 60%;
+    margin: 20px auto; 
+    padding: 20px; 
+    background-color: lightgray; 
+    border-radius: 12px; 
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1); 
+    overflow: hidden;
+}
+
+.listings-custom-class{
+    width: 43%;
+    margin-left: 5%;
+}

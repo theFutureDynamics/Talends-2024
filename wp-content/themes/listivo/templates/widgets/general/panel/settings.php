@@ -54,6 +54,10 @@ $account_type = $wpdb->get_var($wpdb->prepare(
                     <?php get_template_part('templates/widgets/general/panel/settings/subscription'); ?>
 
                     <?php get_template_part('templates/widgets/general/panel/settings/details'); ?>
+
+                    <?php  get_template_part('templates/widgets/general/panel/settings/image'); ?>
+
+                    
                     <?php // if(!$isEmployerLogin): ?>
                         <?php if($account_type !='business'): ?>
                     <?php get_template_part('templates/widgets/general/panel/settings/experience'); ?>
@@ -66,8 +70,7 @@ $account_type = $wpdb->get_var($wpdb->prepare(
 
                     <?php get_template_part('templates/widgets/general/panel/settings/portfolio'); ?>
 
-                    <?php // get_template_part('templates/widgets/general/panel/settings/image'); ?>
-
+                    
                     <?php get_template_part('templates/widgets/general/panel/settings/socials'); ?>
                     <?php // endif; ?>
                     <?php get_template_part('templates/widgets/general/panel/settings/change_password'); ?>

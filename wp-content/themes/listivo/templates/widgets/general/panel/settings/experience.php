@@ -258,7 +258,7 @@ if (!$lstCurrentUser instanceof User) {
                         </div>
                     </div>
 
-                    <div class="listivo-panel-user-settings__field listivo-field-group" style="height:200px">
+                    <div class="listivo-panel-user-settings__field listivo-panel-user-settings__field--full-width listivo-field-group" style="height:200px">
                         <label
                                 class="listivo-field-group__label"
                                 for="listivo-name"
@@ -273,8 +273,10 @@ if (!$lstCurrentUser instanceof User) {
                                         'listivo-input-v2--error': props.showErrors && (!props.errors.job_description.required || !props.errors.job_description.minLength),
                                     }"
                             >
-                            <textarea style="margin-top:100px; border: 1px solid var(--e-global-color-lcolor3);" rows="10" cols="70" :value="props.job_description"  placeholder="<?php echo esc_attr(tdf_string('job_description')); ?>" @input="props.setJobDescription($event.target.value)" id="listivo-job_description"></textarea>
-                                <template>
+                            <div class="listivo-textarea">
+                                <textarea id="listivo-description" style="margin-top:100px; border: 1px solid var(--e-global-color-lcolor3);" rows="10" cols="125" :value="props.job_description"  placeholder="<?php echo esc_attr(tdf_string('job_description')); ?>" @input="props.setJobDescription($event.target.value)" id="listivo-job_description"></textarea>
+                            </div>    
+                            <template>
                                     <div
                                             v-if="props.showErrors && (!props.errors.job_description.required || !props.errors.job_description.minLength)"
                                             class="listivo-input-v2__error"
@@ -300,16 +302,17 @@ if (!$lstCurrentUser instanceof User) {
                             </div>
                         </div>
                     </div>
-
-                    <a href="javascript:;" style="margin-top:10px; left:50%" @click.prevent="props.addExperience"   class="listivo-button listivo-button--primary-1 listivo-button-primary-1-colors-with-stroke-selector">
-                        <?php echo esc_html(tdf_string('add_experience')); ?>
-                    </a>
+                    <div class="listivo-panel-user-settings__field listivo-field-group">
+                        <a href="javascript:;" @click.prevent="props.addExperience"   class="listivo-simple-button listivo-simple-button--background-primary-1">
+                            <?php echo esc_html(tdf_string('add_experience')); ?>
+                        </a>
+                    </div>
 
                    
                 
                 </div>
 
-                <div v-if="props.addedJobs && props.addedJobs.length > 0" style="width: 43%;margin-left: 5%;" class="listivo-panel-user-settings__skills-list" style="padding: 10px; background-color: #f9f9f9; border-radius: 8px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);">
+                <div v-if="props.addedJobs && props.addedJobs.length > 0"  class="listivo-panel-user-settings__skills-list listings-custom-class" style="padding: 10px; background-color: #f9f9f9; border-radius: 8px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);">
                     <ul style="list-style-type: none; padding: 0; margin: 0;">
                         <li v-for="(job, index) in props.addedJobs" :key="index" style="display: flex; justify-content: space-between; align-items: center; padding: 8px 0; border-bottom: 1px solid #ddd;">
                             <span v-if="job.end_date && job.end_date.trim() !== '0000-00-00'" style="font-size: 16px; color: #333;">{{ job.job_title }} ( {{ job.start_date }} - {{ job.end_date }} )</span>

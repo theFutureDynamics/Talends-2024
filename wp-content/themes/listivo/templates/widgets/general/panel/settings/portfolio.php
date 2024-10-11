@@ -108,7 +108,7 @@ if (!$lstCurrentUser instanceof User) {
                             </div>
                         </div>
 
-                        <div class="listivo-field-group" style="height:200px;margin-top:20px;">
+                        <div class="listivo-panel-user-settings__field listivo-panel-user-settings__field--full-width listivo-field-group" style="height:200px;margin-top:20px;">
                             <label
                                     class="listivo-field-group__label"
                                     for="listivo-name"
@@ -123,7 +123,7 @@ if (!$lstCurrentUser instanceof User) {
                                             'listivo-input-v2--error': props.showErrors && (!props.errors.award_description1.required || !props.errors.award_description1.minLength),
                                         }"
                                 >
-                                <!-- <div class="listivo-textarea"> -->
+                                <div class="listivo-textarea">
                                     
                                     <textarea style="margin-top:100px; border: 1px solid var(--e-global-color-lcolor3);" 
                                         rows="10" 
@@ -131,7 +131,7 @@ if (!$lstCurrentUser instanceof User) {
                                         cols="140" 
                                         :placeholder="`Description for image ${index + 1}`">
                                     </textarea> 
-                                <!-- </div> -->
+                                </div>
 
                                 
                                     <template>
@@ -162,10 +162,11 @@ if (!$lstCurrentUser instanceof User) {
                         </div>
 
                     </div>  
-                    
-                <a href="javascript:;" style="margin-top: 10px;left: 78.5%;margin-top: 5%;" @click="props.addPortfolioItem"  class="listivo-button listivo-button--primary-1 listivo-button-primary-1-colors-with-stroke-selector">
-                    <?php echo esc_html(tdf_string('add_portfolio')); ?>
-                </a>
+                <div class="listivo-panel-user-settings__field listivo-field-group">
+                    <a href="javascript:;"  @click="props.addPortfolioItem"  class="listivo-simple-button listivo-simple-button--background-primary-1">
+                        <?php echo esc_html(tdf_string('add_portfolio')); ?>
+                    </a>
+                </div>
 
                 
                 <!-- <div v-for="(image, index) in props.portfolio_images" :key="index">
@@ -246,9 +247,9 @@ if (!$lstCurrentUser instanceof User) {
                     </div>
                     <button @click="props.addPortfolioItem" type="button">Add More</button>
                 </div> -->
-                <!-- <button @click="props.addPortfolioItem" type="button">Add More</button> -->
-                
-                <div class="listivo-panel-accordion__bottom">
+                <!-- <button @click="props.addPortfolioItem" type="button">Add More</button> --> 
+            </div>
+            <div class="listivo-panel-accordion__bottom">
                     <button
                         class="listivo-button listivo-button--primary-1 listivo-button-primary-1-colors-with-stroke-selector"
                         :class="{'listivo-button--loading': props.inProgress}"
@@ -258,13 +259,10 @@ if (!$lstCurrentUser instanceof User) {
                         </span>
                     </button>
                 </div>
-
-                
-            </div>
         </form>
 
-        <div v-if="props.portfolios && props.portfolios.length > 0" 
-     style="width: 60%; margin: 20px auto; padding: 20px; background-color: lightgray; border-radius: 12px; box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1); overflow: hidden;">
+        <div class="portfolio_listings" v-if="props.portfolios && props.portfolios.length > 0" 
+     >
   <ul style="list-style-type: none; padding: 0; margin: 0;">
     <li v-for="(portfolio, index) in props.portfolios" :key="index" 
         style="display: flex; justify-content: space-between; align-items: center; padding: 15px; border-bottom: 1px solid #e0e0e0; transition: background-color 0.3s; background-color: #f9f9f9;">

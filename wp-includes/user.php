@@ -2636,17 +2636,29 @@ function updateUserAdditionalFields($user_id){
 		}
 	}
 
+	try{
+		// Construct the SQL query
+		$sql = "UPDATE {$wpdb->users} SET ";
+		$sets = array();
+		foreach ( $sanitized_fields as $key => $value ) {
+			// Use %f for decimal values and %s for strings
+			$placeholder = (is_numeric($value) && $key !="joined" && $key != "agency_founded" && $key !="total_jobs_delivered") ? '%f' : '%s';
+			$sets[] = "{$key} = {$placeholder}";
+		}
+		$sql .= implode(', ', $sets);
+		$sql .= " WHERE ID = %d";
+		// Prepare the query with $wpdb->prepare
+		$values = array_values($sanitized_fields);
+		$values[] = $user_id; // Add user ID for the WHERE clause
+		$sql = $wpdb->prepare($sql, ...$values);
+		// Execute the query
+		$updated = $wpdb->query($sql);
 
-	// Construct the SQL query
-	// $sql = "UPDATE {$wpdb->users} SET ";
-	// $sets = array();
-	// foreach ( $sanitized_fields as $key => $value ) {
-	// 	// Use %f for decimal values and %s for strings
-	// 	$placeholder = (is_numeric($value) && $key !="joined" && $key != "agency_founded" && $key !="total_jobs_delivered") ? '%f' : '%s';
-	// 	$sets[] = "{$key} = {$placeholder}";
-	// }
-	// $sql .= implode(', ', $sets);
-	// $sql .= " WHERE ID = %d";
+	} catch (Exception $e) {
+		// Handle the error (log it, show a message, etc.)
+		error_log($e->getMessage());
+		//echo json_encode(['status' => 'error', 'message' => 'An error occurred while updating the user.']);
+	}
 
 
 	// // Prepare the query with $wpdb->prepare

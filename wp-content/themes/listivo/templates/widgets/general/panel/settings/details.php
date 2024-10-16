@@ -1492,7 +1492,7 @@ $showEmployerSettings = ($current_user->type == 'employer');
                                 <ul style="list-style-type: none; padding: 0; margin: 0;">
                                     <li v-for="(skill, index) in props.selectedSkills" :key="index" style="display: flex; justify-content: space-between; align-items: center; padding: 8px 0; border-bottom: 1px solid #ddd;">
                                         <span style="font-size: 16px; color: #333;">{{ skill.label }} - {{ skill.rating }}%</span>
-                                        <i class="fa fa-trash" @click.prevent="props.removeSkill(index)" aria-hidden="true" style="font-size: 16px; color: #ff4d4d; cursor: pointer;"></i>
+                                        <i class="fa fa-trash" @click.prevent="props.removeSkill(index)" aria-hidden="true" style="font-size: 16px; color: rgb(89, 194, 63); cursor: pointer;"></i>
                                     </li>
                                 </ul>
                             </div>

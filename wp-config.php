@@ -28,7 +28,7 @@
 // /** Database password */
 // define( 'DB_PASSWORD', 'Pass@123' );
 
-define( 'DB_NAME', 'talends_2024_sep' );
+define( 'DB_NAME', 'wp_talends_14_oct_2024' );
 
 /** Database username */
 define( 'DB_USER', 'root' );

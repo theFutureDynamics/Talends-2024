@@ -118,15 +118,15 @@ if (!$lstCurrentUser instanceof User) {
                             <?php echo esc_html(tdf_string('expertise_description')); ?>
                         </label>
 
-                        <div class="listivo-panel-user-settings__field listivo-panel-user-settings__field--full-width listivo-field-group">
+                        <div  style="margin-top:100px; "  class="listivo-panel-user-settings__field listivo-panel-user-settings__field--full-width listivo-field-group">
                             <div
                                     class="listivo-input-v2"
                                     :class="{
                                         'listivo-input-v2--error': props.showErrors && (!props.errors.expertise_description.required || !props.errors.expertise_description.minLength),
                                     }"
                             >
-                            <div class="listivo-textarea">
-                                <textarea id="listivo-description" style="margin-top:100px; border: 1px solid var(--e-global-color-lcolor3);" rows="10" cols="125" :value="props.expertise_description"  placeholder="<?php echo esc_attr(tdf_string('expertise_description')); ?>" @input="props.setExpertiseDescription($event.target.value)" id="listivo-expertise_description"></textarea>
+                            <div >
+                                <textarea style="padding:20px;border: 1px solid var(--e-global-color-lcolor3);" rows="10" cols="125" :value="props.expertise_description"  placeholder="<?php echo esc_attr(tdf_string('expertise_description')); ?>" @input="props.setExpertiseDescription($event.target.value)" id="listivo-expertise_description"></textarea>
                             </div>   
                             <template>
                                     <div
@@ -154,7 +154,7 @@ if (!$lstCurrentUser instanceof User) {
                             </div>
                         </div>
                     </div>
-                    <div class="listivo-panel-user-settings__field listivo-field-group">
+                    <div  style="margin-top:130px;" class="listivo-panel-user-settings__field listivo-field-group">
                         <a href="javascript:;" class="listivo-simple-button listivo-simple-button--background-primary-1" style="margin-top:50px; margin-bottom:20px" @click.prevent="props.addExpertise">
                             <?php echo esc_html(tdf_string('add_exppertise')); ?>
                         </a>
@@ -164,8 +164,8 @@ if (!$lstCurrentUser instanceof User) {
                 <div v-if="props.newArray && props.newArray.length > 0" class="listivo-panel-user-settings__skills-list listings-custom-class" style="padding: 10px; background-color: #f9f9f9; border-radius: 8px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);">
                     <ul style="list-style-type: none; padding: 0; margin: 0;">
                         <li v-for="(job, index) in props.newArray" :key="index" style="display: flex; justify-content: space-between; align-items: center; padding: 8px 0; border-bottom: 1px solid #ddd;">
-                            <span v-if="job.expertise_title" style="font-size: 16px; color: #333;">{{ job.expertise_title }}</span>
-                            <i class="fa fa-trash" @click.prevent="props.removeExpertise(index)" aria-hidden="true" style="font-size: 16px; color: #ff4d4d; cursor: pointer;"></i>
+                            <span style="cursor:pointer;width:90%;overflow-y:scroll" @click.prevent="props.editExpertise(job,index)" v-if="job.expertise_title" style="font-size: 16px; color: #333;">{{ job.expertise_title }}</span>
+                            <i class="fa fa-trash" @click.prevent="props.removeExpertise(index)" aria-hidden="true" style="font-size: 16px; color: rgb(89, 194, 63); cursor: pointer;"></i>
                         </li>
                     </ul>
                 </div>

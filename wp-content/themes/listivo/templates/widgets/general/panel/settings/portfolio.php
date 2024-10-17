@@ -116,19 +116,19 @@ if (!$lstCurrentUser instanceof User) {
                                 <?php echo esc_html(tdf_string('portfolio_description')); ?>
                             </label>
 
-                            <div class="listivo-field-group__field">
+                            <div style="margin-top:100px;" class="listivo-field-group__field">
                                 <div
                                         class="listivo-input-v2"
                                         :class="{
                                             'listivo-input-v2--error': props.showErrors && (!props.errors.award_description1.required || !props.errors.award_description1.minLength),
                                         }"
                                 >
-                                <div class="listivo-textarea">
+                                <div>
                                     
-                                    <textarea style="margin-top:100px; border: 1px solid var(--e-global-color-lcolor3);" 
+                                    <textarea style="padding:20px; border: 1px solid var(--e-global-color-lcolor3);" 
                                         rows="10" 
                                         :name="'portfolio_description[]'"
-                                        cols="140" 
+                                        cols="125" 
                                         :placeholder="`Description for image ${index + 1}`">
                                     </textarea> 
                                 </div>
@@ -162,7 +162,7 @@ if (!$lstCurrentUser instanceof User) {
                         </div>
 
                     </div>  
-                <div class="listivo-panel-user-settings__field listivo-field-group">
+                <div style="margin-top:80px;" class="listivo-panel-user-settings__field listivo-field-group">
                     <a href="javascript:;"  @click="props.addPortfolioItem"  class="listivo-simple-button listivo-simple-button--background-primary-1">
                         <?php echo esc_html(tdf_string('add_portfolio')); ?>
                     </a>

@@ -266,15 +266,15 @@ if (!$lstCurrentUser instanceof User) {
                             <?php echo esc_html(tdf_string('education_description')); ?>
                         </label>
 
-                        <div class="listivo-field-group__field">
+                        <div style="margin-top:100px" class="listivo-field-group__field">
                             <div
                                     class="listivo-input-v2"
                                     :class="{
                                         'listivo-input-v2--error': props.showErrors && (!props.errors.education_description.required || !props.errors.education_description.minLength),
                                     }"
                             >
-                            <div class="listivo-textarea">
-                                <textarea style="margin-top:100px; border: 1px solid var(--e-global-color-lcolor3);" rows="10" cols="125" :value="props.education_description"  placeholder="<?php echo esc_attr(tdf_string('education_description')); ?>" @input="props.setEducationDescription($event.target.value)" id="listivo-education_description"></textarea>
+                            <div>
+                                <textarea style="padding:20px; border: 1px solid var(--e-global-color-lcolor3);" rows="10" cols="125" :value="props.education_description"  placeholder="<?php echo esc_attr(tdf_string('education_description')); ?>" @input="props.setEducationDescription($event.target.value)" id="listivo-education_description"></textarea>
                             </div>    
                                 <template>
                                     <div
@@ -302,7 +302,7 @@ if (!$lstCurrentUser instanceof User) {
                             </div>
                         </div>
                     </div>
-                    <div class="listivo-panel-user-settings__field listivo-field-group">
+                    <div style="margin-top:80px;" class="listivo-panel-user-settings__field listivo-field-group">
                         <a href="javascript:;" @click.prevent="props.addEducation"   class="listivo-simple-button listivo-simple-button--background-primary-1">
                             <?php echo esc_html(tdf_string('add_education')); ?>
                         </a>
@@ -311,13 +311,12 @@ if (!$lstCurrentUser instanceof User) {
                    
                 
                 </div>
-<!-- {{props.addedEducations}} -->
                 <div v-if="props.addedEducations && props.addedEducations.length > 0" class="listivo-panel-user-settings__skills-list skill-set-listings listings-custom-class" style="padding: 10px; background-color: #f9f9f9; border-radius: 8px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);">
                     <ul style="list-style-type: none; padding: 0; margin: 0;">
                         <li v-for="(education, index) in props.addedEducations" :key="index" style="display: flex; justify-content: space-between; align-items: center; padding: 8px 0; border-bottom: 1px solid #ddd;">
-                            <span v-if="education.education_end_date && education.education_end_date.trim() !== '0000-00-00'" style="font-size: 16px; color: #333;">{{ education.degree_title }} ( {{ education.education_start_date }} - {{ education.education_end_date }} )</span>
-                            <span v-else style="font-size: 16px; color: #333;">{{ education.degree_title }} ( {{ education.education_start_date }} - Present )</span>
-                            <i class="fa fa-trash" @click.prevent="props.removeEducation(index)" aria-hidden="true" style="font-size: 16px; color: #ff4d4d; cursor: pointer;"></i>
+                            <span style="cursor:pointer;width:90%;overflow-y:scroll;" @click.prevent="props.editEducation(education,index)" v-if="education.education_end_date && education.education_end_date.trim() !== '0000-00-00'" style="font-size: 16px; color: #333;">{{ education.degree_title }} ( {{ education.education_start_date }} - {{ education.education_end_date }} )</span>
+                            <span style="cursor:pointer;width:90%;overflow-y:scroll;" @click.prevent="props.editEducation(education,index)" v-else style="font-size: 16px; color: #333;">{{ education.degree_title }} ( {{ education.education_start_date }} - Present )</span>
+                            <i class="fa fa-trash" @click.prevent="props.removeEducation(index)" aria-hidden="true" style="font-size: 16px; color: rgb(89, 194, 63); cursor: pointer;"></i>
                         </li>
                     </ul>
                 </div>

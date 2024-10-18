@@ -31,13 +31,13 @@ $account_type = $wpdb->get_var($wpdb->prepare(
 ));
 
 
-
 $experiences = $lstUser->getUserExperiences();
 $educations = $lstUser->getUserEducation();
 $servics = $lstUser->getUserExpertises();
 $portfolios = $lstUser->getUserPortfolio();
 $awards = $lstUser->getUserAwards();
 $image_url = get_site_url() . '/wp-content/uploads/2022/08/award.png';
+//print_r($educations);
 ?>
 
 <style>/*! elementor - v3.23.0 - 05-08-2024 */

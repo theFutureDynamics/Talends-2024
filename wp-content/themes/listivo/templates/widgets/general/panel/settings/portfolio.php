@@ -67,7 +67,7 @@ if (!$lstCurrentUser instanceof User) {
                                 <?php echo esc_html(tdf_string('portfolio_image')); ?>
                             </label>
 
-                            <div class="listivo-field-group__field">
+                            <div style="margin-top:50px" class="listivo-field-group__field">
                                 <div
                                         class="listivo-input-v2"
                                         :class="{

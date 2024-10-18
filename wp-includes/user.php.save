@@ -2688,8 +2688,7 @@ global $wpdb;
 	 if ( ! is_numeric($user_id) || $user_id <= 0 ) {
         return;
     }
-if ( isset($_POST['user']['agency_expertises']) && is_array($_POST['user']['agency_expertises']) ) {
-
+	if(isset($_POST['user']['agency']))
 	$deleted = $wpdb->query(
         $wpdb->prepare(
             "DELETE FROM {$wpdb->prefix}user_expertises WHERE user_id = %d",
@@ -2722,7 +2721,7 @@ if ( isset($_POST['user']['agency_expertises']) && is_array($_POST['user']['agen
 		);
 	}
 	
-}
+
 	
 }
 
@@ -2780,7 +2779,7 @@ function updateExperiences($user_id) {
         // echo 'Invalid user ID.';
         return;
     }
-	if ( isset($_POST['user']['experiences']) && is_array($_POST['user']['experiences']) ) {
+
 	 // Delete all existing skills for the user
 	 $deleted = $wpdb->query(
         $wpdb->prepare(
@@ -2794,7 +2793,7 @@ function updateExperiences($user_id) {
         echo 'Failed to delete existing skills.';
         return;
     }
-	}
+	
     // Get data from POST
     if ( isset($_POST['user']['experiences']) && is_array($_POST['user']['experiences']) ) {
         $experiences = $_POST['user']['experiences'];
@@ -2911,9 +2910,6 @@ function updateEducation($user_id) {
         return;
     }
 
-	if ( isset($_POST['user']['education']) && is_array($_POST['user']['education']) ) {
-
-
 	 // Delete all existing skills for the user
 	 $deleted = $wpdb->query(
         $wpdb->prepare(
@@ -2927,7 +2923,7 @@ function updateEducation($user_id) {
         echo 'Failed to delete existing skills.';
         return;
     }
-}
+
     // Get data from POST
     if ( isset($_POST['user']['education']) && is_array($_POST['user']['education']) ) {
         $educations = $_POST['user']['education'];

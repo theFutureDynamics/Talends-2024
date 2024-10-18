@@ -59,13 +59,16 @@ $account_type = $wpdb->get_var($wpdb->prepare(
 
                     
                     <?php // if(!$isEmployerLogin): ?>
-                        <?php if($account_type !='business'): ?>
-                    <?php get_template_part('templates/widgets/general/panel/settings/experience'); ?>
-                    <?php endif; ?>
+                        <?php // if($account_type !='business'): ?>
+                    <?php // get_template_part('templates/widgets/general/panel/settings/experience'); ?>
+                    <?php // endif; ?>
+		    <?php if($account_type == 'business'):  ?>
                     <?php get_template_part('templates/widgets/general/panel/settings/expertise'); ?>
-                    <?php if($account_type !='business'): ?>
+	<?php endif; ?>                    
+<?php if($account_type !='business'): ?>
                     <?php get_template_part('templates/widgets/general/panel/settings/education'); ?>
-                    <?php endif; ?>
+<?php get_template_part('templates/widgets/general/panel/settings/experience'); ?>                   
+ <?php endif; ?>
                     <?php get_template_part('templates/widgets/general/panel/settings/awards'); ?>
 
                     <?php get_template_part('templates/widgets/general/panel/settings/portfolio'); ?>

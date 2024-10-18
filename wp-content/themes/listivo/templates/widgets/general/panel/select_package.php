@@ -100,7 +100,7 @@ $lstType = $lstUserPackagesForModel->isEmpty() && tdf_settings()->subscriptionsE
                             <?php endif; ?>
 
                             <div class="listivo-panel-section__button">
-                                <div class="listivo-panel-section__buy-button">
+                                <div style="display:none;" class="listivo-panel-section__buy-button">
                                     <?php if ($lstPackagesForModel->isNotEmpty()) : ?>
                                         <a
                                                 class="listivo-button listivo-button--primary-2"

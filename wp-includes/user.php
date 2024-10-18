@@ -2726,7 +2726,7 @@ if ( isset($_POST['user']['agency_expertises']) && is_array($_POST['user']['agen
 	
 }
 
-function updateAwards($user_id){
+function updateAwardsOld($user_id){
 	global $wpdb;
 	 // Ensure user_id is valid
 	 if ( ! is_numeric($user_id) || $user_id <= 0 ) {
@@ -2771,6 +2771,68 @@ function updateAwards($user_id){
 		$format
 	);
 }
+
+function updateAwards($user_id) {
+    global $wpdb;
+
+    // Ensure user_id is valid
+    if (!is_numeric($user_id) || $user_id <= 0) {
+        return;
+    }
+
+    // Prepare data from POST request
+    $awards = [
+        'award_title1' => $_POST['user']['award_title1'] ?? null,
+        'award_title2' => $_POST['user']['award_title2'] ?? null,
+        'award_title3' => $_POST['user']['award_title3'] ?? null,
+    ];
+
+    // Select the existing award entry for the user
+    $existing_award = $wpdb->get_row(
+        $wpdb->prepare("SELECT * FROM {$wpdb->prefix}awards WHERE user_id = %d", $user_id)
+    );
+
+    // Prepare data for update
+    $data_to_update = [];
+
+    if ($existing_award) {
+        // Check each award title and description
+        for ($i = 1; $i <= 3; $i++) {
+            $title = $awards["award_title{$i}"];
+
+            // Only update if a title is provided
+            if (!empty($title)) {
+                $data_to_update["award_title{$i}"] = $title;
+            }
+        }
+
+        // Update the existing record if there are any changes
+        if (!empty($data_to_update)) {
+            $wpdb->update(
+                "{$wpdb->prefix}awards",
+                $data_to_update,
+                ['user_id' => $user_id],
+                array_fill(0, count($data_to_update), '%s'), // Format for each updated value
+                ['%d'] // Format for user_id
+            );
+        }
+    } else {
+        // If no existing award, insert a new entry (if any title/description is present)
+        if (!empty($awards['award_title1']) || !empty($awards['award_title2']) || !empty($awards['award_title3'])) {
+            $wpdb->insert(
+                "{$wpdb->prefix}awards",
+                [
+                    'user_id' => $user_id,
+                    'award_title1' => $awards['award_title1'],
+                    'award_title2' => $awards['award_title2'],
+                    'award_title3' => $awards['award_title3'],
+                ],
+                ['%d', '%s', '%s', '%s'] // Format
+            );
+        }
+    }
+}
+
 
 function updateExperiences($user_id) {
     global $wpdb;
